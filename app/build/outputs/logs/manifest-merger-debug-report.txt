@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:2:1-36:12
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:2:1-48:12
 	xmlns:android
 		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:2:11-69
 	package
@@ -26,7 +26,7 @@ ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:8:5
 	android:name
 		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:8:22-69
 application
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:10:5-34:19
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:10:5-46:19
 MERGED from [com.android.support:appcompat-v7:23.2.1] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-v4:23.2.1] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.2.1] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.2.1/AndroidManifest.xml:7:5-20
@@ -74,7 +74,7 @@ ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:22:
 	android:name
 		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:22:27-74
 activity#com.example.android.vaccinationplan.MainActivity
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:25:9-28:68
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:25:9-28:59
 	android:label
 		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:27:13-56
 	android:theme
@@ -82,12 +82,28 @@ ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:25:
 	android:name
 		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:26:13-41
 meta-data#com.google.android.gms.version
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:31:9-33:69
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:33:9-35:69
 MERGED from [com.google.android.gms:play-services-basement:8.1.0] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/AndroidManifest.xml:21:9-23:69
 	android:name
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:32:13-58
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:34:13-58
 	android:value
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:33:13-66
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:35:13-66
+activity#com.example.android.vaccinationplan.ChildDetailActivity
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:37:9-45:20
+	android:label
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:39:13-64
+	android:theme
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:41:13-56
+	android:parentActivityName
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:40:13-55
+	android:name
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:38:13-48
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:42:13-44:84
+	android:name
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:43:17-63
+	android:value
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:44:17-81
 uses-sdk
 INJECTED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.2.1] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/AndroidManifest.xml:21:5-23:78
