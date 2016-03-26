@@ -90,7 +90,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             launchActivity();
             finish();
         }
-        // Set up the login form.
+
+
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
 
@@ -438,13 +439,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
             if (success) {
-                //finish();
                 pref = PreferenceManager.getDefaultSharedPreferences(mContext);
                 SharedPreferences.Editor edit = pref.edit();
                 edit.putString(getString(R.string.pref_key_email), mEmail);
                 edit.putString(getString(R.string.pref_key_password), mPassword);
                 edit.commit();
                 launchActivity();
+                finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
