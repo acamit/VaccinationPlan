@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="/media/Data/docs/VaccinationPlan/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-appindexing-8.1.0_eb4c6adaa2bbee636f7e1da96a0860eb18a59284.jar" />
+    </item>
+    <item
+        jar="/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="/media/Data/docs/VaccinationPlan/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-8.1.0_b319da9c9ea5a8b5985b93185583ad3f959016c0.jar" />
+    </item>
+
+</items>
