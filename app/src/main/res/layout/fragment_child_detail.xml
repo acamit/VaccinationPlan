@@ -10,42 +10,81 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/childFormDescription"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="top|left|center_horizontal"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="#c78181"
+            android:backgroundTintMode="screen"
+            android:capitalize="words"
             android:text="@string/child_form_description"
-            android:textSize="15sp" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
             android:id="@+id/ChildName"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:hint="@string/child_name"
             android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/DoB"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:hint="@string/date_of_birth"
-            android:inputType="date"
 
-            />
+            android:inputType="date" />
 
         <EditText
             android:id="@+id/place_of_birth"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:hint="@string/place_of_birth"
+            android:inputType="textAutoComplete" />
 
         <EditText
             android:id="@+id/MotherName"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:hint="@string/mothers_name"
             android:inputType="textPersonName" />
 
+        <EditText
+            android:id="@+id/Location"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:hint="@string/location"
+            android:inputType="number" />
+
+        <DatePicker
+            android:id="@+id/DatePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:clickable="true"
+            android:labelFor="@string/date_of_birth" />
+
+        <EditText
+            android:id="@+id/MobileNumber"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:hint="@string/mobile_number"
+            android:inputType="phone" />
+
+        <Button
+            android:id="@+id/SubmitDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:textAllCaps="true" />
     </LinearLayout>
 
 </ScrollView>
