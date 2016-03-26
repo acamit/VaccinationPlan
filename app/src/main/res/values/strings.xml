@@ -15,9 +15,9 @@
     </string>
     <string name="pref_key_email">EMAIL</string>
     <string name="pref_key_password">PASSWORD</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Vaccintion Plan</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_child_detail">ChildDetailActivity</string>
+    <string name="title_activity_child_detail">Child Details</string>
 
     <!-- Child detail Strings-->
     <string name="child_form_description">Please Enter the Child Details</string>
@@ -26,6 +26,8 @@
     <string name="place_of_birth">Place Of Birth</string>
     <string name="location">Location</string>
     <string name="blood_group">Blood Group(optional)</string>
-    <string name="mothers_name">Mother's Name</string>
+    <string name="mothers_name">Mother\'s Name</string>
     <string name="mobile_number">Mobile Number</string>
+    <string name="child_details_description">Please Enter Child Details</string>
+    <string name="submit_child_details">Submit</string>
 </resources>
