@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:2:1-48:12
+ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:2:1-51:12
 	package
 		ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:3:5-50
 		INJECTED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml
@@ -26,7 +26,7 @@ ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:8:5-7
 	android:name
 		ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:8:22-69
 application
-ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:10:5-46:19
+ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:10:5-49:19
 MERGED from [com.android.support:appcompat-v7:23.2.1] /home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-v4:23.2.1] /home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.2.1] /home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.2.1/AndroidManifest.xml:7:5-20
@@ -104,6 +104,18 @@ ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:42:13
 		ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:44:17-81
 	android:name
 		ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:43:17-63
+activity#com.example.android.vaccinationplan.VaccineDetail
+ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:46:9-51
+	android:name
+		ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:46:19-48
+activity#com.example.android.vaccinationplan.VaccinesCompleted
+ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:47:9-55
+	android:name
+		ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:47:19-52
+activity#com.example.android.vaccinationplan.HospitalDetail
+ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:48:9-61
+	android:name
+		ADDED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml:48:19-49
 uses-sdk
 INJECTED from /home/himanshu/VaccinationPlan/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.2.1] /home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/AndroidManifest.xml:21:5-23:78

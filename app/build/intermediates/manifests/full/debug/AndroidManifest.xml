@@ -49,6 +49,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.vaccinationplan.MainActivity" />
         </activity>
+        <activity android:name="com.example.android.vaccinationplan.VaccineDetail" />
+        <activity android:name="com.example.android.vaccinationplan.VaccinesCompleted" />
+        <activity android:name="com.example.android.vaccinationplan.HospitalDetail" />
     </application>
 
 </manifest>
