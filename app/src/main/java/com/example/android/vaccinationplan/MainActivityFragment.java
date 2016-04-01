@@ -16,13 +16,15 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
 
-    MyCustomAdapter dataAdapter = null;
+   private ArrayAdapter<String> mVaccineAdapter;
+
 
     public MainActivityFragment() {
     }
@@ -33,69 +35,21 @@ public class MainActivityFragment extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_main, container, false);
 
 
-       String[] vaccinationList = {"asd","asd","asd"};
+       String[] vaccinationList = {"asdasldalj dihfayfv","asdasldalj dihfayfv","asdasldalj dihfayfv","asdasldalj dihfayfv","asdasldalj dihfayfv","asdasldalj dihfayfv","asdasldalj dihfayfv","asdasldalj dihfayfv","asdasldalj dihfayfv",};
+
+        List<String> vaccineList = new ArrayList<String>(Arrays.asList(vaccinationList));
 
         //create an ArrayAdaptar from the String Array
-        dataAdapter = new MyCustomAdapter(getActivity().getApplicationContext() , R.layout.main_list_view, (ArrayList<String>) Arrays.asList(vaccinationList));
-        ListView listView = (ListView) getActivity().findViewById(R.id.listView);
-        // Assign adapter to ListView
-        listView.setAdapter(dataAdapter);
+        mVaccineAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
+                                                    R.layout.main_list_view,
+                                                    R.id.code,
+                                                    vaccineList);
+
+        ListView listView = (ListView) rootView.findViewById(R.id.listView);
+        listView.setAdapter(mVaccineAdapter);
 
         return rootView;
     }
 
-    private class MyCustomAdapter extends ArrayAdapter<String> {
 
-        private ArrayList<String> countryList;
-
-        public MyCustomAdapter(Context context, int textViewResourceId,
-                               ArrayList<String> countryList) {
-            super(context, textViewResourceId, countryList);
-            this.countryList = new ArrayList<String>();
-            this.countryList.addAll(countryList);
-        }
-
-        private class ViewHolder {
-            TextView code;
-            CheckBox name;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            ViewHolder holder = null;
-            Log.v("ConvertView", String.valueOf(position));
-
-            if (convertView == null) {
-                LayoutInflater vi = (LayoutInflater)getActivity().getSystemService(
-                        Context.LAYOUT_INFLATER_SERVICE);
-                convertView = vi.inflate(R.layout.main_list_view, null);
-
-                holder = new ViewHolder();
-                holder.code = (TextView) convertView.findViewById(R.id.code);
-                holder.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
-                convertView.setTag(holder);
-
-                holder.name.setOnClickListener( new View.OnClickListener() {
-                    public void onClick(View v) {
-                        CheckBox cb = (CheckBox) v ;
-                        //Country country = (Country) cb.getTag();
-                       /* Toast.makeText(getActivity().getApplicationContext(),
-                                "Clicked on Checkbox: " + cb.getText() +
-                                        " is " + cb.isChecked(),
-                                Toast.LENGTH_LONG).show();
-                        country.setSelected(cb.isChecked());
-                    */}
-                });
-            }
-            else {
-                holder = (ViewHolder) convertView.getTag();
-            }
-
-
-            return convertView;
-
-        }
-
-    }
 }
