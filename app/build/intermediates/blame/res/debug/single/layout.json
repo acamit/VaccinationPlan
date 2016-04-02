@@ -48,6 +48,10 @@
         "source": "/home/himanshu/VaccinationPlan/app/src/main/res/layout/activity_vaccines_completed.xml"
     },
     {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/fragment_vaccines_completed.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/layout/fragment_vaccines_completed.xml"
+    },
+    {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
         "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_list_menu_item_checkbox.xml"
     },
@@ -104,12 +108,12 @@
         "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_activity_chooser_view_list_item.xml"
     },
     {
-        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/activity_vaccine_detail.xml",
-        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/layout/activity_vaccine_detail.xml"
-    },
-    {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
         "source": "/home/himanshu/VaccinationPlan/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/activity_vaccine_detail.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/layout/activity_vaccine_detail.xml"
     },
     {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
@@ -144,12 +148,12 @@
         "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/notification_template_lines.xml"
     },
     {
-        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
-        "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_action_bar_title_item.xml"
-    },
-    {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
         "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_action_bar_title_item.xml"
     },
     {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
@@ -160,12 +164,12 @@
         "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_action_mode_bar.xml"
     },
     {
-        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
-        "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_action_bar_title_item.xml"
-    },
-    {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/content_child_detail.xml",
         "source": "/home/himanshu/VaccinationPlan/app/src/main/res/layout/content_child_detail.xml"
+    },
+    {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_action_bar_title_item.xml"
     },
     {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/design_layout_tab_icon.xml",
@@ -256,6 +260,10 @@
         "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_expanded_menu_layout.xml"
     },
     {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/content_vaccine_detail.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/layout/content_vaccine_detail.xml"
+    },
+    {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_button_bar_material.xml",
         "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_alert_dialog_button_bar_material.xml"
     },
@@ -344,6 +352,10 @@
         "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/notification_template_big_media.xml"
     },
     {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/fragment_hospital_detail.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/layout/fragment_hospital_detail.xml"
+    },
+    {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
         "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/select_dialog_multichoice_material.xml"
     },
@@ -394,6 +406,10 @@
     {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
         "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/content_vaccines_completed.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/layout/content_vaccines_completed.xml"
     },
     {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/fragment_child_detail.xml",
@@ -452,6 +468,10 @@
         "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_search_dropdown_item_icons_2line.xml"
     },
     {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/fragment_vaccine_detail.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/layout/fragment_vaccine_detail.xml"
+    },
+    {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
         "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/notification_template_part_chronometer.xml"
     },
@@ -462,6 +482,10 @@
     {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/design_navigation_item_subheader.xml",
         "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/design/23.2.1/res/layout/design_navigation_item_subheader.xml"
+    },
+    {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/content_hospital_detail.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/layout/content_hospital_detail.xml"
     },
     {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
