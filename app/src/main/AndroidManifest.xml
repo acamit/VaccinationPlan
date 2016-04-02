@@ -45,7 +45,15 @@
         </activity>
         <activity android:name=".VaccineDetail" />
         <activity android:name=".VaccinesCompleted" />
-        <activity android:name=".HospitalDetail"></activity>
+        <activity android:name=".HospitalDetail" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.vaccinationplan.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
