@@ -54,6 +54,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.vaccinationplan.MainActivity" />
         </activity>
+        <activity
+            android:name=".VaccineDetailActivity"
+            android:label="@string/title_activity_vaccine_detail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

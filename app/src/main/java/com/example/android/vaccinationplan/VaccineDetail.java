@@ -8,6 +8,6 @@ public class VaccineDetail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vaccine_detail);
+        setContentView(R.layout.activity_vaccine_detail_old);
     }
 }

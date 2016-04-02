@@ -11,7 +11,7 @@ public class HospitalDetail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hospital_detail);
+        setContentView(R.layout.activity_hospital_detail_old);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
