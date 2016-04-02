@@ -1,11 +1,15 @@
 [
     {
-        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_child_detail.xml",
-        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/menu/menu_child_detail.xml"
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_hospital_details.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/menu/menu_hospital_details.xml"
     },
     {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_main.xml",
         "source": "/home/himanshu/VaccinationPlan/app/src/main/res/menu/menu_main.xml"
+    },
+    {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_child_detail.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/menu/menu_child_detail.xml"
     },
     {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_main.xml",

@@ -7,4 +7,17 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/hospital_details"
+        android:title="@string/hospital_details"
+        app:showAsAction="never"
+        android:orderInCategory="1"
+        />
+    <item
+        android:id="@+id/vaccine_record"
+        android:title="@string/vaccination_record"
+        app:showAsAction="never"
+        android:orderInCategory="0"
+        />
 </menu>

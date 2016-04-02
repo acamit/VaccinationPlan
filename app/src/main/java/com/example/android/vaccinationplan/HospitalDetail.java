@@ -1,7 +1,10 @@
 package com.example.android.vaccinationplan;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class HospitalDetail extends AppCompatActivity {
 
@@ -9,5 +12,28 @@ public class HospitalDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital_detail);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_hospital_details, menu);//Menu Resource, Menu
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settings = new Intent(this , SettingsActivity.class);
+            startActivity(settings);
+            return true;
+        } else if (id == R.id.hospital_details) {
+            Intent hospitals = new Intent(this, HospitalDetail.class);
+            startActivity(hospitals);
+        }else if (id== R.id.vaccine_record){
+            Intent vaccine_record = new Intent(this ,VaccinesCompleted.class);
+            startActivity(vaccine_record);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
