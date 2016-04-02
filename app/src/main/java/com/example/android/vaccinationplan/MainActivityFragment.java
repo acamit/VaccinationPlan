@@ -47,7 +47,7 @@ public class MainActivityFragment extends Fragment {
             Intent hospitals = new Intent(getActivity(), HospitalDetail.class);
             startActivity(hospitals);
         }else if (id== R.id.vaccine_record){
-            Intent vaccine_record = new Intent(getActivity() ,VaccinesCompleted.class);
+            Intent vaccine_record = new Intent(getActivity() ,VaccinesCompletedActivity.class);
             startActivity(vaccine_record);
         }
         return super.onOptionsItemSelected(item);

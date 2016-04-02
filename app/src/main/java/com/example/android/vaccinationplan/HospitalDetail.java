@@ -31,7 +31,7 @@ public class HospitalDetail extends AppCompatActivity {
             Intent hospitals = new Intent(this, HospitalDetail.class);
             startActivity(hospitals);
         }else if (id== R.id.vaccine_record){
-            Intent vaccine_record = new Intent(this ,VaccinesCompleted.class);
+            Intent vaccine_record = new Intent(this ,VaccinesCompletedActivity.class);
             startActivity(vaccine_record);
         }
         return super.onOptionsItemSelected(item);
