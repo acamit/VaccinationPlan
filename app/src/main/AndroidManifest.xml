@@ -43,7 +43,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.vaccinationplan.MainActivity" />
         </activity>
-        <activity android:name=".HospitalDetail" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
@@ -59,6 +58,10 @@
         <activity
             android:name=".VaccinesCompletedActivity"
             android:label="@string/title_activity_vaccines_completed"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".HospitalDetailActivity"
+            android:label="@string/title_activity_hospital_detail"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

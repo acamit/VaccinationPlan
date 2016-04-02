@@ -44,7 +44,7 @@ public class MainActivityFragment extends Fragment {
             startActivity(settings);
             return true;
         } else if (id == R.id.hospital_details) {
-            Intent hospitals = new Intent(getActivity(), HospitalDetail.class);
+            Intent hospitals = new Intent(getActivity(), HospitalDetailActivity.class);
             startActivity(hospitals);
         }else if (id== R.id.vaccine_record){
             Intent vaccine_record = new Intent(getActivity() ,VaccinesCompletedActivity.class);
