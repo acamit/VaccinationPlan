@@ -108,12 +108,12 @@
         "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_activity_chooser_view_list_item.xml"
     },
     {
-        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
-        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/layout/activity_main.xml"
-    },
-    {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/activity_vaccine_detail.xml",
         "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/layout/activity_vaccine_detail.xml"
+    },
+    {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/layout/activity_main.xml"
     },
     {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
@@ -148,12 +148,12 @@
         "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/notification_template_lines.xml"
     },
     {
-        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
-        "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/notification_template_big_media_narrow.xml"
-    },
-    {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
         "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/notification_template_big_media_narrow.xml"
     },
     {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
@@ -164,12 +164,12 @@
         "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_action_mode_bar.xml"
     },
     {
-        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/content_child_detail.xml",
-        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/layout/content_child_detail.xml"
-    },
-    {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
         "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/content_child_detail.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/layout/content_child_detail.xml"
     },
     {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/design_layout_tab_icon.xml",
@@ -190,6 +190,10 @@
     {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/design_layout_tab_icon.xml",
         "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/design/23.2.1/res/layout/design_layout_tab_icon.xml"
+    },
+    {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/vaccine_completed_list_view.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/layout/vaccine_completed_list_view.xml"
     },
     {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",

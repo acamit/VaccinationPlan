@@ -31,12 +31,12 @@ public class MainActivityFragment extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_main, container, false);
 
 
-        String[] vaccinationList = {"asdasldalj dihfayfv","asdasldalj dihfayfv","asdasldalj dihfayfv","asdasldalj dihfayfv","asdasldalj dihfayfv","asdasldalj dihfayfv","asdasldalj dihfayfv","asdasldalj dihfayfv","asdasldalj dihfayfv",};
+        String[] vaccinationList = {"BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG"};
 
-        List<String> vaccineList = new ArrayList<String>(Arrays.asList(vaccinationList));
+        List<String> vaccineList = new ArrayList<>(Arrays.asList(vaccinationList));
 
         //create an ArrayAdaptar from the String Array
-        mVaccineAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
+        mVaccineAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(),
                 R.layout.main_list_view,
                 R.id.code,
                 vaccineList);
