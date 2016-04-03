@@ -50,15 +50,14 @@
     android:text="Upcoming Vaccine"
     android:id="@+id/textView2"
     android:textAlignment="center"
-    android:textColor="#653232"
-    android:textColorHighlight="#ab2c2c"
-    android:textStyle="bold|italic"
-    android:textSize="30dp"
+    android:textStyle="normal|bold"
+    android:textSize="25sp"
     android:layout_alignParentTop="true"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true"
     android:layout_alignRight="@+id/textView3"
-    android:layout_alignEnd="@+id/textView3" />
+    android:layout_alignEnd="@+id/textView3"
+    android:fontFamily="@string/common_google_play_services_enable_button" />
 
 <ImageView
     android:layout_width="100dp"
@@ -103,16 +102,20 @@
     android:textAlignment="center" />
 
 <TextView
-    android:layout_width="120dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:text="Mandatory"
     android:id="@+id/textView5"
     android:textAlignment="center"
-    android:background="#843c1e1e"
+    android:background="#af9595"
     android:layout_alignBottom="@+id/imageView"
     android:layout_alignRight="@+id/textView2"
-    android:layout_alignEnd="@+id/textView2" />
+    android:layout_alignEnd="@+id/textView2"
+    android:paddingLeft="10dp"
+    android:paddingTop="2dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="5dp" />
 
 <Button
     android:layout_width="wrap_content"
