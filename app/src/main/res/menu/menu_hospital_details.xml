@@ -3,7 +3,7 @@
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.android.vaccinationplan.HospitalDetail"
+    tools:context="com.example.android.vaccinationplan.HospitalDetailActivity"
 
     >
 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp"
+    android:paddingLeft="5dp"
+    android:paddingBottom="10dp"
+    android:paddingRight="10dp"
+    android:outlineProvider="bounds"
+    android:theme="@style/AppTheme.PopupOverlay"
+    android:touchscreenBlocksFocus="false">
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="50dp"
+        android:layout_height="65dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textColor="#1c1a1a"
+        android:checked="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/textView17"
+        android:outlineProvider="paddedBounds" />
+
+    <TextView
+        android:id="@+id/code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BCG"
+        android:textSize="20sp"
+        android:textColor="#201e1e"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/checkBox1"
+        android:layout_toEndOf="@+id/checkBox1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/textView17"
+        android:text="Bacillus Calmette Guerin"
+        android:layout_below="@+id/code"
+        android:layout_toRightOf="@+id/checkBox1"
+        android:layout_toEndOf="@+id/checkBox1"
+        android:textColor="#362f2f" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text=" mandatory"
+        android:id="@+id/textView18"
+        android:background="#af9595"
+        android:paddingLeft="2dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="2dp"
+        android:textStyle="bold"
+        android:layout_above="@+id/textView17"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="1 month to go"
+        android:id="@+id/textView19"
+        android:layout_below="@+id/textView18"
+        android:layout_alignRight="@+id/textView18"
+        android:layout_alignEnd="@+id/textView18"
+        android:paddingTop="2dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="3dp" />
+</RelativeLayout>

@@ -85,9 +85,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
 
         mContext = this;
-        Boolean isLogin = new SessionManager(mContext).checkSession();
+
+        SessionManager sessionManager =  new SessionManager(mContext);
+        Boolean isLogin = sessionManager.checkSession();
         if (isLogin) {
-            launchActivity();
+            boolean isChildCountPresent = sessionManager.isChildDetailPresent();
+            launchActivity(isChildCountPresent);
             finish();
         }
 
@@ -352,8 +355,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         client.disconnect();
     }
 
-    public void launchActivity() {
-        Intent intent = new Intent(mContext, MainActivity.class).putExtra(Intent.EXTRA_TEXT, "logging in");
+    public void launchActivity(boolean isChildCountPresent) {
+        Intent intent;
+        if(isChildCountPresent){
+            intent = new Intent(mContext, MainActivity.class).putExtra(Intent.EXTRA_TEXT, "logging in");
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+        }else{
+            intent = new Intent(mContext, ChildDetailActivity.class);
+        }
         startActivity(intent);
     }
 
@@ -439,12 +449,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
             if (success) {
+                int num_of_children =0;
                 pref = PreferenceManager.getDefaultSharedPreferences(mContext);
                 SharedPreferences.Editor edit = pref.edit();
                 edit.putString(getString(R.string.pref_key_email), mEmail);
                 edit.putString(getString(R.string.pref_key_password), mPassword);
+                edit.putString(getString(R.string.pref_key_child_count), num_of_children + "");
                 edit.commit();
-                launchActivity();
+
+                boolean isChildCountPresent =  new SessionManager(mContext).isChildDetailPresent();
+                launchActivity(isChildCountPresent);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));

@@ -3,16 +3,22 @@ package com.example.android.vaccinationplan;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class HospitalDetail extends AppCompatActivity {
+public class HospitalDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital_detail);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -28,12 +34,16 @@ public class HospitalDetail extends AppCompatActivity {
             startActivity(settings);
             return true;
         } else if (id == R.id.hospital_details) {
-            Intent hospitals = new Intent(this, HospitalDetail.class);
+            Intent hospitals = new Intent(this, HospitalDetailActivity.class);
             startActivity(hospitals);
         }else if (id== R.id.vaccine_record){
-            Intent vaccine_record = new Intent(this ,VaccinesCompleted.class);
+            Intent vaccine_record = new Intent(this ,VaccinesCompletedActivity.class);
             startActivity(vaccine_record);
+        }else if(id== R.id.home){
+            Intent home = new Intent(this ,MainActivity.class);
+            startActivity(home);
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
