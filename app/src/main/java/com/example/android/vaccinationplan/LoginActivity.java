@@ -94,7 +94,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             finish();
         }
 
-
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
 
@@ -465,6 +464,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 mPasswordView.requestFocus();
             }
         }
+
 
         @Override
         protected void onCancelled() {
