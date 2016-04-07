@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -37,6 +39,12 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,10 +65,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
+   /* private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
-    };
+    };*/
     protected Context mContext;
+    private static int count_online_status =0;
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -71,6 +80,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
     private SharedPreferences pref;
+    protected VaccinationDBHelper dbHelper;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -85,7 +95,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
 
         mContext = this;
-
+        dbHelper = new VaccinationDBHelper(mContext);
         SessionManager sessionManager =  new SessionManager(mContext);
         Boolean isLogin = sessionManager.checkSession();
         if (isLogin) {
@@ -422,24 +432,71 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
+            Uri.Builder loginUrlBuilder = new Uri.Builder();
+            loginUrlBuilder.scheme("http")
+                    .authority("idealvillage.club")
+                    .appendPath("vaccinationplan.php")
+            .appendQueryParameter("email" , mEmail)
+            .appendQueryParameter("password" , mPassword);
+            HttpURLConnection urlConnection ;
             try {
                 // Simulate network access.
+                URL url = new URL(loginUrlBuilder.build().toString());
+                urlConnection = (HttpURLConnection)url.openConnection();
+                urlConnection.setRequestMethod("GET");
+                urlConnection.connect();
+                InputStreamReader stream = new InputStreamReader(urlConnection.getInputStream());
+                BufferedReader reader = new BufferedReader(stream);
+                String line = reader.readLine();
+                int i = Integer.parseInt(line);
+                /*if(error){
+                    return false;
+                }*/
+                if(i==1){
+                    count_online_status=0;
+                }
                 Thread.sleep(1000);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+
             } catch (InterruptedException e) {
-                return false;
+                e.printStackTrace();
             }
 
+            VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+
+            SQLiteDatabase db =  helper.getReadableDatabase();
+            String[] projection = {
+                    DatabaseContract.Login._ID,
+                    DatabaseContract.Login.COLUMN_EMAIL,
+                    DatabaseContract.Login.COLUMN_PASSWORD,
+                    DatabaseContract.Login.COLUMN_NUMBER_OF_CHILDEREN
+            };
+            String selection = "email=? and password = ?";
+            String selectionArgs[] =  {
+              mEmail , mPassword
+            };
+            Cursor C = db.query(DatabaseContract.Login.TABLE_NAME , projection ,selection  , selectionArgs , null , null , null);
+            if(C!=null){
+                return true;
+            }else{
+                db = helper.getWritableDatabase();
+                ContentValues values = new ContentValues();
+                values.put(DatabaseContract.Login.COLUMN_EMAIL , mEmail);
+                values.put(DatabaseContract.Login.COLUMN_PASSWORD , mPassword);
+                values.put(DatabaseContract.Login.COLUMN_NUMBER_OF_CHILDEREN , 0);
+            }
+/*
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
                 }
-            }
+            }*/
 
-            // TODO: register the new account here.
             return true;
         }
 

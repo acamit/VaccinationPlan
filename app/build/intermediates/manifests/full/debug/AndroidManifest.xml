@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -60,14 +61,17 @@
         <activity
             android:name="com.example.android.vaccinationplan.VaccineDetailActivity"
             android:label="@string/title_activity_vaccine_detail"
+            android:parentActivityName="com.example.android.vaccinationplan.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.example.android.vaccinationplan.VaccinesCompletedActivity"
             android:label="@string/title_activity_vaccines_completed"
+            android:parentActivityName="com.example.android.vaccinationplan.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.example.android.vaccinationplan.HospitalDetailActivity"
             android:label="@string/title_activity_hospital_detail"
+            android:parentActivityName="com.example.android.vaccinationplan.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

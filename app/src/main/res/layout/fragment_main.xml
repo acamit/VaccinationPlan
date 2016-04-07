@@ -35,19 +35,12 @@
     android:editable="false"
     android:backgroundTintMode="screen" />
 
-<ListView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/listView"
-    android:layout_centerHorizontal="true"
-    android:layout_below="@+id/textView4"
-    android:choiceMode="singleChoice" />
 
-<TextView
+    <TextView
+    android:text="Upcoming Vaccine"
     android:layout_width="300dp"
     android:layout_height="50dp"
     android:textAppearance="?android:attr/textAppearanceLarge"
-    android:text="Upcoming Vaccine"
     android:id="@+id/textView2"
     android:textAlignment="center"
     android:textStyle="normal|bold"
@@ -59,20 +52,20 @@
     android:layout_alignEnd="@+id/textView3"
     android:fontFamily="@string/common_google_play_services_enable_button" />
 
-<ImageView
+    <ImageView
+    android:id="@+id/imageView"
     android:layout_width="100dp"
     android:layout_height="100dp"
-    android:id="@+id/imageView"
     android:src="#82f6f2"
     android:layout_alignTop="@+id/textView3"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true" />
 
-<TextView
+    <TextView
+    android:text=" BCG (Bacillus Calmette Guerin) "
     android:layout_width="200dp"
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceMedium"
-    android:text=" BCG (Bacillus Calmette Guerin) "
     android:id="@+id/textView3"
     android:focusable="false"
     android:textSize="25dp"
@@ -83,11 +76,11 @@
     android:layout_toRightOf="@+id/imageView"
     android:layout_toEndOf="@+id/imageView" />
 
-<TextView
+    <TextView
+    android:text="3 Days to go"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceSmall"
-    android:text="3 Days to go"
     android:id="@+id/textView4"
     android:layout_below="@+id/imageView"
     android:textStyle="bold"
@@ -101,11 +94,11 @@
     android:layout_centerInParent="true"
     android:textAlignment="center" />
 
-<TextView
+    <TextView
+    android:text="Mandatory"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceMedium"
-    android:text="Mandatory"
     android:id="@+id/textView5"
     android:textAlignment="center"
     android:background="#af9595"
@@ -117,7 +110,7 @@
     android:paddingRight="10dp"
     android:paddingBottom="5dp" />
 
-<Button
+    <Button
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Given"
@@ -126,4 +119,11 @@
     android:layout_alignRight="@+id/textView3"
     android:layout_alignEnd="@+id/textView3" />
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView4"
+        android:choiceMode="singleChoice" />
 </RelativeLayout>
