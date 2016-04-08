@@ -138,7 +138,7 @@ ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:61:
 	android:name
 		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:62:13-54
 activity#com.example.android.vaccinationplan.HospitalDetailActivity
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:66:9-71:25
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:66:9-71:15
 	android:label
 		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:68:13-67
 	android:theme

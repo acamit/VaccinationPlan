@@ -9,11 +9,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,7 +23,10 @@ import java.util.List;
  */
 public class MainActivityFragment extends Fragment {
 
-    private ArrayAdapter<String> mVaccineAdapter;
+    //private ArrayAdapter<HashMap<String,String>> mVaccineAdapter;
+    ListAdapter  mVaccineAdapter;
+    HashMap<String , String> map ;
+    private List<HashMap<String,String>> VaccinationList;
 
     public MainActivityFragment() {
     }
@@ -31,19 +36,43 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_main, container, false);
 
-
         String[] vaccinationList = {"BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG"};
+        VaccinationList = new ArrayList<HashMap<String,String>>();
+        for(int i=0;i <vaccinationList.length;i++)
+        {
+            map = new HashMap<String, String>();
+            map.put("id",String.valueOf(i));
+            map.put("vaccination", vaccinationList[i]);
+            VaccinationList.add(map);
+        }
+       /* mVaccineAdapter = new ArrayAdapter<HashMap<String,String>>(getActivity().getApplicationContext(),
+                        R.layout.main_list_view , R.id.code,VaccinationList);
+*/
 
-        List<String> vaccineList = new ArrayList<>(Arrays.asList(vaccinationList));
+        mVaccineAdapter = new SimpleAdapter(getActivity().getApplicationContext(), VaccinationList, R.layout.main_list_view,
+                new String[] { "vaccination" },
+                new int[] { R.id.code});
+        //List<String> vaccineList = new ArrayList<>(Arrays.asList(vaccinationList));
 
         //create an ArrayAdaptar from the String Array
-        mVaccineAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(),
+       /* mVaccineAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(),
                 R.layout.main_list_view,
                 R.id.code,
-                vaccineList);
+                vaccineList);*/
 
         ListView listView = (ListView) rootView.findViewById(R.id.listView);
         listView.setAdapter(mVaccineAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                map = (HashMap)VaccinationList.get(position);
+                String itemValue =map.get("vaccination");
+                int ids = Integer.parseInt(map.get("id"));
+
+                Intent vaccine_detail = new Intent(getActivity().getApplicationContext(), VaccineDetailActivity.class).putExtra(Intent.EXTRA_TEXT, ""+id);
+                startActivity(vaccine_detail);
+            }
+        });
 
         return rootView;
     }

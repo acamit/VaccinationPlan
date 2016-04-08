@@ -68,7 +68,7 @@
             android:label="@string/title_activity_hospital_detail"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".MainActivity"
-            ></activity>
+            />
     </application>
 
 </manifest>
