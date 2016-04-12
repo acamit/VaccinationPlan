@@ -1,5 +1,9 @@
 package com.example.android.vaccinationplan;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,25 +14,32 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
 
-    //private ArrayAdapter<HashMap<String,String>> mVaccineAdapter;
-    ListAdapter  mVaccineAdapter;
-    HashMap<String , String> map ;
-    private List<HashMap<String,String>> VaccinationList;
+    CustomAdapterMain adapterMain;
+    HashMap<String , Object> temp;
+    ArrayList vaccines;
 
+    LayoutInflater inflater;
+    boolean[] checkBoxState;
     public MainActivityFragment() {
     }
 
@@ -37,39 +48,51 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_main, container, false);
 
-        String[] vaccinationList = {"BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG"};
-        VaccinationList = new ArrayList<HashMap<String,String>>();
-        for(int i=0;i <vaccinationList.length;i++)
-        {
-            map = new HashMap<String, String>();
-            map.put("id",String.valueOf(i));
-            map.put("vaccination", vaccinationList[i]);
-            VaccinationList.add(map);
+        String[] vaccinationList = {"BCG1","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG"};
+        String[] vaccineFullName = {"Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin"};
+        String[] vaccineRecommendation = {"mandatory","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory"};
+        String[] vaccineTime = {"1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go"};
+
+        vaccines = new ArrayList<>();
+
+        //temporary HashMap for populating the
+        //Items in the ListView
+
+
+        //total number of rows in the ListView
+        int noOfVaccines=vaccinationList.length;
+
+        //now populate the ArrayList players
+        for(int i = 0; i < noOfVaccines; ++i){
+            temp= new HashMap<>();
+
+            temp.put("vaccine",vaccinationList[i]);
+            temp.put("fullName",vaccineFullName[i]);
+            temp.put("recommendation",vaccineRecommendation[i]);
+            temp.put("time",vaccineTime[i]);
+            temp.put("id",String.valueOf(i));
+
+            vaccines.add(temp);
         }
-       /* mVaccineAdapter = new ArrayAdapter<HashMap<String,String>>(getActivity().getApplicationContext(),
-                        R.layout.main_list_view , R.id.code,VaccinationList);
-*/
 
-        mVaccineAdapter = new SimpleAdapter(getActivity().getApplicationContext(), VaccinationList, R.layout.main_list_view,
-                new String[] { "vaccination" },
-                new int[] { R.id.code});
-        //List<String> vaccineList = new ArrayList<>(Arrays.asList(vaccinationList));
-
-        //create an ArrayAdaptar from the String Array
-       /* mVaccineAdapter = new ArrayAdapter<>(getActivity().getApplicationContext(),
-                R.layout.main_list_view,
-                R.id.code,
-                vaccineList);*/
+        checkBoxState = new boolean[vaccines.size()];
 
         ListView listView = (ListView) rootView.findViewById(R.id.listView);
+
+        adapterMain = new CustomAdapterMain(getActivity().getApplicationContext(),
+                R.layout.main_list_view,
+                vaccines);
+
+
+
 
         /* Screen Height adjustment */
 
         int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
         int totalHeight = 0;
         View view = null;
-        for (int i = 0; i < mVaccineAdapter.getCount(); i++) {
-            view = mVaccineAdapter.getView(i, view, listView);
+        for (int i = 0; i < adapterMain.getCount(); i++) {
+            view = adapterMain.getView(i, view, listView);
             if (i == 0)
                 view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, RadioGroup.LayoutParams.WRAP_CONTENT));
 
@@ -77,24 +100,39 @@ public class MainActivityFragment extends Fragment {
             totalHeight += view.getMeasuredHeight();
         }
         ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (mVaccineAdapter.getCount() - 1));
+        params.height = totalHeight + (listView.getDividerHeight() * (adapterMain.getCount() - 1));
         listView.setLayoutParams(params);
 
 
+        listView.setAdapter(adapterMain);
 
-        listView.setAdapter(mVaccineAdapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                map = (HashMap)VaccinationList.get(position);
-                String itemValue =map.get("vaccination");
-                int ids = Integer.parseInt(map.get("id"));
+                temp = (HashMap) vaccines.get(position);
+                String itemValue = temp.get("vaccine").toString();
+                int ids = Integer.parseInt(temp.get("id").toString());
 
-                Intent vaccine_detail = new Intent(getActivity().getApplicationContext(), VaccineDetailActivity.class).putExtra(Intent.EXTRA_TEXT, ""+id);
+                Intent vaccine_detail = new Intent(getActivity().getApplicationContext(), VaccineDetailActivity.class).putExtra(Intent.EXTRA_TEXT, "" + id);
                 startActivity(vaccine_detail);
+
+
             }
+
         });
 
+      /* viewHolder.checkBox1.setChecked(checkBoxState[((int) vaccines.get(Integer.parseInt("id")))]);
+       viewHolder.checkBox1.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               if(((CheckBox)v).isChecked())
+                   checkBoxState[v.getVerticalScrollbarPosition()]=true;
+               else
+                   checkBoxState[(v.getVerticalScrollbarPosition())]=false;
+           }
+       });
+*/
         return rootView;
     }
 
@@ -126,4 +164,116 @@ public class MainActivityFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+
+
+    public class CustomAdapterMain extends ArrayAdapter<HashMap<String,Object>> {
+
+        boolean[] checkBoxState;
+        Context context;
+        ViewHolder viewHolder;
+        AlertDialog.Builder alertDialog;
+        ArrayList<HashMap<String, Object>> vaccines;
+        public CustomAdapterMain(Context context, int textViewResourceId, ArrayList<HashMap<String, Object>> vaccines) {
+            //let android do the initializing :)
+            super(context, textViewResourceId, vaccines);
+            this.context = context;
+            this.vaccines =vaccines;
+            checkBoxState = new boolean[vaccines.size()];
+        }
+
+        @Override
+        public View getView(final int position,View convertView, ViewGroup parent){
+            // TODO Auto-generated method stub
+            inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            if(convertView==null){
+
+                convertView = inflater.inflate(R.layout.main_list_view, parent, false);
+                viewHolder=new ViewHolder();
+
+                viewHolder.checkBox1= (CheckBox) convertView.findViewById(R.id.checkBox1) ;
+                viewHolder.code= (TextView) convertView.findViewById(R.id.code);
+                viewHolder.fullNameText=(TextView) convertView.findViewById(R.id.fullNameText);
+                viewHolder.recommendationText=(TextView) convertView.findViewById(R.id.recommendationText);
+                viewHolder.timeText = (TextView) convertView.findViewById(R.id.timeText);
+
+                //link the cached views to the convertview
+                convertView.setTag( viewHolder);
+
+            } else{
+                viewHolder=(ViewHolder) convertView.getTag();
+            }
+
+            viewHolder.timeText.setText(vaccines.get(position).get("time").toString());
+            viewHolder.recommendationText.setText(vaccines.get(position).get("recommendation").toString());
+            viewHolder.fullNameText.setText(vaccines.get(position).get("fullName").toString());
+            viewHolder.code.setText(vaccines.get(position).get("vaccine").toString());
+
+
+            //VITAL PART!!! Set the state of the
+            //CheckBox using the boolean array
+            viewHolder.checkBox1.setChecked(checkBoxState[position]);
+
+
+            //for managing the state of the boolean
+            //array according to the state of the
+            //CheckBox
+
+            viewHolder.checkBox1.setOnClickListener(new View.OnClickListener() {
+
+                public void onClick(final View v) {
+                    if(((CheckBox)v).isChecked()){
+                        checkBoxState[position]=true;
+                        alertDialog = new AlertDialog.Builder(getActivity());
+                        alertDialog.setTitle("Confirm");
+                        alertDialog.setMessage("Vaccine Given");
+                        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+
+                            }
+                        });
+
+                        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                ((CheckBox)v).setChecked(false);
+                                checkBoxState[position]=false;
+                                dialog.cancel();
+                            }
+                        });
+
+
+                        alertDialog.show();
+                    }
+
+                    else
+                        checkBoxState[position]=false;
+
+                }
+            });
+
+
+            return convertView;
+        }
+
+        //class for caching the views in a row
+        private class ViewHolder
+        {
+
+            TextView recommendationText,timeText,fullNameText,code;
+            CheckBox checkBox1;
+        }
+
+
+
+
+    }
+
+
 }
+
+

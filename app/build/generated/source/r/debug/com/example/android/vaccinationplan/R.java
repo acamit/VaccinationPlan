@@ -2349,7 +2349,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0e0059;
         public static final int action_mode_bar_stub=0x7f0e0058;
         public static final int action_mode_close_button=0x7f0e003e;
-        public static final int action_settings=0x7f0e00b7;
+        public static final int action_settings=0x7f0e00ba;
         public static final int activity_chooser_view_content=0x7f0e003f;
         public static final int adjust_height=0x7f0e0033;
         public static final int adjust_width=0x7f0e0034;
@@ -2359,7 +2359,7 @@ containing a value of this type.
         public static final int bottom=0x7f0e001d;
         public static final int button=0x7f0e0096;
         public static final int button2=0x7f0e009c;
-        public static final int button3=0x7f0e00b6;
+        public static final int button3=0x7f0e00b9;
         public static final int button4=0x7f0e008f;
         public static final int button5=0x7f0e008c;
         public static final int buttonPanel=0x7f0e0046;
@@ -2401,9 +2401,10 @@ containing a value of this type.
         public static final int fill_vertical=0x7f0e0022;
         public static final int fixed=0x7f0e003a;
         public static final int fragment=0x7f0e0074;
+        public static final int fullNameText=0x7f0e00a7;
         public static final int home=0x7f0e0004;
         public static final int homeAsUp=0x7f0e000f;
-        public static final int hospital_details=0x7f0e00b9;
+        public static final int hospital_details=0x7f0e00bc;
         public static final int icon=0x7f0e0044;
         public static final int ifRoom=0x7f0e0037;
         public static final int image=0x7f0e0041;
@@ -2436,6 +2437,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f0e0006;
         public static final int progress_horizontal=0x7f0e0007;
         public static final int radio=0x7f0e0056;
+        public static final int recommendationText=0x7f0e00a8;
         public static final int right=0x7f0e0024;
         public static final int screen=0x7f0e0028;
         public static final int scroll=0x7f0e0018;
@@ -2481,9 +2483,9 @@ containing a value of this type.
         public static final int textView14=0x7f0e008b;
         public static final int textView15=0x7f0e008d;
         public static final int textView16=0x7f0e008e;
-        public static final int textView17=0x7f0e00a5;
-        public static final int textView18=0x7f0e00a7;
-        public static final int textView19=0x7f0e00a8;
+        public static final int textView17=0x7f0e00b6;
+        public static final int textView18=0x7f0e00b7;
+        public static final int textView19=0x7f0e00b8;
         public static final int textView2=0x7f0e0092;
         public static final int textView20=0x7f0e009e;
         public static final int textView21=0x7f0e009f;
@@ -2499,6 +2501,7 @@ containing a value of this type.
         public static final int textView8=0x7f0e009d;
         public static final int textView9=0x7f0e0098;
         public static final int time=0x7f0e00af;
+        public static final int timeText=0x7f0e00a5;
         public static final int title=0x7f0e0045;
         public static final int title_template=0x7f0e004a;
         public static final int toolbar=0x7f0e006b;
@@ -2507,7 +2510,7 @@ containing a value of this type.
         public static final int touch_outside=0x7f0e0075;
         public static final int up=0x7f0e0009;
         public static final int useLogo=0x7f0e0014;
-        public static final int vaccine_record=0x7f0e00b8;
+        public static final int vaccine_record=0x7f0e00bb;
         public static final int view_offset_helper=0x7f0e000a;
         public static final int withText=0x7f0e0039;
         public static final int wrap_content=0x7f0e001a;
