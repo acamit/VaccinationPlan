@@ -623,7 +623,7 @@ int id action_menu_presenter 0x7f0e0003
 int id action_mode_bar 0x7f0e0059
 int id action_mode_bar_stub 0x7f0e0058
 int id action_mode_close_button 0x7f0e003e
-int id action_settings 0x7f0e00b7
+int id action_settings 0x7f0e00ba
 int id activity_chooser_view_content 0x7f0e003f
 int id adjust_height 0x7f0e0033
 int id adjust_width 0x7f0e0034
@@ -633,7 +633,7 @@ int id beginning 0x7f0e0031
 int id bottom 0x7f0e001d
 int id button 0x7f0e0096
 int id button2 0x7f0e009c
-int id button3 0x7f0e00b6
+int id button3 0x7f0e00b9
 int id button4 0x7f0e008f
 int id button5 0x7f0e008c
 int id buttonPanel 0x7f0e0046
@@ -675,9 +675,10 @@ int id fill_horizontal 0x7f0e002f
 int id fill_vertical 0x7f0e0022
 int id fixed 0x7f0e003a
 int id fragment 0x7f0e0074
+int id fullNameText 0x7f0e00a7
 int id home 0x7f0e0004
 int id homeAsUp 0x7f0e000f
-int id hospital_details 0x7f0e00b9
+int id hospital_details 0x7f0e00bc
 int id icon 0x7f0e0044
 int id ifRoom 0x7f0e0037
 int id image 0x7f0e0041
@@ -710,6 +711,7 @@ int id place_of_birth 0x7f0e0082
 int id progress_circular 0x7f0e0006
 int id progress_horizontal 0x7f0e0007
 int id radio 0x7f0e0056
+int id recommendationText 0x7f0e00a8
 int id right 0x7f0e0024
 int id screen 0x7f0e0028
 int id scroll 0x7f0e0018
@@ -755,9 +757,9 @@ int id textView13 0x7f0e0089
 int id textView14 0x7f0e008b
 int id textView15 0x7f0e008d
 int id textView16 0x7f0e008e
-int id textView17 0x7f0e00a5
-int id textView18 0x7f0e00a7
-int id textView19 0x7f0e00a8
+int id textView17 0x7f0e00b6
+int id textView18 0x7f0e00b7
+int id textView19 0x7f0e00b8
 int id textView2 0x7f0e0092
 int id textView20 0x7f0e009e
 int id textView21 0x7f0e009f
@@ -773,6 +775,7 @@ int id textView7 0x7f0e0097
 int id textView8 0x7f0e009d
 int id textView9 0x7f0e0098
 int id time 0x7f0e00af
+int id timeText 0x7f0e00a5
 int id title 0x7f0e0045
 int id title_template 0x7f0e004a
 int id toolbar 0x7f0e006b
@@ -781,7 +784,7 @@ int id topPanel 0x7f0e0049
 int id touch_outside 0x7f0e0075
 int id up 0x7f0e0009
 int id useLogo 0x7f0e0014
-int id vaccine_record 0x7f0e00b8
+int id vaccine_record 0x7f0e00bb
 int id view_offset_helper 0x7f0e000a
 int id withText 0x7f0e0039
 int id wrap_content 0x7f0e001a
