@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
@@ -39,8 +38,13 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -81,6 +85,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
     private SharedPreferences pref;
     protected VaccinationDBHelper dbHelper;
+    private  String JSONStr;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -432,7 +437,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            Uri.Builder loginUrlBuilder = new Uri.Builder();
+
+                    Uri.Builder loginUrlBuilder = new Uri.Builder();
             loginUrlBuilder.scheme("http")
                     .authority("idealvillage.club")
                     .appendPath("vaccinationplan.php")
@@ -445,17 +451,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 urlConnection = (HttpURLConnection)url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
-                InputStreamReader stream = new InputStreamReader(urlConnection.getInputStream());
-                BufferedReader reader = new BufferedReader(stream);
-                String line = reader.readLine();
-                int i = Integer.parseInt(line);
-                /*if(error){
+                InputStream inputStream = urlConnection.getInputStream();
+                if (inputStream == null) {
+                    //Nothing to do
                     return false;
-                }*/
-                if(i==1){
-                    count_online_status=0;
                 }
-                Thread.sleep(1000);
+                InputStreamReader stream = new InputStreamReader(inputStream);
+                BufferedReader reader = new BufferedReader(stream);
+                String line ="";
+                StringBuffer Output = new StringBuffer();
+                while ((line = reader.readLine()) != null){
+                    Output.append(line+"\n");
+                }
+                JSONStr = Output.toString();
+                Thread.sleep(500);
+                return true;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -465,29 +475,62 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 e.printStackTrace();
             }
 
-            VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+            try {
+                JSONObject jsonObject = new JSONObject(JSONStr);
+                String error = jsonObject.getString("error");
+                if(error.equals("0")){
 
-            SQLiteDatabase db =  helper.getReadableDatabase();
-            String[] projection = {
-                    DatabaseContract.Login._ID,
-                    DatabaseContract.Login.COLUMN_EMAIL,
-                    DatabaseContract.Login.COLUMN_PASSWORD,
-                    DatabaseContract.Login.COLUMN_NUMBER_OF_CHILDEREN
-            };
-            String selection = "email=? and password = ?";
-            String selectionArgs[] =  {
-              mEmail , mPassword
-            };
-            Cursor C = db.query(DatabaseContract.Login.TABLE_NAME , projection ,selection  , selectionArgs , null , null , null);
-            if(C!=null){
-                return true;
-            }else{
-                db = helper.getWritableDatabase();
-                ContentValues values = new ContentValues();
-                values.put(DatabaseContract.Login.COLUMN_EMAIL , mEmail);
-                values.put(DatabaseContract.Login.COLUMN_PASSWORD , mPassword);
-                values.put(DatabaseContract.Login.COLUMN_NUMBER_OF_CHILDEREN , 0);
+                    VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+                    SQLiteDatabase db =  helper.getReadableDatabase();
+                    String[] projection = {
+                            DatabaseContract.Login._ID,
+                            DatabaseContract.Login.COLUMN_EMAIL,
+                            DatabaseContract.Login.COLUMN_PASSWORD,
+                            DatabaseContract.Login.COLUMN_NUMBER_OF_CHILDEREN
+                    };
+                    String selection = "email=? and password = ?";
+                    String selectionArgs[] =  {
+                            mEmail , mPassword
+                    };
+                    Cursor C = db.query(DatabaseContract.Login.TABLE_NAME , projection ,selection  , selectionArgs , null , null , null);
+                    if(C!=null){
+                        return true;
+                    }else{
+                        String status =jsonObject.getString("status");
+                        String token = jsonObject .getString("token");
+                        String number_of_children = jsonObject.getString("count");
+                        DatabaseOperations.insertIntoLogin(mEmail , mPassword ,token , 0 , mContext );
+                        if(!status.equals("new")){
+                            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
+                            SharedPreferences.Editor edit = pref.edit();
+                            edit.putString(getString(R.string.pref_key_email), mEmail);
+                            count_online_status = Integer.parseInt(number_of_children);
+                            if(count_online_status >0){
+                                edit.putString(getString(R.string.pref_key_child_count) , number_of_children);
+                            }else {
+                                edit.putString(getString(R.string.pref_key_child_count) , "0");
+                            }
+                            edit.commit();
+                            if(count_online_status>0){
+                                /*Fetch Children details if present*/
+                                JSONArray child_array = jsonObject.getJSONArray("children");
+                                DatabaseOperations.insertIntoChildDetails(child_array);
+                                return  true;
+                            }
+                        }else{
+                            /*if a new user registers*/
+                        }
+                    }
+
+                }else {
+                    return false;
+
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
 /*
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
