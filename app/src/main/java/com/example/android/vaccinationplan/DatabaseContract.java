@@ -39,12 +39,12 @@ public class DatabaseContract {
         public static final String COLUMN_DOB = "date_of_birth";
         public static final String COLUMN_MOTHER = "mother";
         public static final String COLUMN_POB = "place_of_birth";/*Place of birth*/
-        public static final String COLUMN_MOBILE = "mobile_no";
         public static final String COLUMN_GENDER = "gender";
         public static final String COLUMN_LOCATION = "curr_location";
         public static final String COLUMN_HOSPITAL = "preffered_hospital";
         public static final String COLUMN_UPDATE_STATUS = "update_status";/*set to 1 when database is up to date with server
                                                                              if any change is made then set to 0*/
+        public static final String COLUMN_BLOOD_GROUP = "blood_group";
 
     }
 
@@ -65,7 +65,6 @@ public class DatabaseContract {
     public static final class VaccineDetails implements BaseColumns{
 
         public static final String TABLE_NAME = "vaccines";
-
         public static final String COLUMN_ID = "vac_id";
         public static final String COLUMN_SHORT_FORM = "short_form";
         public static final String COLUMN_NAME = "name";
@@ -74,6 +73,11 @@ public class DatabaseContract {
         public static final String COLUMN_SCHEDULE = "schedule";/*At Birth, 5 Months, 12 Months*/
         public static final String COLUMN_RECOMMEND = "recommendation";/* OPTIONAL, MANDATORY, RECOMMENDED*/
         //  public static final String COLUMN_CHILD = "child_track";/* track which vaccine is done and which is pending*/
+    }
+
+    public static final class ChildVaccinationStatus implements BaseColumns{
+        public static final String TABLE_NAME = "ChildVaccinationStatus";
+        public static final String CHILD_ID= "childID";
     }
 
 }
