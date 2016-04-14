@@ -33,6 +33,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -429,6 +430,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         private final String mEmail;
         private final String mPassword;
+        private boolean networkFailed;
 
         UserLoginTask(String email, String password) {
             mEmail = email;
@@ -440,7 +442,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                     Uri.Builder loginUrlBuilder = new Uri.Builder();
             loginUrlBuilder.scheme("http")
-                    .authority("idealvillage.club")
+                    .authority("vaccinationplan.esy.es")
                     .appendPath("vaccinationplan.php")
             .appendQueryParameter("email" , mEmail)
             .appendQueryParameter("password" , mPassword);
@@ -465,14 +467,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
                 JSONStr = Output.toString();
                 Thread.sleep(500);
-                return true;
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
+                networkFailed = true;
+
             } catch (IOException e) {
+
                 e.printStackTrace();
+                networkFailed = true;
 
             } catch (InterruptedException e) {
+
                 e.printStackTrace();
+                networkFailed = true;
+
+            }
+
+            if(networkFailed){
+                return  false;
             }
 
             try {
@@ -514,8 +527,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             if(count_online_status>0){
                                 /*Fetch Children details if present*/
                                 JSONArray child_array = jsonObject.getJSONArray("children");
-                                DatabaseOperations.insertIntoChildDetails(child_array);
-                                return  true;
+                                boolean insertSuccess = DatabaseOperations.insertIntoChildDetails(child_array , mContext);
+                                return  insertSuccess;
+                            }else{
+                                return true;
                             }
                         }else{
                             /*if a new user registers*/
@@ -530,16 +545,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-/*
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }*/
-
             return true;
         }
 
@@ -548,23 +553,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
             if (success) {
-                int num_of_children =0;
-                pref = PreferenceManager.getDefaultSharedPreferences(mContext);
-                SharedPreferences.Editor edit = pref.edit();
-                edit.putString(getString(R.string.pref_key_email), mEmail);
-                edit.putString(getString(R.string.pref_key_password), mPassword);
-                edit.putString(getString(R.string.pref_key_child_count), num_of_children + "");
-                edit.commit();
-
                 boolean isChildCountPresent =  new SessionManager(mContext).isChildDetailPresent();
                 launchActivity(isChildCountPresent);
                 finish();
-            } else {
+            } else if(networkFailed){
+                Toast.makeText(mContext,
+                        "No Network Access", Toast.LENGTH_LONG)
+                        .show();
+            }
+            else{
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
             }
         }
-
 
         @Override
         protected void onCancelled() {

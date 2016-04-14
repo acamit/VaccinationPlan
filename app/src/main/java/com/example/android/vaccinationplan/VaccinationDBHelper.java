@@ -22,10 +22,9 @@ public class VaccinationDBHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         final String SQL_CREATE_LOGIN_TABLE = "CREATE TABLE " + DatabaseContract.Login.TABLE_NAME + "(" +
                 DatabaseContract.Login._ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
-                DatabaseContract.Login.COLUMN_EMAIL+ " TEXT NOT NULL , " +
+                DatabaseContract.Login.COLUMN_EMAIL+ " TEXT NOT NULL UNIQUE , " +
                 DatabaseContract.Login.COLUMN_PASSWORD + " TEXT NOT NULL , " +
-                DatabaseContract.Login.COLUMN_NUMBER_OF_CHILDEREN+ " INTEGER NOT NULL , "  +
-                "UNIQUE(" + DatabaseContract.Login.COLUMN_EMAIL + ");";
+                DatabaseContract.Login.COLUMN_NUMBER_OF_CHILDEREN+ " INTEGER NOT NULL);";
 
             db.execSQL(SQL_CREATE_LOGIN_TABLE);
 
