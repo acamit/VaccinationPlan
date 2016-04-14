@@ -2351,6 +2351,7 @@ containing a value of this type.
         public static final int action_mode_close_button=0x7f0e003e;
         public static final int action_settings=0x7f0e00ba;
         public static final int activity_chooser_view_content=0x7f0e003f;
+        public static final int addressHospital=0x7f0e008b;
         public static final int adjust_height=0x7f0e0033;
         public static final int adjust_width=0x7f0e0034;
         public static final int alertTitle=0x7f0e004b;
@@ -2360,9 +2361,8 @@ containing a value of this type.
         public static final int button=0x7f0e0096;
         public static final int button2=0x7f0e009c;
         public static final int button3=0x7f0e00b9;
-        public static final int button4=0x7f0e008f;
-        public static final int button5=0x7f0e008c;
         public static final int buttonPanel=0x7f0e0046;
+        public static final int callHospital=0x7f0e008f;
         public static final int cancel_action=0x7f0e00aa;
         public static final int center=0x7f0e001e;
         public static final int center_horizontal=0x7f0e001f;
@@ -2425,6 +2425,7 @@ containing a value of this type.
         public static final int middle=0x7f0e0032;
         public static final int mini=0x7f0e0030;
         public static final int multiply=0x7f0e0027;
+        public static final int nameHospital=0x7f0e008a;
         public static final int navigation_header_container=0x7f0e0079;
         public static final int never=0x7f0e0038;
         public static final int none=0x7f0e0010;
@@ -2432,6 +2433,7 @@ containing a value of this type.
         public static final int parallax=0x7f0e001b;
         public static final int parentPanel=0x7f0e0048;
         public static final int password=0x7f0e0071;
+        public static final int phoneHospital=0x7f0e008e;
         public static final int pin=0x7f0e001c;
         public static final int place_of_birth=0x7f0e0082;
         public static final int progress_circular=0x7f0e0006;
@@ -2480,9 +2482,7 @@ containing a value of this type.
         public static final int textView11=0x7f0e009b;
         public static final int textView12=0x7f0e0088;
         public static final int textView13=0x7f0e0089;
-        public static final int textView14=0x7f0e008b;
         public static final int textView15=0x7f0e008d;
-        public static final int textView16=0x7f0e008e;
         public static final int textView17=0x7f0e00b6;
         public static final int textView18=0x7f0e00b7;
         public static final int textView19=0x7f0e00b8;
@@ -2492,7 +2492,6 @@ containing a value of this type.
         public static final int textView22=0x7f0e00a0;
         public static final int textView23=0x7f0e00a1;
         public static final int textView24=0x7f0e0099;
-        public static final int textView25=0x7f0e008a;
         public static final int textView3=0x7f0e0093;
         public static final int textView4=0x7f0e0091;
         public static final int textView5=0x7f0e0095;
@@ -2511,6 +2510,7 @@ containing a value of this type.
         public static final int up=0x7f0e0009;
         public static final int useLogo=0x7f0e0014;
         public static final int vaccine_record=0x7f0e00bb;
+        public static final int viewHospital=0x7f0e008c;
         public static final int view_offset_helper=0x7f0e000a;
         public static final int withText=0x7f0e0039;
         public static final int wrap_content=0x7f0e001a;
