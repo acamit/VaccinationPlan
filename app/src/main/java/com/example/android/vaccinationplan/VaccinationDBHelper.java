@@ -20,23 +20,22 @@ public class VaccinationDBHelper extends SQLiteOpenHelper{
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        final String SQL_CREATE_LOGIN_TABLE = "CREATE TABLE" + DatabaseContract.Login.TABLE_NAME + " (" +
+        final String SQL_CREATE_LOGIN_TABLE = "CREATE TABLE " + DatabaseContract.Login.TABLE_NAME + "(" +
                 DatabaseContract.Login._ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " +
                 DatabaseContract.Login.COLUMN_EMAIL+ " TEXT NOT NULL , " +
                 DatabaseContract.Login.COLUMN_PASSWORD + " TEXT NOT NULL , " +
                 DatabaseContract.Login.COLUMN_NUMBER_OF_CHILDEREN+ " INTEGER NOT NULL , "  +
-                "UNIQUE (" + DatabaseContract.Login.COLUMN_EMAIL + ";";
+                "UNIQUE(" + DatabaseContract.Login.COLUMN_EMAIL + ");";
 
-
-        db.execSQL(SQL_CREATE_LOGIN_TABLE);
+            db.execSQL(SQL_CREATE_LOGIN_TABLE);
 
     }
 
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-
+        db.execSQL("DROP TABLE IF EXISTS " + DatabaseContract.Login.TABLE_NAME);
+        onCreate(db);
     }
 
 }
