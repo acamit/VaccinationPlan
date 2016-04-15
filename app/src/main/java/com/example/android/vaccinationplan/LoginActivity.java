@@ -523,7 +523,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 boolean insertSuccess = DatabaseOperations.insertIntoChildDetails(child_array , mContext);
                                 return  insertSuccess;
                             }else {
-                                edit.putString(getString(R.string.pref_key_child_count) , "0");
+                                edit.putString(getString(R.string.pref_key_child_count) , number_of_children);
                                 edit.commit();
                                 return true;
                             }
