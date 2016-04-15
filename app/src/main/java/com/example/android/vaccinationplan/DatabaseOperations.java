@@ -15,6 +15,7 @@ import java.util.Iterator;
  */
 public class DatabaseOperations {
 
+
     public static long insertIntoLogin(String email, String password, String token, int number_of_children, Context mContext) {
 
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);

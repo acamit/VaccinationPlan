@@ -73,6 +73,15 @@
             android:label="@string/title_activity_hospital_detail"
             android:parentActivityName="com.example.android.vaccinationplan.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.example.android.vaccinationplan.VerifyAccount"
+            android:label="@string/title_activity_verify_account"
+            android:parentActivityName="com.example.android.vaccinationplan.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.vaccinationplan.LoginActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -55,20 +55,27 @@
         <activity
             android:name=".VaccineDetailActivity"
             android:label="@string/title_activity_vaccine_detail"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".MainActivity"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".VaccinesCompletedActivity"
             android:label="@string/title_activity_vaccines_completed"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HospitalDetailActivity"
             android:label="@string/title_activity_hospital_detail"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".MainActivity"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".VerifyAccount"
+            android:label="@string/title_activity_verify_account"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.vaccinationplan.LoginActivity" />
+        </activity>
     </application>
 
 </manifest>

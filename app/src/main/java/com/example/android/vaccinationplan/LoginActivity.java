@@ -74,7 +74,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             "foo@example.com:hello", "bar@example.com:world"
     };*/
     protected Context mContext;
-    private static int count_online_status =0;
+
+    private String verificationCode;
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -84,9 +85,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private SharedPreferences pref;
+    //private SharedPreferences pref;
     protected VaccinationDBHelper dbHelper;
     private  String JSONStr;
+     String status;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -101,12 +103,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
 
         mContext = this;
+        status = "default";
         dbHelper = new VaccinationDBHelper(mContext);
         SessionManager sessionManager =  new SessionManager(mContext);
         Boolean isLogin = sessionManager.checkSession();
         if (isLogin) {
-            boolean isChildCountPresent = sessionManager.isChildDetailPresent();
-            launchActivity(isChildCountPresent);
+
+            launchActivity();
             finish();
         }
 
@@ -370,17 +373,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         client.disconnect();
     }
 
-    public void launchActivity(boolean isChildCountPresent) {
-        Intent intent;
-        if(isChildCountPresent){
-            intent = new Intent(mContext, MainActivity.class).putExtra(Intent.EXTRA_TEXT, "logging in");
-            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-
-        }else{
-            intent = new Intent(mContext, ChildDetailActivity.class);
-        }
-        startActivity(intent);
-    }
 
     private interface ProfileQuery {
         String[] PROJECTION = {
@@ -466,7 +458,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Output.append(line+"\n");
                 }
                 JSONStr = Output.toString();
-                Thread.sleep(500);
+                //Thread.sleep(500);
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -477,12 +469,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 e.printStackTrace();
                 networkFailed = true;
 
-            } catch (InterruptedException e) {
-
+            } /*catch (InterruptedException e) {
                 e.printStackTrace();
                 networkFailed = true;
-
-            }
+            }*/
 
             if(networkFailed){
                 return  false;
@@ -506,42 +496,51 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             mEmail , mPassword
                     };
                     Cursor C = db.query(DatabaseContract.Login.TABLE_NAME , projection ,selection  , selectionArgs , null , null , null);
-                    if(C!=null){
+
+                    if(C.moveToFirst() || C.getCount()>0){
+
+                        C.close();
                         return true;
                     }else{
-                        String status =jsonObject.getString("status");
+                        C.close();
+                        status =jsonObject.getString("status");
                         String token = jsonObject .getString("token");
                         String number_of_children = jsonObject.getString("count");
-                        DatabaseOperations.insertIntoLogin(mEmail , mPassword ,token , 0 , mContext );
+                        DatabaseOperations.insertIntoLogin(mEmail , mPassword ,token , Integer.parseInt(number_of_children), mContext );
                         if(!status.equals("new")){
+                            /*If account already exists*/
                             SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
                             SharedPreferences.Editor edit = pref.edit();
                             edit.putString(getString(R.string.pref_key_email), mEmail);
+                            int count_online_status;
                             count_online_status = Integer.parseInt(number_of_children);
                             if(count_online_status >0){
-                                edit.putString(getString(R.string.pref_key_child_count) , number_of_children);
-                            }else {
-                                edit.putString(getString(R.string.pref_key_child_count) , "0");
-                            }
-                            edit.commit();
-                            if(count_online_status>0){
+                                edit.putString(getString(R.string.pref_key_child_count) , count_online_status+"");
+                                edit.commit();
+
                                 /*Fetch Children details if present*/
                                 JSONArray child_array = jsonObject.getJSONArray("children");
                                 boolean insertSuccess = DatabaseOperations.insertIntoChildDetails(child_array , mContext);
                                 return  insertSuccess;
-                            }else{
+                            }else {
+                                edit.putString(getString(R.string.pref_key_child_count) , "0");
+                                edit.commit();
                                 return true;
                             }
-                        }else{
+
+                        }else if(status.equals("new")){
+                            verificationCode = jsonObject.getString("verificationCode");
                             /*if a new user registers*/
+                        }else{
+                            status ="In else block";
                         }
                     }
 
                 }else {
+                    status = "c is null";
                     return false;
 
                 }
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -553,26 +552,71 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
             if (success) {
-                boolean isChildCountPresent =  new SessionManager(mContext).isChildDetailPresent();
-                launchActivity(false);
-                finish();
+                launchActivity();
+                //finish();
             } else if(networkFailed){
                 Toast.makeText(mContext,
                         "No Network Access", Toast.LENGTH_LONG)
                         .show();
             }
             else{
+                /*Toast.makeText(mContext,
+                        status, Toast.LENGTH_LONG)
+                        .show();*/
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
             }
         }
-
         @Override
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
         }
 
+    }
+
+    public void launchActivity() {
+        Intent intent;
+        if (status.equals("new")){
+
+            /*Toast.makeText(mContext,
+                    status, Toast.LENGTH_LONG)
+                    .show();
+*/
+            intent = new Intent(mContext, VerifyAccount.class).putExtra(Intent.EXTRA_TEXT, verificationCode);
+            startActivityForResult(intent , 1);
+        }
+        else if(new SessionManager(mContext).isChildDetailPresent()){
+            intent = new Intent(mContext, MainActivity.class).putExtra(Intent.EXTRA_TEXT, "logging in");
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+
+            /*Toast.makeText(mContext,
+                    "Main Activity " +status, Toast.LENGTH_LONG)
+                    .show();
+*/
+        }else{
+  /*          Toast.makeText(mContext,
+                    "ChildDetial    "+ status, Toast.LENGTH_LONG)
+                    .show();
+*/
+            intent = new Intent(mContext, ChildDetailActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode ==1){
+            String message=data.getStringExtra(Intent.EXTRA_TEXT);
+            if(message.equals("VERIFIED")){
+                status = "verified";
+                launchActivity();
+               // finish();
+
+            }
+        }
     }
 }
 

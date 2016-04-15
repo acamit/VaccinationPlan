@@ -26,7 +26,6 @@ public class ChildDetailActivityFragment extends Fragment{
     private Button changeDate;
     private SharedPreferences pref;
     private static final String DATE_FORMAT = "yyyy-MM-dd";
-
     Context mContext;
     int num_of_children;
     DialogFragment dateFragment;
@@ -52,7 +51,6 @@ public class ChildDetailActivityFragment extends Fragment{
             }
         });
 
-
         return rootView;
     }
 
@@ -60,7 +58,6 @@ public class ChildDetailActivityFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         mContext = getContext();
         calendar = Calendar.getInstance();
-
         num_of_children =1;
         pref = PreferenceManager.getDefaultSharedPreferences(mContext);
         SharedPreferences.Editor edit = pref.edit();
@@ -79,12 +76,7 @@ public class ChildDetailActivityFragment extends Fragment{
 
 
 
-  /*  //@SuppressWarnings("deprecation")
-    public void setDate(View view) {
 
-        Toast.makeText(getActivity().getApplicationContext(), "ca", Toast.LENGTH_SHORT)
-                .show();
-    }*/
 
     public void updateDateButtonText() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
