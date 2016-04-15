@@ -554,7 +554,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
             if (success) {
                 boolean isChildCountPresent =  new SessionManager(mContext).isChildDetailPresent();
-                launchActivity(isChildCountPresent);
+                launchActivity(false);
                 finish();
             } else if(networkFailed){
                 Toast.makeText(mContext,
