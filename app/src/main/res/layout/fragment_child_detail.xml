@@ -29,6 +29,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:hint="@string/child_name"
+            android:imeOptions="actionNext"
             android:inputType="textPersonName" />
 
         <TextView
@@ -37,27 +38,33 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="Date of Birth" />
-        <LinearLayout
+
+
+        <Button
+            android:id="@+id/changeDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:imeOptions="actionNext"
+            android:text="Select Date" />
+
+
+        <AutoCompleteTextView
+            android:id="@+id/autocomplete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:hint="Current Location" />
 
-            <Button
-                android:id="@+id/changeDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:text="Select Date" />
-        </LinearLayout>
-        <EditText
+        <!--<EditText
             android:id="@+id/place_of_birth"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:hint="@string/place_of_birth"
+            android:imeOptions="actionNext"
             android:inputType="textAutoComplete" />
+            -->
 
         <EditText
             android:id="@+id/MotherName"
@@ -65,28 +72,38 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:hint="@string/mothers_name"
+            android:imeOptions="actionNext"
             android:inputType="textPersonName" />
 
+<!--
         <EditText
             android:id="@+id/Location"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:hint="@string/location"
+            android:imeOptions="actionNext"
             android:inputType="number" />
-
+-->
+        <AutoCompleteTextView
+            android:id="@+id/place_of_birth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Place of Location" />
         <EditText
             android:id="@+id/MobileNumber"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:hint="@string/mobile_number"
+            android:imeOptions="actionDone"
             android:inputType="phone" />
 
         <Button
             android:id="@+id/SubmitDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
             android:text="Submit"
             android:textAllCaps="true" />
     </LinearLayout>

@@ -94,7 +94,7 @@ public class DatabaseOperations {
 
 
 
-    public static void insertIntoChildDetails(ChildDetails child){
+    public static void insertIntoChildDetails(Child child){
 
     }
 

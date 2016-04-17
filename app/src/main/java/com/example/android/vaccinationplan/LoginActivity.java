@@ -88,7 +88,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     //private SharedPreferences pref;
     protected VaccinationDBHelper dbHelper;
     private  String JSONStr;
-     String status;
+    private String status;
+    private String Email;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -426,6 +427,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         UserLoginTask(String email, String password) {
             mEmail = email;
+
             mPassword = password;
         }
 
@@ -530,14 +532,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                         }else if(status.equals("new")){
                             verificationCode = jsonObject.getString("verificationCode");
+                            Email = mEmail;
                             /*if a new user registers*/
                         }else{
-                            status ="In else block";
+                            //status ="In else block";
                         }
                     }
 
                 }else {
-                    status = "c is null";
+                    //status = "c is null";
                     return false;
 
                 }
@@ -558,6 +561,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 Toast.makeText(mContext,
                         "No Network Access", Toast.LENGTH_LONG)
                         .show();
+
+                launchActivity();
+
             }
             else{
                 /*Toast.makeText(mContext,
@@ -582,6 +588,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             /*Toast.makeText(mContext,
                     status, Toast.LENGTH_LONG)
                     .show();
+
+
 */
             intent = new Intent(mContext, VerifyAccount.class).putExtra(Intent.EXTRA_TEXT, verificationCode);
             startActivityForResult(intent , 1);
@@ -612,8 +620,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             String message=data.getStringExtra(Intent.EXTRA_TEXT);
             if(message.equals("VERIFIED")){
                 status = "verified";
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
+                SharedPreferences.Editor edit = pref.edit();
+                edit.putString(getString(R.string.pref_key_email), Email);
+                edit.commit();
                 launchActivity();
-               // finish();
+                finish();
 
             }
         }
