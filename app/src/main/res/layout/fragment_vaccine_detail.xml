@@ -18,21 +18,21 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="BCG "
-            android:id="@+id/textView7"
+            android:id="@+id/vaccineShortForm"
             android:textSize="30sp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:fontFamily="@string/abc_toolbar_collapse_description" />
+            android:fontFamily="@string/abc_toolbar_collapse_description"
+            android:layout_alignRight="@+id/vaccineFullForm"
+            android:layout_alignEnd="@+id/vaccineFullForm" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="At Birth"
-            android:id="@+id/textView9"
+            android:id="@+id/vaccineTime"
             android:layout_below="@+id/textView24"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -42,13 +42,13 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Mandatory / Optional"
-            android:id="@+id/textView10"
+            android:id="@+id/vaccineRecommend"
             android:background="#af9595"
             android:paddingLeft="10dp"
             android:paddingTop="2dp"
             android:paddingRight="10dp"
             android:paddingBottom="5dp"
-            android:layout_above="@+id/textView9"
+            android:layout_above="@+id/vaccineTime"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
@@ -57,31 +57,32 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Status : Pending"
-            android:id="@+id/textView11"
+            android:id="@+id/vaccineStatus"
             android:paddingLeft="5dp"
             android:paddingTop="2dp"
             android:paddingRight="5dp"
             android:paddingBottom="5dp"
             android:background="#af9595"
-            android:layout_alignRight="@+id/textView7"
-            android:layout_alignEnd="@+id/textView7" />
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/vaccineInfo"
+            android:layout_alignEnd="@+id/vaccineInfo" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Given"
-            android:id="@+id/button2"
+            android:id="@+id/vaccineGiven"
             android:layout_alignBottom="@+id/textView8"
-            android:layout_alignRight="@+id/textView7"
-            android:layout_alignEnd="@+id/textView7" />
+            android:layout_alignRight="@+id/vaccineStatus"
+            android:layout_alignEnd="@+id/vaccineStatus" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="(Bacillus Calmette Guerin )"
-            android:id="@+id/textView20"
-            android:layout_below="@+id/textView7"
+            android:text="Bacillus Calmette Guerin"
+            android:id="@+id/vaccineFullForm"
+            android:layout_below="@+id/vaccineShortForm"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -92,7 +93,7 @@
             android:text="Prevents"
             android:id="@+id/textView8"
             android:layout_marginTop="42dp"
-            android:layout_below="@+id/textView20"
+            android:layout_below="@+id/vaccineFullForm"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -101,7 +102,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Tuberculosis"
-            android:id="@+id/textView21"
+            android:id="@+id/vaccinePrevents"
             android:layout_below="@+id/textView8"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -112,7 +113,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Important Info"
             android:id="@+id/textView22"
-            android:layout_below="@+id/textView21"
+            android:layout_below="@+id/vaccinePrevents"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="42dp" />
@@ -122,7 +123,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="It causes slight swelling at the injected site. Do not apply any medicine on the swollen area"
-            android:id="@+id/textView23"
+            android:id="@+id/vaccineInfo"
             android:layout_below="@+id/textView22"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -133,10 +134,20 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Time"
             android:id="@+id/textView24"
-            android:layout_below="@+id/textView23"
+            android:layout_below="@+id/vaccineInfo"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="42dp" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skip Vaccine"
+            android:id="@+id/vaccineSkip"
+            android:layout_below="@+id/vaccineTime"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 </ScrollView>
