@@ -34,17 +34,20 @@ public class DatabaseContract {
     public static final class ChildDetails implements BaseColumns{
         public static final String TABLE_NAME = "children";
 
-        public static final String COLUMN_CHILD_ID = "child_id";
+       // public static final String COLUMN_CHILD_ID = "child_id";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_DOB = "date_of_birth";
         public static final String COLUMN_MOTHER = "mother";
         public static final String COLUMN_POB = "place_of_birth";/*Place of birth*/
+        public static final String COLUMN_POB_PIN = "place_of_birth_pin";
         public static final String COLUMN_GENDER = "gender";
         public static final String COLUMN_LOCATION = "curr_location";
-        public static final String COLUMN_HOSPITAL = "preffered_hospital";
+        public static final String COLUMN_LOCATION_PIN = "curr_location_pin";
+        public static final String COLUMN_HOSPITAL = "preferred_hospital";
         public static final String COLUMN_UPDATE_STATUS = "update_status";/*set to 1 when database is up to date with server
                                                                              if any change is made then set to 0*/
         public static final String COLUMN_BLOOD_GROUP = "blood_group";
+
 
     }
 
