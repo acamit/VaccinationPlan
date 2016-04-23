@@ -603,9 +603,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
-
-            if (resultCode == Activity.RESULT_OK) {
-
+            if (!(resultCode == Activity.RESULT_CANCELED)) {
                 String message = data.getStringExtra(Intent.EXTRA_TEXT);
                 if (message.equals("VERIFIED")) {
                     status = "verified";
