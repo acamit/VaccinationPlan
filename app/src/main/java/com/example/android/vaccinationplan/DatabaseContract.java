@@ -62,7 +62,9 @@ public class DatabaseContract {
         public static final String COLUMN_ADDRESS = "address";
         public static final String COLUMN_PHONE = "phone_No";
         public static final String COLUMN_CITY = "city";
+        public static final String COLUMN_PINCODE = "pincode";
         public static final String COLUMN_STATE = "state";
+        public static final String COLUMN_WEBSITE = "website";
 
 
     }
@@ -79,20 +81,19 @@ public class DatabaseContract {
         public static final String COLUMN_RECOMMEND = "recommendation";/* OPTIONAL, MANDATORY, RECOMMENDED*/
         //  public static final String COLUMN_CHILD = "child_track";/* track which vaccine is done and which is pending*/
     }
-
     public static final class ChildVaccinationStatus implements BaseColumns{
         public static final String TABLE_NAME = "ChildVaccinationStatus";
         public static final String CHILD_ID= "childID";
         public static final String CHILD_ROW_ID = "child_row_id";
-        public static final String COLUMN_VACCINE_01 = "VACCINE_01";
-        public static final String COLUMN_VACCINE_02 = "VACCINE_02";
-        public static final String COLUMN_VACCINE_03 = "VACCINE_03";
-        public static final String COLUMN_VACCINE_04 = "VACCINE_04";
-        public static final String COLUMN_VACCINE_05 = "VACCINE_05";
-        public static final String COLUMN_VACCINE_06 = "VACCINE_06";
-        public static final String COLUMN_VACCINE_07 = "VACCINE_07";
-        public static final String COLUMN_VACCINE_08 = "VACCINE_08";
-        public static final String COLUMN_VACCINE_09 = "VACCINE_09";
+        public static final String COLUMN_VACCINE_1 = "VACCINE_1";
+        public static final String COLUMN_VACCINE_2 = "VACCINE_2";
+        public static final String COLUMN_VACCINE_3 = "VACCINE_3";
+        public static final String COLUMN_VACCINE_4 = "VACCINE_4";
+        public static final String COLUMN_VACCINE_5 = "VACCINE_5";
+        public static final String COLUMN_VACCINE_6 = "VACCINE_6";
+        public static final String COLUMN_VACCINE_7 = "VACCINE_7";
+        public static final String COLUMN_VACCINE_8 = "VACCINE_8";
+        public static final String COLUMN_VACCINE_9 = "VACCINE_9";
         public static final String COLUMN_VACCINE_10 = "VACCINE_10";
         public static final String COLUMN_VACCINE_11 = "VACCINE_11";
         public static final String COLUMN_VACCINE_12 = "VACCINE_12";
