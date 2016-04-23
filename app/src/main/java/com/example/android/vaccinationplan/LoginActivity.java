@@ -3,6 +3,7 @@ package com.example.android.vaccinationplan;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -65,17 +66,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-   /* private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };*/
     protected Context mContext;
 
-    private String verificationCode;
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -85,11 +77,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    //private SharedPreferences pref;
     protected VaccinationDBHelper dbHelper;
-    private  String JSONStr;
+
+    private String JSONStr;
+    private String verificationCode;
     private String status;
     private String Email;
+    private String number_of_children;
+    private String loginId;
+    private String password;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -106,7 +102,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mContext = this;
         status = "default";
         dbHelper = new VaccinationDBHelper(mContext);
-        SessionManager sessionManager =  new SessionManager(mContext);
+        SessionManager sessionManager = new SessionManager(mContext);
         Boolean isLogin = sessionManager.checkSession();
         if (isLogin) {
 
@@ -246,12 +242,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
         return password.length() > 4;
     }
 
@@ -316,7 +310,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             emails.add(cursor.getString(ProfileQuery.ADDRESS));
             cursor.moveToNext();
         }
-
         addEmailsToAutoComplete(emails);
     }
 
@@ -417,7 +410,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     /**
      * Represents an asynchronous login/registration task used to authenticate
-     * the user.
+     * the user
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
@@ -434,17 +427,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
 
-                    Uri.Builder loginUrlBuilder = new Uri.Builder();
+            Uri.Builder loginUrlBuilder = new Uri.Builder();
             loginUrlBuilder.scheme("http")
                     .authority("vaccinationplan.esy.es")
                     .appendPath("vaccinationplan.php")
-            .appendQueryParameter("email" , mEmail)
-            .appendQueryParameter("password" , mPassword);
-            HttpURLConnection urlConnection ;
+                    .appendQueryParameter("email", mEmail)
+                    .appendQueryParameter("password", mPassword);
+            HttpURLConnection urlConnection;
             try {
                 // Simulate network access.
                 URL url = new URL(loginUrlBuilder.build().toString());
-                urlConnection = (HttpURLConnection)url.openConnection();
+                urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
                 InputStream inputStream = urlConnection.getInputStream();
@@ -454,13 +447,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
                 InputStreamReader stream = new InputStreamReader(inputStream);
                 BufferedReader reader = new BufferedReader(stream);
-                String line ="";
+                String line = "";
                 StringBuffer Output = new StringBuffer();
-                while ((line = reader.readLine()) != null){
-                    Output.append(line+"\n");
+                while ((line = reader.readLine()) != null) {
+                    Output.append(line + "\n");
                 }
+
+
                 JSONStr = Output.toString();
                 //Thread.sleep(500);
+
+
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -476,70 +473,76 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 networkFailed = true;
             }*/
 
-            if(networkFailed){
-                return  false;
+            if (networkFailed) {
+                return false;
             }
 
             try {
                 JSONObject jsonObject = new JSONObject(JSONStr);
                 String error = jsonObject.getString("error");
-                if(error.equals("0")){
+                if (error.equals("0")) {
 
                     VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
-                    SQLiteDatabase db =  helper.getReadableDatabase();
+                    SQLiteDatabase db = helper.getReadableDatabase();
                     String[] projection = {
                             DatabaseContract.Login._ID,
                             DatabaseContract.Login.COLUMN_EMAIL,
                             DatabaseContract.Login.COLUMN_PASSWORD,
-                            DatabaseContract.Login.COLUMN_NUMBER_OF_CHILDEREN
+                            DatabaseContract.Login.COLUMN_NUMBER_OF_CHILDREN
                     };
                     String selection = "email=? and password = ?";
-                    String selectionArgs[] =  {
-                            mEmail , mPassword
+                    String selectionArgs[] = {
+                            mEmail, mPassword
                     };
-                    Cursor C = db.query(DatabaseContract.Login.TABLE_NAME , projection ,selection  , selectionArgs , null , null , null);
+                    Cursor C = db.query(DatabaseContract.Login.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
 
-                    if(C.moveToFirst() || C.getCount()>0){
-
+                    if (C.moveToFirst() || C.getCount() > 0) {
                         C.close();
                         return true;
-                    }else{
+                    }else {
                         C.close();
-                        status =jsonObject.getString("status");
-                        String token = jsonObject .getString("token");
-                        String number_of_children = jsonObject.getString("count");
-                        DatabaseOperations.insertIntoLogin(mEmail , mPassword ,token , Integer.parseInt(number_of_children), mContext );
-                        if(!status.equals("new")){
-                            /*If account already exists*/
+                        status = jsonObject.getString("status");
+                        /*String token = jsonObject.getString("token");
+                        */
+                        number_of_children = jsonObject.getString("count");
+                        loginId = jsonObject.getString("loginId");
+
+                        /*If account already exists*/
+                        if (!status.equals("new")) {
+
+                        /*Create entry into local database*/
+                            DatabaseOperations.insertIntoLogin(mEmail, mPassword, loginId, "1",  Integer.parseInt(number_of_children), mContext);
                             SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
                             SharedPreferences.Editor edit = pref.edit();
                             edit.putString(getString(R.string.pref_key_email), mEmail);
                             int count_online_status;
                             count_online_status = Integer.parseInt(number_of_children);
-                            if(count_online_status >0){
-                                edit.putString(getString(R.string.pref_key_child_count) , count_online_status+"");
+                            if (count_online_status > 0) {
+                                edit.putString(getString(R.string.pref_key_child_count), count_online_status + "");
                                 edit.commit();
 
                                 /*Fetch Children details if present*/
                                 JSONArray child_array = jsonObject.getJSONArray("children");
-                                boolean insertSuccess = DatabaseOperations.insertIntoChildDetails(child_array , mContext);
-                                return  insertSuccess;
-                            }else {
-                                edit.putString(getString(R.string.pref_key_child_count) , number_of_children);
+                                boolean insertSuccess = DatabaseOperations.insertIntoChildDetails(child_array, mContext);
+                                return insertSuccess;
+                            } else {
+                                edit.putString(getString(R.string.pref_key_child_count), number_of_children);
                                 edit.commit();
                                 return true;
                             }
 
-                        }else if(status.equals("new")){
+                        } else if (status.equals("new")) {
+                            /*if a new user registers*/
+
                             verificationCode = jsonObject.getString("verificationCode");
                             Email = mEmail;
-                            /*if a new user registers*/
-                        }else{
-                            //status ="In else block";
+                            password = mPassword;
+                        } else {
+
                         }
                     }
 
-                }else {
+                } else {
                     //status = "c is null";
                     return false;
 
@@ -553,26 +556,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
+
             showProgress(false);
             if (success) {
                 launchActivity();
                 //finish();
-            } else if(networkFailed){
+            } else if (networkFailed) {
                 Toast.makeText(mContext,
                         "No Network Access", Toast.LENGTH_LONG)
                         .show();
 
-                launchActivity();
+                //launchActivity();
 
-            }
-            else{
-                /*Toast.makeText(mContext,
-                        status, Toast.LENGTH_LONG)
-                        .show();*/
+            } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
             }
         }
+
         @Override
         protected void onCancelled() {
             mAuthTask = null;
@@ -583,31 +584,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     public void launchActivity() {
         Intent intent;
-        if (status.equals("new")){
+        if (status.equals("new")) {
 
-            /*Toast.makeText(mContext,
-                    status, Toast.LENGTH_LONG)
-                    .show();
+            intent = new Intent(mContext, VerifyAccount.class).putExtra(Intent.EXTRA_TEXT, verificationCode).putExtra("mEmail" , Email);
+            startActivityForResult(intent, 1);
+        } else if (new SessionManager(mContext).isChildDetailPresent()) {
 
-
-*/
-            intent = new Intent(mContext, VerifyAccount.class).putExtra(Intent.EXTRA_TEXT, verificationCode);
-            startActivityForResult(intent , 1);
-        }
-        else if(new SessionManager(mContext).isChildDetailPresent()){
             intent = new Intent(mContext, MainActivity.class).putExtra(Intent.EXTRA_TEXT, "logging in");
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
 
-            /*Toast.makeText(mContext,
-                    "Main Activity " +status, Toast.LENGTH_LONG)
-                    .show();
-*/
-        }else{
-  /*          Toast.makeText(mContext,
-                    "ChildDetial    "+ status, Toast.LENGTH_LONG)
-                    .show();
-*/
+        } else {
             intent = new Intent(mContext, ChildDetailActivity.class);
             startActivity(intent);
         }
@@ -615,20 +602,44 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode ==1){
-            String message=data.getStringExtra(Intent.EXTRA_TEXT);
-            if(message.equals("VERIFIED")){
-                status = "verified";
-                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
-                SharedPreferences.Editor edit = pref.edit();
-                edit.putString(getString(R.string.pref_key_email), Email);
-                edit.commit();
-                launchActivity();
-                finish();
+        if (requestCode == 1) {
 
+            if (resultCode == Activity.RESULT_OK) {
+
+                String message = data.getStringExtra(Intent.EXTRA_TEXT);
+                if (message.equals("VERIFIED")) {
+                    status = "verified";
+                    /*Create entry into local database*/
+                    DatabaseOperations.insertIntoLogin(Email, password, loginId, "1", Integer.parseInt(number_of_children), mContext);
+
+                    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
+                    SharedPreferences.Editor edit = pref.edit();
+                    edit.putString(getString(R.string.pref_key_email), Email);
+                    edit.commit();
+                    launchActivity();
+                    finish();
+
+                } else {
+                    Toast.makeText(mContext,
+                            message, Toast.LENGTH_LONG)
+                            .show();
+                }
+            }else if(resultCode == Activity.RESULT_CANCELED){
+                Toast.makeText(mContext,
+                        "Please verify the account", Toast.LENGTH_LONG)
+                        .show();
             }
+        }else{
+
         }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onDestroy() {
+       /* if (mAuthTask != null && mAuthTask.getStatus() != AsyncTask.Status.FINISHED) {
+            mAuthTask.cancel(true);
+        }*/
+        super.onDestroy();
     }
 }
-

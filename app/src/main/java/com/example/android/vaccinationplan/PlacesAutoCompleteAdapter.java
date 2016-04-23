@@ -46,7 +46,7 @@ class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements Filterab
                 FilterResults filterResults = new FilterResults();
                 if (constraint != null) {
                     resultList = mPlaceAPI.autocomplete(constraint.toString());
-                    //Toast.makeText(getContext(), PlaceAPI.toastMessage,Toast.LENGTH_LONG ).show();;
+                    //Toast.makeText(getContext(), PlaceAPI.toastMessage, Toast.LENGTH_LONG ).show();;
                     // Footer
                   //  resultList.add("footer");
 

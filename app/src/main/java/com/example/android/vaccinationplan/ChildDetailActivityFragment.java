@@ -4,10 +4,16 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.telephony.PhoneNumberUtils;
+import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +21,19 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -54,6 +70,7 @@ public class ChildDetailActivityFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
+                changeDate.setError(null);
                 showDatePickerDialog(v);
             }
         });
@@ -76,7 +93,7 @@ public class ChildDetailActivityFragment extends Fragment {
                 // Get data associated with the specified position
                 // in the list (AdapterView)
                 String description = (String) parent.getItemAtPosition(position);
-                Toast.makeText(getActivity(), description, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), description, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -89,7 +106,7 @@ public class ChildDetailActivityFragment extends Fragment {
                 // Get data associated with the specified position
                 // in the list (AdapterView)
                 String description = (String) parent.getItemAtPosition(position);
-                Toast.makeText(getActivity(), description, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), description, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -148,13 +165,20 @@ public class ChildDetailActivityFragment extends Fragment {
 
 
     public void addChildInfo() {
-        boolean isInfoRecieved;
-        isInfoRecieved = getChildInfo();
-        if (isInfoRecieved) {
-            DatabaseOperations.insertIntoChildDetails(child);
-
+        boolean isInfoReceived;
+        isInfoReceived = getChildInfo();
+        if (isInfoReceived) {
+            Boolean isChildDetailInserted = DatabaseOperations.insertIntoChildDetails(child, mContext);
+            if(isChildDetailInserted){
+                Intent intent = new Intent(mContext , MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
         }
     }
+
+
+
 
     private boolean getChildInfo() {
 
@@ -172,6 +196,11 @@ public class ChildDetailActivityFragment extends Fragment {
             errorCount++;
         }
 
+
+        /*
+        *  Date of Birth Validation
+        *
+        * */
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         Date today = new Date(System.currentTimeMillis());
         Date dateInput;
@@ -186,16 +215,206 @@ public class ChildDetailActivityFragment extends Fragment {
                 updateDateButtonText();
             }
         } catch (ParseException e) {
+            dateInput=today;
             changeDate.setError("Please set a valid Date");
             errorCount++;
             e.printStackTrace();
         }
 
+        /*
+        * Blood group validation
+        * */
+        TextView bloodGroup = (TextView)rootView.findViewById(R.id.bloodGroup);
+        String bloodGroupValue = bloodGroup.getText().toString().trim().toUpperCase();
+        String patternForBloodGroup = "^(A|B|AB|O)[+-]$";
+        if(!bloodGroupValue.matches(patternForBloodGroup)){
+            bloodGroup.setError("Please Enter a valid Blood Group");
+            errorCount++;
+            bloodGroup.setText("");
+        }
+
+        /*
+        * Mothers name validation
+        *
+        * */
+
+        TextView MotherName = (TextView)rootView.findViewById(R.id.MotherName);
+        String MotherNameValue = MotherName.getText().toString().trim();
+        if (!(MotherNameValue.matches(pattern))) {
+            MotherName.setError("Only Characters and spaces allowed");
+            MotherName.setText("");
+            errorCount++;
+        }
+
+
+        /*
+        * Mobile number verification
+        **/
+
+        TextView MobileNumber = (TextView)rootView.findViewById(R.id.MobileNumber);
+        String MobileNumberValue = MobileNumber.getText().toString().trim();
+
+        TelephonyManager tm = (TelephonyManager)mContext.getSystemService(mContext.TELEPHONY_SERVICE);
+        String countryCode = tm.getNetworkCountryIso();
+
+
+        if(validatePhoneNumber(MobileNumberValue)){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                MobileNumberValue=PhoneNumberUtils.formatNumber(MobileNumberValue , countryCode);
+            }/*else{
+                MobileNumberValue = PhoneNumberUtils.formatNumber(MobileNumberValue , "+91" , countryCode);
+            }*/
+            MobileNumber.setText(MobileNumberValue);
+        }
+        else{
+            errorCount++;
+            MobileNumber.setError("Please Enter a valid Mobile number");
+        }
+
+        /*Get Gender details*/
+        String gender;
+        RadioButton FemaleButton = (RadioButton)rootView.findViewById(R.id.FemaleGender);
+
+        RadioButton MaleButton = (RadioButton)rootView.findViewById(R.id.MaleGender);
+        if(FemaleButton.isChecked()){
+            gender = "female";
+        }else {
+            gender = "male";
+        }
+
+       /*
+       * Get Location Details
+       *
+       * */
+        String PlaceOfBirthPin="0";
+        String placeOfBirth= new String("");
+        String currentLocationPin="0";
+        String currentLocationName= new String("");
+
+        TextView currentLocation = (TextView)rootView.findViewById(R.id.autocomplete);
+        String currentLocationValue = currentLocation.getText().toString();
+        if(currentLocationValue.matches("\\d{10}")){
+           currentLocationPin = currentLocationValue;
+        }else{
+            currentLocationName= currentLocationValue;
+        }
+
+        TextView placeOfBirthView= (TextView)rootView.findViewById(R.id.place_of_birth);
+        String PlaceOfBirthValue = placeOfBirthView.getText().toString();
+        if(PlaceOfBirthValue.matches("\\d{10}")){
+            PlaceOfBirthPin = PlaceOfBirthValue;
+        }else{
+            placeOfBirth = PlaceOfBirthValue;
+        }
+
+        /*
+        * Get Hospital Details
+        *
+        * */
+
+        /*TextView HospitalDetails = (TextView)rootView.findViewById(R.id.hospital_details);
+        String HospitalDetailsValue = HospitalDetails.getText().toString();
+        */
+        if(errorCount>0){
+            child=null;
+            errorCount=0;
+            return false;
+        }else{
+            child = new Child();
+            child.name=nameValue;
+            child.child_id="";
+            child.date_of_birth= dateInput.toString();
+            child.mother=MotherNameValue;
+            child.place_of_birth=placeOfBirth;
+            child.place_of_birthPin = PlaceOfBirthPin;
+            child.gender=gender;
+            child.curr_location = currentLocationName;
+            child.blood_group = bloodGroupValue;
+            child.update_status = "0";
+            child.curr_locationPin = currentLocationPin;
+            new getChildId().execute((Void)null);
+            //child.preferred_hospital = HospitalDetailsValue;
+        }
+
         return true;
     }
 
+    private static boolean validatePhoneNumber(String phoneNo) {
+        //validate phone numbers of format "1234567890"
+        if (phoneNo.matches("\\d{10}")) return true;
+            //validating phone number with -, . or spaces
+        else if(phoneNo.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) return true;
+            //validating phone number with extension length from 3 to 5
+        /*else if(phoneNo.matches("\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}")) return true;
+            //validating phone number where area code is in braces ()
+        else if(phoneNo.matches("\\(\\d{3}\\)-\\d{3}-\\d{4}")) return true;
+        */    //return false if nothing matches the input
+        else return false;
 
+    }
 
+    class getChildId extends AsyncTask<Void , Void , String>{
+        private boolean networkFailed;
+        private String JSONStr;
+        @Override
+        protected String doInBackground(Void... params) {
+            Uri.Builder loginUrlBuilder = new Uri.Builder();
+            loginUrlBuilder.scheme("http")
+                    .authority("vaccinationplan.esy.es")
+                    .appendPath("getChildId.php")
+                    .appendQueryParameter("email" , "mEmail");
+            HttpURLConnection urlConnection ;
+            try {
+                // Simulate network access.
+                URL url = new URL(loginUrlBuilder.build().toString());
+                urlConnection = (HttpURLConnection)url.openConnection();
+                urlConnection.setRequestMethod("GET");
+                urlConnection.connect();
+                InputStream inputStream = urlConnection.getInputStream();
+                if (inputStream == null) {
+                    //Nothing to do
+                    return "";
+                }
+                InputStreamReader stream = new InputStreamReader(inputStream);
+                BufferedReader reader = new BufferedReader(stream);
+                String line ="";
+                StringBuffer Output = new StringBuffer();
+                while ((line = reader.readLine()) != null){
+                    Output.append(line+"\n");
+                }
+                JSONStr = Output.toString();
+                //Thread.sleep(500);
 
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                networkFailed = true;
 
+            } catch (IOException e) {
+
+                e.printStackTrace();
+                networkFailed = true;
+
+            } /*catch (InterruptedException e) {
+                e.printStackTrace();
+                networkFailed = true;
+            }*/
+
+            if(networkFailed){
+                return "";
+            }
+
+            try {
+                JSONObject obj = new JSONObject(JSONStr);
+                String child_id = obj.getString("child_id");
+                return child_id;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+        @Override
+        protected void onPostExecute(String child_id){
+         child.child_id=child_id;
+        }
+    }
 }

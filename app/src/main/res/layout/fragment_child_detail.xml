@@ -1,8 +1,10 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ChildDetail"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:scrollbars="vertical">
+    android:scrollbars="vertical"
+    tools:showIn="@layout/content_child_detail">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +23,8 @@
             android:backgroundTintMode="screen"
             android:capitalize="words"
             android:text="@string/child_form_description"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:imeOptions="actionNext"/>
 
         <EditText
             android:id="@+id/ChildName"
@@ -37,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Date of Birth" />
+            android:text="@string/date_of_birth" />
 
 
         <Button
@@ -54,7 +57,8 @@
             android:id="@+id/autocomplete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Current Location" />
+            android:hint="@string/location"
+            android:imeOptions="actionNext"/>
 
         <!--<EditText
             android:id="@+id/place_of_birth"
@@ -66,6 +70,47 @@
             android:inputType="textAutoComplete" />
             -->
 
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <RadioButton
+                android:id="@+id/FemaleGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="@string/femaleRadioString" />
+
+            <RadioButton
+                android:id="@+id/MaleGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="@string/maleRadioString" />
+
+
+        </RadioGroup>
+
+
+        <EditText
+            android:id="@+id/bloodGroup"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:hint="@string/blood_group"
+            android:imeOptions="actionNext"
+            android:inputType="textCapCharacters" />
+
+       <!-- <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/preferredHospital"
+            android:hint="@string/preferredHospital"
+            android:layout_weight="1" />
+-->
         <EditText
             android:id="@+id/MotherName"
             android:layout_width="match_parent"
@@ -75,21 +120,15 @@
             android:imeOptions="actionNext"
             android:inputType="textPersonName" />
 
-<!--
-        <EditText
-            android:id="@+id/Location"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:hint="@string/location"
-            android:imeOptions="actionNext"
-            android:inputType="number" />
--->
+
+
         <AutoCompleteTextView
             android:id="@+id/place_of_birth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Place of Location" />
+            android:hint="@string/place_of_birth"
+            android:imeOptions="actionNext"/>
+
         <EditText
             android:id="@+id/MobileNumber"
             android:layout_width="match_parent"
