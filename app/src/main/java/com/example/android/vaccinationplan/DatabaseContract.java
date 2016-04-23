@@ -25,36 +25,38 @@ public class DatabaseContract {
                 "vnd.android.cursor.item/" + CONTENT_AUTHORITY + "/" + PATH_LOGIN;
 
         public static final String TABLE_NAME = "loginDetails";
+        /*For sync with online database. Contains the ID in the Online database.*/
+        public  static final String COLUMN_LOGIN_ID = "loginId";
         public static final String COLUMN_EMAIL= "email";
         public static final String COLUMN_PASSWORD = "password";
-        public static final String COLUMN_NUMBER_OF_CHILDEREN = "number_of_children";
+        public static final String COLUMN_NUMBER_OF_CHILDREN = "number_of_children";
+        public static final String COLUMN_STATUS = "status";
 
     }
 
     public static final class ChildDetails implements BaseColumns{
         public static final String TABLE_NAME = "children";
 
-       // public static final String COLUMN_CHILD_ID = "child_id";
+        public static final String COLUMN_CHILD_ID = "child_id";
+        public static final String COLUMN_LOGIN_DETAILS_ID = "loginDetailsId";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_DOB = "date_of_birth";
-        public static final String COLUMN_MOTHER = "mother";
-        public static final String COLUMN_POB = "place_of_birth";/*Place of birth*/
-        public static final String COLUMN_POB_PIN = "place_of_birth_pin";
         public static final String COLUMN_GENDER = "gender";
+        public static final String COLUMN_MOTHER = "mother";
         public static final String COLUMN_LOCATION = "curr_location";
         public static final String COLUMN_LOCATION_PIN = "curr_location_pin";
+        public static final String COLUMN_POB = "place_of_birth";/*Place of birth*/
+        public static final String COLUMN_POB_PIN = "place_of_birth_pin";
+        public static final String COLUMN_BLOOD_GROUP = "blood_group";
         public static final String COLUMN_HOSPITAL = "preferred_hospital";
         public static final String COLUMN_UPDATE_STATUS = "update_status";/*set to 1 when database is up to date with server
                                                                              if any change is made then set to 0*/
-        public static final String COLUMN_BLOOD_GROUP = "blood_group";
-
 
     }
 
     public static final class HospitalDetails implements BaseColumns{
 
         public static final String TABLE_NAME = "hospitals";
-
         public static final String COLUMN_NAME = "hospital_name";
         public static final String COLUMN_CATEGORY = "hospital_category";
         public static final String COLUMN_ADDRESS = "address";
@@ -81,7 +83,7 @@ public class DatabaseContract {
     public static final class ChildVaccinationStatus implements BaseColumns{
         public static final String TABLE_NAME = "ChildVaccinationStatus";
         public static final String CHILD_ID= "childID";
-
+        public static final String CHILD_ROW_ID = "child_row_id";
         public static final String COLUMN_VACCINE_01 = "VACCINE_01";
         public static final String COLUMN_VACCINE_02 = "VACCINE_02";
         public static final String COLUMN_VACCINE_03 = "VACCINE_03";
