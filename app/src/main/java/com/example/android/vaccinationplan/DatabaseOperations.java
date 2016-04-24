@@ -194,6 +194,33 @@ public class DatabaseOperations {
         return  db.insert(DatabaseContract.ChildVaccinationStatus.TABLE_NAME, null, values);
     }
 
+    public static String[] getHospitalList(String Location, Context mContext){
+        String[] hospitals;
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        hospitals = new String[10];
+        for(int i=0;i<10;i++){
+            hospitals[i]="Hospital "+i;
+        }
+
+
+        return hospitals;
+    }
+
+    public static String[] getHospitalValues(String Location, Context mContext){
+        String[] hospitals;
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        hospitals = new String[10];
+        for(int i=0;i<10;i++){
+            hospitals[i]="Hospital "+i;
+        }
+
+
+        return hospitals;
+    }
 
 
 }
