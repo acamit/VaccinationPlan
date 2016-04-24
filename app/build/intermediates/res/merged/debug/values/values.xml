@@ -447,7 +447,6 @@
     <string name="place_autocomplete_clear_button">Clear search</string>
     <string name="place_autocomplete_search_hint">Search</string>
     <string name="place_of_birth">Place Of Birth</string>
-    <string name="pref_default_display_name">John Smith</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact
         based on your message history
     </string>
@@ -458,8 +457,8 @@
     <string name="pref_key_email">EMAIL</string>
     <string name="pref_key_password">PASSWORD</string>
     <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_title_hospital">Choose a hospital</string>
+    <string name="pref_title_location">Location</string>
     <string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_title_social_recommendations">Enable social recommendations</string>

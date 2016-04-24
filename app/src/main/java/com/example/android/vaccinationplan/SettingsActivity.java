@@ -119,6 +119,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setupActionBar();
     }
@@ -190,8 +192,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
+/*
             bindPreferenceSummaryToValue(findPreference("example_text"));
             bindPreferenceSummaryToValue(findPreference("example_list"));
+*/
         }
 
         @Override
@@ -214,17 +218,20 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_data_sync);
             addPreferencesFromResource(R.xml.pref_general);
+
+            /*addPreferencesFromResource(R.xml.pref_data_sync);
             addPreferencesFromResource(R.xml.pref_headers);
             addPreferencesFromResource(R.xml.pref_notification);
+            */
             setHasOptionsMenu(true);
 
             // Bind the summaries of EditText/List/Dialog/Ringtone preferences
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
+            bindPreferenceSummaryToValue(findPreference("Location"));
+            bindPreferenceSummaryToValue(findPreference("location_list"));
         }
 
         @Override
@@ -247,16 +254,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_data_sync);
-            setHasOptionsMenu(true);
+            /*addPreferencesFromResource(R.xml.pref_data_sync);
+            */setHasOptionsMenu(true);
 
             // Bind the summaries of EditText/List/Dialog/Ringtone preferences
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference("sync_frequency"));
-        }
+//            bindPreferenceSummaryToValue(findPreference("sync_frequency"));
 
+        }
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
