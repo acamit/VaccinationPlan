@@ -316,4 +316,21 @@ public class DatabaseOperations {
     }
 */
 
+    public static Cursor vaccineList(Context mContext){
+
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor result = db.rawQuery("SELECT `"+
+                DatabaseContract.VaccineDetails.COLUMN_NAME +"`,`" +
+                DatabaseContract.VaccineDetails.COLUMN_RECOMMEND +"`,`"+
+                DatabaseContract.VaccineDetails.COLUMN_SHORT_FORM+"`,`"+
+                DatabaseContract.VaccineDetails._ID +"`,`"+
+                DatabaseContract.VaccineDetails.COLUMN_SCHEDULE +
+                "` FROM "+
+                DatabaseContract.VaccineDetails.TABLE_NAME,null);
+        return result;
+    }
+
+
 }

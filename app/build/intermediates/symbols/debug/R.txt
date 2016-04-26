@@ -872,7 +872,7 @@ int id fill_horizontal 0x7f0f0030
 int id fill_vertical 0x7f0f0023
 int id fixed 0x7f0f0045
 int id fragment 0x7f0f009a
-int id fullNameText 0x7f0f00d4
+int id fullNameText 0x7f0f00d5
 int id google_wallet_classic 0x7f0f005b
 int id google_wallet_grayscale 0x7f0f005c
 int id google_wallet_monochrome 0x7f0f005d
@@ -935,7 +935,7 @@ int id production 0x7f0f0049
 int id progress_circular 0x7f0f0007
 int id progress_horizontal 0x7f0f0008
 int id radio 0x7f0f007b
-int id recommendationText 0x7f0f00d5
+int id recommendationText 0x7f0f00d4
 int id right 0x7f0f0025
 int id route_name 0x7f0f00d8
 int id sandbox 0x7f0f004a

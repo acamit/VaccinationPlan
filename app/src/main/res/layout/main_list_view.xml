@@ -36,6 +36,7 @@
         android:textSize="20sp"
         android:textColor="#201e1e"
         android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/recommendationText"
         android:layout_toRightOf="@+id/checkBox1"
         android:layout_toEndOf="@+id/checkBox1" />
 
@@ -46,24 +47,26 @@
         android:id="@+id/fullNameText"
         android:text="Bacillus Calmette Guerin"
         android:layout_below="@+id/code"
-        android:layout_toRightOf="@+id/checkBox1"
-        android:layout_toEndOf="@+id/checkBox1"
-        android:textColor="#362f2f" />
+        android:textColor="#362f2f"
+        android:layout_toLeftOf="@+id/recommendationText"
+        android:layout_alignLeft="@+id/code"
+        android:layout_alignStart="@+id/code" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text=" mandatory"
+        android:text="RECOMMENDED"
         android:id="@+id/recommendationText"
-        android:background="#af9595"
-        android:paddingLeft="2dp"
+        android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingBottom="2dp"
         android:textStyle="bold"
-        android:layout_above="@+id/fullNameText"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/fullNameText"
+        android:paddingTop="2dp"
+        android:textAlignment="center" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -77,5 +80,8 @@
         android:paddingTop="2dp"
         android:paddingLeft="3dp"
         android:paddingRight="5dp"
-        android:paddingBottom="3dp" />
+        android:paddingBottom="3dp"
+        android:layout_alignLeft="@+id/recommendationText"
+        android:layout_alignStart="@+id/recommendationText"
+        android:textAlignment="viewEnd" />
 </RelativeLayout>

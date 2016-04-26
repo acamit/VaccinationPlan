@@ -2,9 +2,5 @@
     {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/mipmap-xxhdpi-v4/ic_launcher.png",
         "source": "/home/himanshu/VaccinationPlan/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
-    },
-    {
-        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/mipmap-xxhdpi-v4/ic_launcher.png",
-        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
     }
 ]

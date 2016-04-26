@@ -72,11 +72,11 @@ public class DatabaseContract {
     public static final class VaccineDetails implements BaseColumns{
 
         public static final String TABLE_NAME = "vaccines";
-        public static final String COLUMN_ID = "vac_id";
+        public static final String COLUMN_ID = "vaccine_id";
         public static final String COLUMN_SHORT_FORM = "short_form";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_PREVENTS = "prevents";
-        public static final String COLUMN_INFO = "info";
+        public static final String COLUMN_INFO = "detail_info";
         public static final String COLUMN_SCHEDULE = "schedule";/*At Birth, 5 Months, 12 Months*/
         public static final String COLUMN_RECOMMEND = "recommendation";/* OPTIONAL, MANDATORY, RECOMMENDED*/
         //  public static final String COLUMN_CHILD = "child_track";/* track which vaccine is done and which is pending*/

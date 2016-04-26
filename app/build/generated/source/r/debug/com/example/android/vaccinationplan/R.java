@@ -2954,7 +2954,7 @@ containing a value of this type.
         public static final int fill_vertical=0x7f0f0023;
         public static final int fixed=0x7f0f0045;
         public static final int fragment=0x7f0f009a;
-        public static final int fullNameText=0x7f0f00d4;
+        public static final int fullNameText=0x7f0f00d5;
         public static final int google_wallet_classic=0x7f0f005b;
         public static final int google_wallet_grayscale=0x7f0f005c;
         public static final int google_wallet_monochrome=0x7f0f005d;
@@ -3017,7 +3017,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f0f0007;
         public static final int progress_horizontal=0x7f0f0008;
         public static final int radio=0x7f0f007b;
-        public static final int recommendationText=0x7f0f00d5;
+        public static final int recommendationText=0x7f0f00d4;
         public static final int right=0x7f0f0025;
         public static final int route_name=0x7f0f00d8;
         public static final int sandbox=0x7f0f004a;

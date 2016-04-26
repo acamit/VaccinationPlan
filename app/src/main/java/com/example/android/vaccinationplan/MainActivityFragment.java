@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -48,10 +49,32 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_main, container, false);
 
-        String[] vaccinationList = {"BCG1","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG"};
+      /*  String[] vaccinationList = {"BCG1","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG"};
         String[] vaccineFullName = {"Bacillus Calmette Guerin 1","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin"};
         String[] vaccineRecommendation = {"mandatory 1","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory"};
         String[] vaccineTime = {"1 month to go 1","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go"};
+*/
+
+
+
+        Cursor result = DatabaseOperations.vaccineList(getActivity().getApplicationContext());
+
+        String[] vaccinationList = new String[result.getCount()];
+        String[] vaccineFullName = new String[result.getCount()];
+        String[] vaccineRecommendation = new String[result.getCount()];
+        String[] vaccineTime = new String[result.getCount()];
+
+        result.moveToFirst();
+        int j=0;
+        do{
+            vaccinationList[j] = result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_SHORT_FORM));
+            vaccineFullName[j] = result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_NAME));
+            vaccineRecommendation[j] = result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_RECOMMEND));
+            vaccineTime[j] = result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_SCHEDULE));
+
+            j++;
+        }while(result.moveToNext());
+
 
         vaccines = new ArrayList<>();
 
