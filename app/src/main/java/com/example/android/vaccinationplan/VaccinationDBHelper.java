@@ -12,7 +12,7 @@ public class VaccinationDBHelper extends SQLiteOpenHelper{
 
     static final String DATABASE_NAME = "vaccination.db";
     /*MUST BE INCREMENTED MANUALLY WITH EVERY VERSION OF DATABASE SCHEMA*/
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 6;
 
     
     public VaccinationDBHelper(Context context){
@@ -93,11 +93,11 @@ public class VaccinationDBHelper extends SQLiteOpenHelper{
                 DatabaseContract.HospitalDetails._ID +  " INTEGER PRIMARY KEY AUTOINCREMENT ," +
                 DatabaseContract.HospitalDetails.COLUMN_NAME + " VARCHAR(200) NOT NULL," +
                 DatabaseContract.HospitalDetails.COLUMN_CATEGORY + " VARCHAR(20) DEFAULT NULL," +
-                DatabaseContract.HospitalDetails.COLUMN_ADDRESS + " VARCHAR(200) NOT NULL," +
+                DatabaseContract.HospitalDetails.COLUMN_ADDRESS + " VARCHAR(200) DEFAULT NULL," +
                 DatabaseContract.HospitalDetails.COLUMN_CITY + " VARCHAR(30) DEFAULT NULL," +
                 DatabaseContract.HospitalDetails.COLUMN_PINCODE + " VARCHAR(10) DEFAULT NULL," +
                 DatabaseContract.HospitalDetails.COLUMN_STATE + " VARCHAR(30) DEFAULT NULL," +
-                DatabaseContract.HospitalDetails.COLUMN_PHONE + " VARCHAR(300) NOT NULL," +
+                DatabaseContract.HospitalDetails.COLUMN_PHONE + " VARCHAR(300) DEFAULT NULL," +
                 DatabaseContract.HospitalDetails.COLUMN_WEBSITE + " VARCHAR(100) DEFAULT NULL" +
                 ");"
                 ;
@@ -125,6 +125,11 @@ public class VaccinationDBHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + DatabaseContract.Login.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DatabaseContract.HospitalDetails.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DatabaseContract.VaccineDetails.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DatabaseContract.ChildVaccinationStatus.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DatabaseContract.ChildDetails.TABLE_NAME);
+
         onCreate(db);
     }
 

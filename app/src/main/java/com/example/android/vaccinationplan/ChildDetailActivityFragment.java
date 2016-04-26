@@ -14,6 +14,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -362,6 +364,10 @@ public class ChildDetailActivityFragment extends Fragment {
     class getChildId extends AsyncTask<Void , Void , String>{
         private boolean networkFailed;
         private String JSONStr;
+        private boolean hospitalDataLoaded;
+        private boolean hospitalDataInflated;
+        private String hospitalJson;
+
         @Override
         protected String doInBackground(Void... params) {
             Uri.Builder loginUrlBuilder = new Uri.Builder();
@@ -370,6 +376,17 @@ public class ChildDetailActivityFragment extends Fragment {
                     .appendPath("getChildId.php")
                     .appendQueryParameter("email" , "mEmail");
             HttpURLConnection urlConnection ;
+
+            Uri.Builder hospitalDatalink = new Uri.Builder();
+            hospitalDatalink.scheme("http")
+                    .authority("vaccinationplan.esy.es")
+                    .appendPath("hospitals.php")
+                    .appendQueryParameter("city","amritsar");
+
+            HttpURLConnection hospitalConnection;
+
+
+
             try {
                 // Simulate network access.
                 URL url = new URL(loginUrlBuilder.build().toString());
@@ -407,6 +424,47 @@ public class ChildDetailActivityFragment extends Fragment {
 
             if(networkFailed){
                 return "";
+            }
+
+            try{
+                URL hospitalUrl = new URL(hospitalDatalink.build().toString());
+
+                hospitalConnection = (HttpURLConnection) hospitalUrl.openConnection();
+                hospitalConnection.setRequestMethod("GET");
+                hospitalConnection.connect();
+                InputStream hospitalInputStream = hospitalConnection.getInputStream();
+                if (hospitalInputStream == null) {
+                    //Nothing to do
+                    return "";
+                }
+                InputStreamReader hospitalStream = new InputStreamReader(hospitalInputStream);
+                BufferedReader hospitalReader = new BufferedReader(hospitalStream);
+                String hospitalLine ;
+                StringBuffer hospitalOutput = new StringBuffer();
+                while ((hospitalLine = hospitalReader.readLine()) != null) {
+                    hospitalOutput.append(hospitalLine);
+                }
+
+                hospitalJson = hospitalOutput.toString();
+                hospitalDataLoaded = true;
+
+
+            }catch (Exception e){
+                e.printStackTrace();
+                //hospitalDataLoaded = false;
+            }
+
+            if(hospitalDataLoaded){
+                try{
+
+                    JSONObject hospitalObject = new JSONObject(hospitalJson);
+                    JSONArray hospitalArray = hospitalObject.getJSONArray("hospitals");
+
+                    DatabaseOperations.inflateHospitals(hospitalArray, mContext);
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
 
             try {

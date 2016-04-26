@@ -2,7 +2,9 @@ package com.example.android.vaccinationplan;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -193,7 +195,7 @@ public class DatabaseOperations {
         ContentValues values = new ContentValues();
         values.put(DatabaseContract.ChildVaccinationStatus.CHILD_ID , child_id);
         values.put(DatabaseContract.ChildVaccinationStatus.CHILD_ROW_ID, rowId);
-        db.close();
+
         return  db.insert(DatabaseContract.ChildVaccinationStatus.TABLE_NAME, null, values);
     }
 
@@ -202,12 +204,18 @@ public class DatabaseOperations {
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        hospitals = new String[10];
-        for(int i=0;i<10;i++){
-            hospitals[i]="Hospital "+i;
+
+        Cursor result = db.rawQuery("SELECT `" + DatabaseContract.HospitalDetails.COLUMN_NAME + "` FROM " + DatabaseContract.HospitalDetails.TABLE_NAME, null);
+        int count = result.getCount();
+        hospitals = new String[count];
+        result.moveToFirst();
+        for(int i=0;i<count;i++){
+            hospitals[i]= String.valueOf(result.getColumnIndex(DatabaseContract.HospitalDetails.COLUMN_NAME));
+            result.moveToNext();
         }
 
         db.close();
+
         return hospitals;
     }
 
@@ -216,9 +224,13 @@ public class DatabaseOperations {
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        hospitals = new String[10];
-        for(int i=0;i<10;i++){
-            hospitals[i]="Hospital "+i;
+        Cursor result = db.rawQuery("SELECT `"+ DatabaseContract.HospitalDetails._ID +"` FROM " + DatabaseContract.HospitalDetails.TABLE_NAME, null);
+        int count = result.getCount();
+        hospitals = new String[count];
+        result.moveToFirst();
+        for(int i=0;i<count;i++){
+            hospitals[i]= String.valueOf(result.getColumnIndex(DatabaseContract.HospitalDetails._ID));
+            result.moveToNext();
         }
         db.close();
 
@@ -256,5 +268,52 @@ public class DatabaseOperations {
             return false;
         }
     }
+
+    public static boolean inflateHospitals(JSONArray hospitalsArr,Context mContext) throws JSONException {
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        db.execSQL("delete from " + DatabaseContract.HospitalDetails.TABLE_NAME);
+
+
+        for(int i=0; i < hospitalsArr.length(); i++) {
+
+            JSONObject jsonObject = hospitalsArr.getJSONObject(i);
+
+            ContentValues values = new ContentValues();
+
+            values.put(DatabaseContract.HospitalDetails._ID, jsonObject.getInt("_id"));
+            values.put(DatabaseContract.HospitalDetails.COLUMN_NAME, jsonObject.getString("hospital_name"));
+
+            /*
+            values.put(DatabaseContract.HospitalDetails.COLUMN_CATEGORY, jsonObject.getString("hospital_category"));
+            values.put(DatabaseContract.HospitalDetails.COLUMN_CITY, jsonObject.getString("city"));
+            values.put(DatabaseContract.HospitalDetails.COLUMN_ADDRESS, jsonObject.getString("address"));
+            values.put(DatabaseContract.HospitalDetails.COLUMN_PINCODE, jsonObject.getString("pincode"));
+            values.put(DatabaseContract.HospitalDetails.COLUMN_STATE, jsonObject.getString("state"));
+            values.put(DatabaseContract.HospitalDetails.COLUMN_WEBSITE, jsonObject.getString("website"));
+            values.put(DatabaseContract.HospitalDetails.COLUMN_PHONE, jsonObject.getString("phone"));
+*/
+            db.insert(DatabaseContract.HospitalDetails.TABLE_NAME, null, values);
+
+
+        }
+
+        db.close();
+        return true;
+    }
+
+   /* public static String getName(Context mContext){
+        String hospital;
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor result = db.rawQuery("SELECT * FROM " + DatabaseContract.HospitalDetails.TABLE_NAME, null);
+        result.moveToFirst();
+        hospital = result.getString(result.getColumnIndex(DatabaseContract.HospitalDetails.COLUMN_NAME));
+
+        db.close();
+        return  hospital;
+    }
+*/
 
 }
