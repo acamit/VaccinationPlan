@@ -117,11 +117,11 @@ public class ChildDetailActivityFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         mContext = getContext();
         calendar = Calendar.getInstance();
-        num_of_children = 1;
+       /* num_of_children = 1;
         pref = PreferenceManager.getDefaultSharedPreferences(mContext);
         SharedPreferences.Editor edit = pref.edit();
         edit.putString(getString(R.string.pref_key_child_count), num_of_children + "");
-        edit.commit();
+        edit.commit();*/
 
         super.onCreate(savedInstanceState);
     }
@@ -170,6 +170,12 @@ public class ChildDetailActivityFragment extends Fragment {
         if (isInfoReceived) {
             Boolean isChildDetailInserted = DatabaseOperations.insertIntoChildDetails(child, mContext);
             if(isChildDetailInserted){
+                num_of_children =1;
+                pref = PreferenceManager.getDefaultSharedPreferences(mContext);
+                SharedPreferences.Editor edit = pref.edit();
+                edit.putString(getString(R.string.pref_key_child_count), num_of_children + "");
+                edit.putString(getString(R.string.pref_key_child_id) , child.child_id);
+                edit.commit();
                 Intent intent = new Intent(mContext , MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -410,6 +416,7 @@ public class ChildDetailActivityFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
             return "";
         }
         @Override

@@ -92,14 +92,17 @@ public class DatabaseOperations {
 
                 rowId = insertIntoVaccineStatus(vaccineStatus,""+rowId,child_id ,mContext);
                 if(rowId !=-1){
-                    return true;
+                    continue;
                 }else
+                {
                     return false;
+                }
             }
-            else
-                return  false;
+            else{
+                return false;
+            }
         }
-
+        db.close();
         return  true;
 
     }
@@ -190,7 +193,7 @@ public class DatabaseOperations {
         ContentValues values = new ContentValues();
         values.put(DatabaseContract.ChildVaccinationStatus.CHILD_ID , child_id);
         values.put(DatabaseContract.ChildVaccinationStatus.CHILD_ROW_ID, rowId);
-
+        db.close();
         return  db.insert(DatabaseContract.ChildVaccinationStatus.TABLE_NAME, null, values);
     }
 
@@ -204,7 +207,7 @@ public class DatabaseOperations {
             hospitals[i]="Hospital "+i;
         }
 
-
+        db.close();
         return hospitals;
     }
 
@@ -217,10 +220,41 @@ public class DatabaseOperations {
         for(int i=0;i<10;i++){
             hospitals[i]="Hospital "+i;
         }
-
+        db.close();
 
         return hospitals;
     }
 
+    public static boolean updateHospital(String childId , String HospitalId , Context mContext){
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        String where = DatabaseContract.ChildDetails.COLUMN_CHILD_ID + "=?";
+        String [] whereArr = new String[]{childId};
+        values.put(DatabaseContract.ChildDetails.COLUMN_HOSPITAL , HospitalId);
+        int rowsUpdated = db.update(DatabaseContract.ChildDetails.TABLE_NAME, values, where, whereArr);
+        db.close();
+        if(rowsUpdated>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public static boolean updateLocation(String childId ,String pin, String city,Context mContext){
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        String where = DatabaseContract.ChildDetails.COLUMN_CHILD_ID + "=?";
+        String [] whereArr = new String[]{childId};
+        values.put(DatabaseContract.ChildDetails.COLUMN_LOCATION , city);
+        values.put(DatabaseContract.ChildDetails.COLUMN_LOCATION_PIN , pin);
+        int rowsUpdated = db.update(DatabaseContract.ChildDetails.TABLE_NAME, values, where, whereArr);
+        db.close();
+        if(rowsUpdated>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }

@@ -454,6 +454,7 @@
     <string name="pref_header_general">General</string>
     <string name="pref_header_notifications">Notifications</string>
     <string name="pref_key_child_count">child_count</string>
+    <string name="pref_key_child_id">child_id</string>
     <string name="pref_key_email">EMAIL</string>
     <string name="pref_key_password">PASSWORD</string>
     <string name="pref_ringtone_silent">Silent</string>

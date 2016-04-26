@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:2:1-81:12
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:2:1-82:12
 	xmlns:android
 		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:2:11-69
 	package
@@ -39,8 +39,12 @@ MERGED from [com.google.android.gms:play-services-measurement:8.4.0] /media/Data
 MERGED from [com.google.android.gms:play-services-maps:8.4.0] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/8.4.0/AndroidManifest.xml:21:5-66
 	android:name
 		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:9:22-64
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:10:5-78
+	android:name
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:10:22-75
 application
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:11:5-79:19
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:12:5-80:19
 MERGED from [com.android.support:appcompat-v7:23.2.1] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-v4:23.2.1] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.2.1] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.2.1/AndroidManifest.xml:7:5-20
@@ -162,41 +166,41 @@ MERGED from [com.google.android.gms:play-services-wearable:8.4.0] /media/Data/do
 MERGED from [com.google.android.gms:play-services-basement:8.4.0] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/AndroidManifest.xml:20:5-24:19
 MERGED from [com.android.support:support-v4:23.2.1] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/AndroidManifest.xml:22:5-20
 	android:supportsRtl
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:15:9-35
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:16:9-35
 	android:label
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:14:9-41
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:15:9-41
 	android:allowBackup
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:12:9-35
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:13:9-35
 	android:icon
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:13:9-43
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:14:9-43
 	android:theme
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:16:9-40
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:17:9-40
 activity#com.example.android.vaccinationplan.LoginActivity
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:17:9-25:20
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:18:9-26:20
 	android:label
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:19:13-45
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:20:13-45
 	android:name
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:18:13-42
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:19:13-42
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:20:13-24:29
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:21:13-25:29
 action#android.intent.action.MAIN
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:21:17-69
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:22:17-69
 	android:name
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:21:25-66
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:22:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:23:17-77
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:24:17-77
 	android:name
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:23:27-74
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:24:27-74
 activity#com.example.android.vaccinationplan.MainActivity
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:26:9-29:59
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:27:9-30:59
 	android:label
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:28:13-56
-	android:theme
 		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:29:13-56
+	android:theme
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:30:13-56
 	android:name
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:27:13-41
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:28:13-41
 meta-data#com.google.android.gms.version
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:34:9-36:69
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:35:9-37:69
 MERGED from [com.google.android.gms:play-services-basement:8.4.0] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/AndroidManifest.xml:21:9-23:69
 MERGED from [com.google.android.gms:play-services-basement:8.4.0] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/AndroidManifest.xml:21:9-23:69
 MERGED from [com.google.android.gms:play-services-basement:8.4.0] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/AndroidManifest.xml:21:9-23:69
@@ -230,73 +234,73 @@ MERGED from [com.google.android.gms:play-services-basement:8.4.0] /media/Data/do
 MERGED from [com.google.android.gms:play-services-basement:8.4.0] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/AndroidManifest.xml:21:9-23:69
 MERGED from [com.google.android.gms:play-services-basement:8.4.0] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/AndroidManifest.xml:21:9-23:69
 	android:name
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:35:13-58
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:36:13-58
 	android:value
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:36:13-66
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:37:13-66
 activity#com.example.android.vaccinationplan.ChildDetailActivity
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:38:9-46:20
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:39:9-47:20
 	android:label
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:40:13-64
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:41:13-64
 	android:theme
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:42:13-56
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:43:13-56
 	android:parentActivityName
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:41:13-55
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:42:13-55
 	android:name
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:39:13-48
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:40:13-48
 meta-data#android.support.PARENT_ACTIVITY
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:43:13-45:84
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:44:13-46:84
 	android:name
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:44:17-63
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:45:17-63
 	android:value
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:45:17-81
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:46:17-81
 activity#com.example.android.vaccinationplan.SettingsActivity
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:47:9-54:20
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:48:9-55:20
 	android:label
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:49:13-60
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:50:13-60
 	android:parentActivityName
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:50:13-55
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:51:13-55
 	android:name
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:48:13-45
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:49:13-45
 activity#com.example.android.vaccinationplan.VaccineDetailActivity
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:55:9-59:59
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:56:9-60:59
 	android:label
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:57:13-66
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:58:13-66
 	android:theme
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:59:13-56
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:60:13-56
 	android:parentActivityName
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:58:13-55
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:59:13-55
 	android:name
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:56:13-50
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:57:13-50
 activity#com.example.android.vaccinationplan.VaccinesCompletedActivity
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:60:9-64:59
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:61:9-65:59
 	android:label
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:62:13-70
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:63:13-70
 	android:theme
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:64:13-56
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:65:13-56
 	android:parentActivityName
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:63:13-55
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:64:13-55
 	android:name
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:61:13-54
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:62:13-54
 activity#com.example.android.vaccinationplan.HospitalDetailActivity
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:65:9-69:59
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:66:9-70:59
 	android:label
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:67:13-67
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:68:13-67
 	android:theme
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:69:13-56
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:70:13-56
 	android:parentActivityName
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:68:13-55
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:69:13-55
 	android:name
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:66:13-51
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:67:13-51
 activity#com.example.android.vaccinationplan.VerifyAccount
-ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:70:9-78:20
+ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:71:9-79:20
 	android:label
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:72:13-66
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:73:13-66
 	android:theme
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:74:13-56
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:75:13-56
 	android:parentActivityName
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:73:13-56
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:74:13-56
 	android:name
-		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:71:13-42
+		ADDED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml:72:13-42
 uses-sdk
 INJECTED from /media/Data/docs/VaccinationPlan/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.2.1] /media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/AndroidManifest.xml:21:5-23:78

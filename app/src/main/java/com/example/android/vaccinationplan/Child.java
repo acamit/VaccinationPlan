@@ -13,7 +13,7 @@ public class Child {
     String place_of_birthPin;
     String curr_location;
     String curr_locationPin;
-    //String preferred_hospital;
+    String preferred_hospital;
     String blood_group;
     String update_status;
 
@@ -27,7 +27,7 @@ public class Child {
         place_of_birthPin="0";
         curr_location="";
         curr_locationPin="0";
-     // preferred_hospital="";
+        preferred_hospital="";
         blood_group="";
         update_status="0";
     }
