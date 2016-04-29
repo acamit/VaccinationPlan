@@ -133,44 +133,44 @@ public class DatabaseOperations {
 
 
 
-            name = child.name;
-            child_id = child.child_id;
-            date_of_birth = child.date_of_birth;
-            mother = child.mother;
-            place_of_birth = child.place_of_birth;
-            place_of_birth_pin = child.place_of_birthPin;
-            blood_group  = child.blood_group;
-            gender = child.gender;
-            location = child.curr_location;
-            location_pin = child.curr_locationPin;
+        name = child.name;
+        child_id = child.child_id;
+        date_of_birth = child.date_of_birth;
+        mother = child.mother;
+        place_of_birth = child.place_of_birth;
+        place_of_birth_pin = child.place_of_birthPin;
+        blood_group  = child.blood_group;
+        gender = child.gender;
+        location = child.curr_location;
+        location_pin = child.curr_locationPin;
 
-            long rowId;
-            ContentValues values = new ContentValues();
+        long rowId;
+        ContentValues values = new ContentValues();
 
-            values.put(DatabaseContract.ChildDetails.COLUMN_NAME , name);
-            values.put(DatabaseContract.ChildDetails.COLUMN_DOB , date_of_birth);
-            values.put(DatabaseContract.ChildDetails.COLUMN_GENDER , gender);
-            values.put(DatabaseContract.ChildDetails.COLUMN_MOTHER, mother);
-            values.put(DatabaseContract.ChildDetails.COLUMN_LOCATION , location);
-            values.put(DatabaseContract.ChildDetails.COLUMN_LOCATION_PIN , location_pin);
-            values.put(DatabaseContract.ChildDetails.COLUMN_POB , place_of_birth);
-            values.put(DatabaseContract.ChildDetails.COLUMN_POB_PIN , place_of_birth_pin);
-            values.put(DatabaseContract.ChildDetails.COLUMN_BLOOD_GROUP, blood_group);
-            values.put(DatabaseContract.ChildDetails.COLUMN_CHILD_ID , child_id);
-            values.put(DatabaseContract.ChildDetails.COLUMN_UPDATE_STATUS, "1");
+        values.put(DatabaseContract.ChildDetails.COLUMN_NAME , name);
+        values.put(DatabaseContract.ChildDetails.COLUMN_DOB , date_of_birth);
+        values.put(DatabaseContract.ChildDetails.COLUMN_GENDER , gender);
+        values.put(DatabaseContract.ChildDetails.COLUMN_MOTHER, mother);
+        values.put(DatabaseContract.ChildDetails.COLUMN_LOCATION , location);
+        values.put(DatabaseContract.ChildDetails.COLUMN_LOCATION_PIN , location_pin);
+        values.put(DatabaseContract.ChildDetails.COLUMN_POB , place_of_birth);
+        values.put(DatabaseContract.ChildDetails.COLUMN_POB_PIN , place_of_birth_pin);
+        values.put(DatabaseContract.ChildDetails.COLUMN_BLOOD_GROUP, blood_group);
+        values.put(DatabaseContract.ChildDetails.COLUMN_CHILD_ID , child_id);
+        values.put(DatabaseContract.ChildDetails.COLUMN_UPDATE_STATUS, "1");
 
-            rowId = db.insert(DatabaseContract.ChildDetails.TABLE_NAME, null, values);
-            if(rowId!=-1){
+        rowId = db.insert(DatabaseContract.ChildDetails.TABLE_NAME, null, values);
+        if(rowId!=-1){
 
-                rowId = insertIntoVaccineStatus(child_id , ""+rowId,mContext);
-                if(rowId !=-1){
-                    return true;
-                }else
-                    return false;
+            rowId = insertIntoVaccineStatus(child_id , ""+rowId,mContext);
+            if(rowId !=-1){
+                return true;
+            }else
+                return false;
 
-            }
-            else
-                return  false;
+        }
+        else
+            return  false;
 
     }
 
@@ -204,7 +204,7 @@ public class DatabaseOperations {
         return  db.insert(DatabaseContract.ChildVaccinationStatus.TABLE_NAME, null, values);
     }
 
-    public static String[] getHospitalList(String Location, Context mContext){
+    public static String[] getHospitalList( Context mContext){
         String[] hospitals;
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getReadableDatabase();
@@ -224,7 +224,7 @@ public class DatabaseOperations {
         return hospitals;
     }
 
-    public static String[] getHospitalValues(String Location, Context mContext){
+    public static String[] getHospitalValues(Context mContext){
         String[] hospitals;
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getReadableDatabase();
