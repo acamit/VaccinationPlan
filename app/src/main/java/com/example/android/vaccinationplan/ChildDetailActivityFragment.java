@@ -14,7 +14,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -297,7 +296,7 @@ public class ChildDetailActivityFragment extends Fragment {
         String PlaceOfBirthPin="0";
         String placeOfBirth= new String("");
         String currentLocationPin="0";
-        String currentLocationName= new String("");
+        String currentLocationName= placeOfBirth;
 
         TextView currentLocation = (TextView)rootView.findViewById(R.id.autocomplete);
         String currentLocationValue = currentLocation.getText().toString();
@@ -377,11 +376,16 @@ public class ChildDetailActivityFragment extends Fragment {
                     .appendQueryParameter("email" , "mEmail");
             HttpURLConnection urlConnection ;
 
+
+            String address = child.curr_location;
+            String city = address.split("," , 1)[0];
+
+
             Uri.Builder hospitalDatalink = new Uri.Builder();
             hospitalDatalink.scheme("http")
                     .authority("vaccinationplan.esy.es")
                     .appendPath("hospitals.php")
-                    .appendQueryParameter("city","amritsar");
+                    .appendQueryParameter("city",city);
 
             HttpURLConnection hospitalConnection;
 
@@ -403,7 +407,7 @@ public class ChildDetailActivityFragment extends Fragment {
                 String line ="";
                 StringBuffer Output = new StringBuffer();
                 while ((line = reader.readLine()) != null){
-                    Output.append(line+"\n");
+                    Output.append(line).append("\n");
                 }
                 JSONStr = Output.toString();
                 //Thread.sleep(500);
