@@ -289,15 +289,6 @@ public class DatabaseOperations {
             values.put(DatabaseContract.HospitalDetails._ID, jsonObject.getInt("_id"));
             values.put(DatabaseContract.HospitalDetails.COLUMN_NAME, jsonObject.getString("hospital_name"));
 
-            /*
-            values.put(DatabaseContract.HospitalDetails.COLUMN_CATEGORY, jsonObject.getString("hospital_category"));
-            values.put(DatabaseContract.HospitalDetails.COLUMN_CITY, jsonObject.getString("city"));
-            values.put(DatabaseContract.HospitalDetails.COLUMN_ADDRESS, jsonObject.getString("address"));
-            values.put(DatabaseContract.HospitalDetails.COLUMN_PINCODE, jsonObject.getString("pincode"));
-            values.put(DatabaseContract.HospitalDetails.COLUMN_STATE, jsonObject.getString("state"));
-            values.put(DatabaseContract.HospitalDetails.COLUMN_WEBSITE, jsonObject.getString("website"));
-            values.put(DatabaseContract.HospitalDetails.COLUMN_PHONE, jsonObject.getString("phone"));
-*/
             db.insert(DatabaseContract.HospitalDetails.TABLE_NAME, null, values);
 
 
