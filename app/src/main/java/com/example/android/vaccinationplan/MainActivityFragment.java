@@ -65,12 +65,11 @@ public class MainActivityFragment extends Fragment {
 */
         SimpleDateFormat currSimpleDate = new SimpleDateFormat("yyyy-MM-dd");
         Date currDate = new Date();
-        String childDob = null;
         Date dob = null;
         long diff, diffDays = 0;
         int diffWeeks = 0;
 
-        Log.v("curr", String.valueOf(currDate));
+
 
 
         dob = DatabaseOperations.getChildDob(getActivity().getApplicationContext());
@@ -186,7 +185,7 @@ public class MainActivityFragment extends Fragment {
 
         /* Screen Height adjustment */
 
-        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+      /*  int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
         int totalHeight = 0;
         View view = null;
         for (int i = 0; i < adapterMain.getCount(); i++) {
@@ -201,7 +200,7 @@ public class MainActivityFragment extends Fragment {
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (adapterMain.getCount() - 1));
         listView.setLayoutParams(params);
-
+*/
 
         listView.setAdapter(adapterMain);
 
@@ -213,7 +212,7 @@ public class MainActivityFragment extends Fragment {
                 String itemValue = temp.get("vaccine").toString();
 //                int ids = Integer.parseInt(temp.get("id").toString());
 
-                Intent vaccine_detail = new Intent(getActivity().getApplicationContext(), VaccineDetailActivity.class).putExtra(Intent.EXTRA_TEXT, "" + id);
+                Intent vaccine_detail = new Intent(getActivity().getApplicationContext(), VaccineDetailActivity.class).putExtra(Intent.EXTRA_TEXT, vaccineId[position]);
                 startActivity(vaccine_detail);
 
 
@@ -238,8 +237,6 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-
-
         super.onCreate(savedInstanceState);
     }
 

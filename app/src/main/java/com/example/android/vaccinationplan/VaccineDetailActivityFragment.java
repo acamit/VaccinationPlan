@@ -3,6 +3,7 @@ package com.example.android.vaccinationplan;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -30,18 +31,19 @@ public class VaccineDetailActivityFragment extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_vaccine_detail, container, false);
 
         Intent intent = getActivity().getIntent();
-        String id = intent.getStringExtra(Intent.EXTRA_TEXT);
-        Toast.makeText(getActivity().getApplicationContext(),
-                "Position :" + id, Toast.LENGTH_LONG)
-                .show();
+        final String vacId = intent.getStringExtra(Intent.EXTRA_TEXT);
+
+        Cursor result = DatabaseOperations.getFullVaccineDetail(getActivity().getApplicationContext(), vacId);
 
 
-        holder = new VaccineDetailHolder("BCG",
-                "Bacillus Calmette Guerin",
-                "Tuberculosis",
-                "It causes slight swelling at the injected site. Do not apply any medicine on the swollen area",
-                "At Birth",
-                "Mandatory");
+        holder = new VaccineDetailHolder(result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_SHORT_FORM)),
+                result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_NAME)),
+                result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_PREVENTS)),
+                result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_INFO)),
+                result.getInt(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_SCHEDULE)),
+                result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_RECOMMEND)),
+                result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_ID))
+        );
 
         holder.vaccineShortForm = (TextView) rootView.findViewById(R.id.vaccineShortForm);
         holder.vaccineFullForm = (TextView) rootView.findViewById(R.id.vaccineFullForm);
@@ -64,14 +66,22 @@ public class VaccineDetailActivityFragment extends Fragment {
 
         holder.vaccineGiven.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 AlertDialog.Builder alertDialog;
                 alertDialog = new AlertDialog.Builder(getActivity());
                 alertDialog.setTitle("Confirm");
                 alertDialog.setMessage("Vaccine Given");
                 alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //
+                        boolean var = DatabaseOperations.vaccineGiven(getActivity().getApplicationContext(),vacId);
+                        if (var) {
+                            v.setClickable(false);
+                            v.setVisibility(View.INVISIBLE);
+                            holder.vaccineSkip.setVisibility(View.INVISIBLE);
+                            holder.status = "Given";
+                            holder.vaccineStatus.setText("Status : " + holder.status);
+                            DatabaseOperations.setUpdateStatus(getActivity().getApplicationContext());
+                        }
                     }
                 });
 
@@ -91,7 +101,7 @@ public class VaccineDetailActivityFragment extends Fragment {
 
         holder.vaccineSkip.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick( final View v) {
                 AlertDialog.Builder alertDialog;
                 alertDialog = new AlertDialog.Builder(getActivity());
                 alertDialog.setTitle("Confirm");
@@ -99,7 +109,15 @@ public class VaccineDetailActivityFragment extends Fragment {
                         " Please Consult your Doctor");
                 alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //
+                        boolean var = DatabaseOperations.vaccineSkip(getActivity().getApplicationContext(),vacId);
+                        if (var) {
+                            v.setClickable(false);
+                            v.setVisibility(View.INVISIBLE);
+                            holder.status = "Skipped";
+                            holder.vaccineStatus.setText("Status : " + holder.status);
+                            DatabaseOperations.setUpdateStatus(getActivity().getApplicationContext());
+                        }
+
                     }
                 });
 
@@ -117,7 +135,12 @@ public class VaccineDetailActivityFragment extends Fragment {
             }
         });
 
-
+        if (holder.i == 1){
+            holder.vaccineGiven.setVisibility(View.INVISIBLE);
+            holder.vaccineSkip.setVisibility(View.INVISIBLE);
+        }else if(holder.i == -1){
+            holder.vaccineSkip.setVisibility(View.INVISIBLE);
+        }
 
 
 
@@ -157,18 +180,36 @@ public class VaccineDetailActivityFragment extends Fragment {
     private class VaccineDetailHolder{
 
         String shortForm,fullForm,prevents,info,time,recommend,status;
-
+        int i;
         TextView vaccineShortForm,vaccineFullForm,vaccinePrevents,vaccineInfo,vaccineTime,vaccineRecommend,vaccineStatus;
         Button vaccineGiven,vaccineSkip;
 
-        VaccineDetailHolder(String sf,String ff,String pre, String inf, String tym, String rec){
+        VaccineDetailHolder(String sf,String ff,String pre, String inf, int tym, String rec,String id){
             this.shortForm = sf;
             this.fullForm = ff;
             this.prevents = pre;
             this.info = inf;
-            this.time = tym;
             this.recommend = rec;
-            this.status = "Pending";
+
+            if(tym == 0){
+                this.time = "At Birth";
+            }else if(tym < 14){
+                this.time = tym + " weeks from Birth";
+            }else{
+                tym = tym*7/30;
+                this.time = tym + " months from Birth";
+            }
+            i = DatabaseOperations.getVaccineStatus(getActivity().getApplicationContext(),id);
+
+            if(i == 0){
+                this.status = "Pending";
+            }else if(i == 1){
+                this.status = "Given";
+            }else{
+                this.status = "Skipped";
+            }
+
+
         }
     }
 

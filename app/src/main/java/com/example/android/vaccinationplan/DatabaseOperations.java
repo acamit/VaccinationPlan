@@ -325,11 +325,11 @@ public class DatabaseOperations {
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        Cursor vaccineList = db.rawQuery("SELECT * FROM "+ DatabaseContract.ChildVaccinationStatus.TABLE_NAME,null);
+        Cursor vaccineList = db.rawQuery("SELECT * FROM " + DatabaseContract.ChildVaccinationStatus.TABLE_NAME, null);
         vaccineList.moveToFirst();
         String vaccineDone = "";
         for(int i=1,k=0;i <=37 ;i++){
-            if(vaccineList.getInt(vaccineList.getColumnIndex("VACCINE_"+i)) == 0){
+            if(vaccineList.getInt(vaccineList.getColumnIndex("Vaccine_"+i)) == 0){
                 if(k==0){
                     vaccineDone = vaccineDone +"'Vaccine_"+i+"'";
                 }else{
@@ -390,6 +390,66 @@ public class DatabaseOperations {
 
         return date;
     }
+
+    static public Cursor getFullVaccineDetail(Context mContext,String vacId){
+
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor data = db.rawQuery("SELECT * FROM "+ DatabaseContract.VaccineDetails.TABLE_NAME +
+                " WHERE `" + DatabaseContract.VaccineDetails.COLUMN_ID + "` = '" +
+                vacId+"'",null);
+        data.moveToFirst();
+
+
+        return data;
+    }
+
+    static public int getVaccineStatus(Context mContext,String vacId){
+
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor data = db.rawQuery("SELECT * FROM " + DatabaseContract.ChildVaccinationStatus.TABLE_NAME,null);
+        data.moveToFirst();
+
+        return data.getInt(data.getColumnIndex(vacId));
+    }
+
+    public static boolean vaccineSkip(Context mContext,String vacId){
+
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(vacId, -1);
+
+        int row = db.update(DatabaseContract.ChildVaccinationStatus.TABLE_NAME,values,null,null);
+        db.close();
+        if(row != 0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public static boolean setUpdateStatus(Context mContext){
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.ChildDetails.COLUMN_UPDATE_STATUS, 0);
+        int row = db.update(DatabaseContract.ChildDetails.TABLE_NAME,values,null,null);
+        db.close();
+        if(row != 0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
 
 
 

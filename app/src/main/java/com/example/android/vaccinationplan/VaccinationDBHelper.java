@@ -12,7 +12,7 @@ public class VaccinationDBHelper extends SQLiteOpenHelper{
 
     static final String DATABASE_NAME = "vaccination.db";
     /*MUST BE INCREMENTED MANUALLY WITH EVERY VERSION OF DATABASE SCHEMA*/
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 9;
 
     
     public VaccinationDBHelper(Context context){
