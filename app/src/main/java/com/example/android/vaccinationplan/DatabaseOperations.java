@@ -10,7 +10,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.Locale;
 
 /**
  * Created by amit on 10/4/16.
@@ -210,7 +215,7 @@ public class DatabaseOperations {
         hospitals = new String[count];
         result.moveToFirst();
         for(int i=0;i<count;i++){
-            hospitals[i]= String.valueOf(result.getColumnIndex(DatabaseContract.HospitalDetails.COLUMN_NAME));
+            hospitals[i]= result.getString(result.getColumnIndex(DatabaseContract.HospitalDetails.COLUMN_NAME));
             result.moveToNext();
         }
 
@@ -224,12 +229,12 @@ public class DatabaseOperations {
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        Cursor result = db.rawQuery("SELECT `"+ DatabaseContract.HospitalDetails._ID +"` FROM " + DatabaseContract.HospitalDetails.TABLE_NAME, null);
+        Cursor result = db.rawQuery("SELECT `" + DatabaseContract.HospitalDetails._ID + "` FROM " + DatabaseContract.HospitalDetails.TABLE_NAME, null);
         int count = result.getCount();
         hospitals = new String[count];
         result.moveToFirst();
         for(int i=0;i<count;i++){
-            hospitals[i]= String.valueOf(result.getColumnIndex(DatabaseContract.HospitalDetails._ID));
+            hospitals[i]= result.getString(result.getColumnIndex(DatabaseContract.HospitalDetails._ID));
             result.moveToNext();
         }
         db.close();
@@ -243,7 +248,7 @@ public class DatabaseOperations {
         ContentValues values = new ContentValues();
         String where = DatabaseContract.ChildDetails.COLUMN_CHILD_ID + "=?";
         String [] whereArr = new String[]{childId};
-        values.put(DatabaseContract.ChildDetails.COLUMN_HOSPITAL , HospitalId);
+        values.put(DatabaseContract.ChildDetails.COLUMN_HOSPITAL, HospitalId);
         int rowsUpdated = db.update(DatabaseContract.ChildDetails.TABLE_NAME, values, where, whereArr);
         db.close();
         if(rowsUpdated>0){
@@ -259,7 +264,7 @@ public class DatabaseOperations {
         String where = DatabaseContract.ChildDetails.COLUMN_CHILD_ID + "=?";
         String [] whereArr = new String[]{childId};
         values.put(DatabaseContract.ChildDetails.COLUMN_LOCATION , city);
-        values.put(DatabaseContract.ChildDetails.COLUMN_LOCATION_PIN , pin);
+        values.put(DatabaseContract.ChildDetails.COLUMN_LOCATION_PIN, pin);
         int rowsUpdated = db.update(DatabaseContract.ChildDetails.TABLE_NAME, values, where, whereArr);
         db.close();
         if(rowsUpdated>0){
@@ -321,16 +326,72 @@ public class DatabaseOperations {
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        Cursor result = db.rawQuery("SELECT `"+
-                DatabaseContract.VaccineDetails.COLUMN_NAME +"`,`" +
-                DatabaseContract.VaccineDetails.COLUMN_RECOMMEND +"`,`"+
-                DatabaseContract.VaccineDetails.COLUMN_SHORT_FORM+"`,`"+
-                DatabaseContract.VaccineDetails._ID +"`,`"+
+        Cursor vaccineList = db.rawQuery("SELECT * FROM "+ DatabaseContract.ChildVaccinationStatus.TABLE_NAME,null);
+        vaccineList.moveToFirst();
+        String vaccineDone = "";
+        for(int i=1,k=0;i <=37 ;i++){
+            if(vaccineList.getInt(vaccineList.getColumnIndex("VACCINE_"+i)) == 0){
+                if(k==0){
+                    vaccineDone = vaccineDone +"'Vaccine_"+i+"'";
+                }else{
+                    vaccineDone = vaccineDone +",'Vaccine_"+i+"'";
+                }
+                k++;
+            }
+        }
+        Cursor result = db.rawQuery("SELECT  `" +
+                DatabaseContract.VaccineDetails.COLUMN_NAME + "`,`" +
+                DatabaseContract.VaccineDetails.COLUMN_RECOMMEND + "`,`" +
+                DatabaseContract.VaccineDetails.COLUMN_SHORT_FORM + "`,`" +
+                DatabaseContract.VaccineDetails._ID + "`,`" +
+                DatabaseContract.VaccineDetails.COLUMN_ID + "`,`" +
                 DatabaseContract.VaccineDetails.COLUMN_SCHEDULE +
-                "` FROM "+
-                DatabaseContract.VaccineDetails.TABLE_NAME,null);
+                "` FROM " +
+                DatabaseContract.VaccineDetails.TABLE_NAME +
+                " WHERE " + DatabaseContract.VaccineDetails.COLUMN_ID +
+                " IN (" + vaccineDone + ") ORDER BY " + DatabaseContract.VaccineDetails.COLUMN_SCHEDULE, null);
         return result;
     }
+
+    public static boolean vaccineGiven(Context mContext,String vacId){
+
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(vacId, 1);
+
+        int row = db.update(DatabaseContract.ChildVaccinationStatus.TABLE_NAME,values,null,null);
+        db.close();
+        if(row != 0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public static Date getChildDob(Context mContext){
+        Date date = null;
+        String dateTime;
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor data = db.rawQuery("SELECT * FROM " + DatabaseContract.ChildDetails.TABLE_NAME, null);
+        data.moveToFirst();
+
+        dateTime =  data.getString(data.getColumnIndex(DatabaseContract.ChildDetails.COLUMN_DOB));
+
+        DateFormat iso8601Format = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
+        try {
+            date = iso8601Format.parse(dateTime);
+        } catch (ParseException e) {
+            Log.e("err", "Parsing ISO8601 datetime failed", e);
+        }
+
+        return date;
+    }
+
 
 
 }

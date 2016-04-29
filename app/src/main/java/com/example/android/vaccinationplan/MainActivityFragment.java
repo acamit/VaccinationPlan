@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,10 +19,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -40,6 +42,11 @@ public class MainActivityFragment extends Fragment {
 
     TextView topVaccineSF,topVaccineFF,topVaccinetym,topVaccineRec;
     Button topVaccineButton;
+    String[] vaccinationList;
+    String[] vaccineFullName;
+    String[] vaccineRecommendation ;
+    String[] vaccineTime ;
+    String[] vaccineId ;
 
     public MainActivityFragment() {
     }
@@ -54,15 +61,30 @@ public class MainActivityFragment extends Fragment {
         String[] vaccineRecommendation = {"mandatory 1","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory","mandatory"};
         String[] vaccineTime = {"1 month to go 1","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go","1 month to go"};
 */
+        SimpleDateFormat currSimpleDate = new SimpleDateFormat("yyyy-MM-dd");
+        Date currDate = new Date();
+        String childDob = null;
+        Date dob  =null ;
+        long diff,diffDays=0;
+        int diffWeeks = 0;
+
+        Log.v("curr", String.valueOf(currDate));
 
 
+        dob = DatabaseOperations.getChildDob(getActivity().getApplicationContext());
+        if(dob != null) {
+            diff = currDate.getTime() - dob.getTime();
+            diffDays = diff / (24*60*60*1000);
+            diffWeeks = (int) diffDays /(7);
+        }
 
         Cursor result = DatabaseOperations.vaccineList(getActivity().getApplicationContext());
 
-        String[] vaccinationList = new String[result.getCount()];
-        String[] vaccineFullName = new String[result.getCount()];
-        String[] vaccineRecommendation = new String[result.getCount()];
-        String[] vaccineTime = new String[result.getCount()];
+        vaccinationList = new String[result.getCount()];
+        vaccineFullName = new String[result.getCount()];
+        vaccineRecommendation = new String[result.getCount()];
+        vaccineTime = new String[result.getCount()];
+        vaccineId = new String[result.getCount()];
 
         result.moveToFirst();
         int j=0;
@@ -71,9 +93,28 @@ public class MainActivityFragment extends Fragment {
             vaccineFullName[j] = result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_NAME));
             vaccineRecommendation[j] = result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_RECOMMEND));
             vaccineTime[j] = result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_SCHEDULE));
-
+            vaccineId[j] = result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_ID));
             j++;
         }while(result.moveToNext());
+
+
+        for(j=0;j<vaccineTime.length;j++){
+            long timeLeft = Integer.parseInt(vaccineTime[j]) - diffWeeks;
+
+            if(timeLeft < 0){
+                vaccineTime[j] = "Time Passed Away";
+            }else if(timeLeft == 0){
+                vaccineTime[j] = "Last Week Left";
+            }else if(timeLeft > 1 && timeLeft <= 4){
+                vaccineTime[j] = timeLeft + " weeks to go";
+            }else if(timeLeft*7/(30) == 1){
+                vaccineTime[j] = "1 month to go";
+            }else{
+                int months = (int) (timeLeft*7/(30));
+                vaccineTime[j] = months + " months to go";
+            }
+
+        }
 
 
         vaccines = new ArrayList<>();
@@ -88,14 +129,14 @@ public class MainActivityFragment extends Fragment {
         //now populate the ArrayList players
 
         try {
-            for (int i = 1; i < noOfVaccines; ++i) {
+            for (int i = 0; i < noOfVaccines; ++i) {
                 temp = new HashMap<>();
 
                 temp.put("vaccine", vaccinationList[i]);
                 temp.put("fullName", vaccineFullName[i]);
                 temp.put("recommendation", vaccineRecommendation[i]);
                 temp.put("time", vaccineTime[i]);
-                temp.put("id", String.valueOf(i));
+                temp.put("id", vaccineId[i]);
 
                 vaccines.add(temp);
             }
@@ -133,20 +174,7 @@ public class MainActivityFragment extends Fragment {
                 );
 */
 
-        try {
-            topVaccineSF = (TextView) rootView.findViewById(R.id.topVaccineSF);
-            topVaccineFF = (TextView) rootView.findViewById(R.id.topVaccineFF);
-            topVaccinetym = (TextView) rootView.findViewById(R.id.topVaccineTym);
-            topVaccineRec = (TextView) rootView.findViewById(R.id.topVaccineRec);
-            topVaccineButton = (Button) rootView.findViewById(R.id.topVaccineButton);
 
-            topVaccineSF.setText(vaccinationList[0]);
-            topVaccineFF.setText(vaccineFullName[0]);
-            topVaccineRec.setText(vaccineRecommendation[0]);
-            topVaccinetym.setText(vaccineTime[0]);
-        }catch (NullPointerException np){
-            np.printStackTrace();
-        }
         adapterMain = new CustomAdapterMain(getActivity().getApplicationContext(),
                 R.layout.main_list_view,
                 vaccines);
@@ -160,13 +188,14 @@ public class MainActivityFragment extends Fragment {
         int totalHeight = 0;
         View view = null;
         for (int i = 0; i < adapterMain.getCount(); i++) {
-            view = adapterMain.getView(i, view, listView);
+            view =  adapterMain.getView(i, view, listView);
             if (i == 0)
-                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, RadioGroup.LayoutParams.WRAP_CONTENT));
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ListView.LayoutParams.WRAP_CONTENT));
 
             view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
             totalHeight += view.getMeasuredHeight();
         }
+
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (adapterMain.getCount() - 1));
         listView.setLayoutParams(params);
@@ -175,29 +204,6 @@ public class MainActivityFragment extends Fragment {
         listView.setAdapter(adapterMain);
 
 
-        topVaccineButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialog = new AlertDialog.Builder(getActivity());
-                alertDialog.setTitle("Confirm");
-                alertDialog.setMessage("Vaccine Given");
-                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //
-
-                    }
-                });
-
-                alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-
-                alertDialog.show();
-            }
-        });
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -205,7 +211,7 @@ public class MainActivityFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 temp = (HashMap) vaccines.get(position);
                 String itemValue = temp.get("vaccine").toString();
-                int ids = Integer.parseInt(temp.get("id").toString());
+//                int ids = Integer.parseInt(temp.get("id").toString());
 
                 Intent vaccine_detail = new Intent(getActivity().getApplicationContext(), VaccineDetailActivity.class).putExtra(Intent.EXTRA_TEXT, "" + id);
                 startActivity(vaccine_detail);
@@ -332,15 +338,18 @@ public class MainActivityFragment extends Fragment {
                         alertDialog.setMessage("Vaccine Given");
                         alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                //
+                                boolean var = DatabaseOperations.vaccineGiven(getActivity().getApplicationContext(), vaccineId[position]);
+                                if (var) {
 
+                                    v.setClickable(false);
+                                }
                             }
                         });
 
                         alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                ((CheckBox)v).setChecked(false);
-                                checkBoxState[position]=false;
+                                ((CheckBox) v).setChecked(false);
+                                checkBoxState[position] = false;
                                 dialog.cancel();
                             }
                         });

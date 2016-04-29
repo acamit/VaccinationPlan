@@ -1,6 +1,4 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -29,15 +27,14 @@
             android:elegantTextHeight="true"
             android:editable="false"
             android:backgroundTintMode="screen"
-            android:layout_alignBottom="@+id/topVaccineButton"
             android:layout_below="@+id/textView2" />
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:id="@+id/listView"
             android:choiceMode="singleChoice"
-            android:layout_below="@+id/textView"
+            android:layout_below="@+id/textView2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -57,69 +54,4 @@
             android:layout_alignRight="@+id/textView"
             android:layout_alignEnd="@+id/textView" />
 
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text=" BCG"
-            android:id="@+id/topVaccineSF"
-            android:focusable="false"
-            android:textSize="25dp"
-            android:layout_below="@+id/textView2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/topVaccineRec"
-            android:layout_toStartOf="@+id/topVaccineRec" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="3 Days to go"
-            android:id="@+id/topVaccineTym"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:layout_below="@+id/topVaccineFF"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Mandatory"
-            android:id="@+id/topVaccineRec"
-            android:textAlignment="center"
-            android:background="#af9595"
-            android:paddingLeft="10dp"
-            android:paddingTop="2dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="5dp"
-            android:layout_above="@+id/topVaccineFF"
-            android:layout_alignRight="@+id/textView"
-            android:layout_alignEnd="@+id/textView" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Given"
-            android:id="@+id/topVaccineButton"
-            android:layout_below="@+id/topVaccineFF"
-            android:layout_alignRight="@+id/textView"
-            android:layout_alignEnd="@+id/textView" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Bacillus Calmette Guerin"
-            android:id="@+id/topVaccineFF"
-            android:layout_below="@+id/topVaccineSF"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/topVaccineRec"
-            android:layout_toStartOf="@+id/topVaccineRec" />
-
     </RelativeLayout>
-</ScrollView>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingTop="10dp"
     android:paddingLeft="5dp"
     android:paddingBottom="10dp"
@@ -9,7 +9,8 @@
     android:outlineProvider="bounds"
     android:theme="@style/AppTheme.PopupOverlay"
     android:touchscreenBlocksFocus="false"
-    android:clickable="false">
+    android:clickable="false"
+    android:textAlignment="viewEnd">
 
     <CheckBox
         android:id="@+id/checkBox1"
@@ -53,12 +54,11 @@
         android:layout_alignStart="@+id/code" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="RECOMMENDED"
         android:id="@+id/recommendationText"
-        android:background="#af9595"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingBottom="2dp"
@@ -67,7 +67,7 @@
         android:layout_alignParentEnd="true"
         android:layout_above="@+id/fullNameText"
         android:paddingTop="2dp"
-        android:textAlignment="center" />
+        android:textAlignment="viewEnd" />
 
     <TextView
         android:layout_width="wrap_content"
