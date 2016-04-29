@@ -63,12 +63,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
 
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_key_location)));
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_key_hospital)));
-        prepareHospitalList();
         mContext = SettingsActivity.this;
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
         childId = pref.getString("childId", "");
         address = pref.getString(getString(R.string.pref_key_location) ,"New delhi");
         city = address.split("," , 1)[0];
+        prepareHospitalList();
         setupActionBar();
     }
 
@@ -306,7 +306,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
         String HospitalEntries[] = DatabaseOperations.getHospitalList(mContext);
         String HospitalEntriesValues[] = DatabaseOperations.getHospitalValues(mContext);
         /*Toast.makeText(mContext , ""+HospitalEntries.length , Toast.LENGTH_LONG ).show();*/
-        ListPreference hospitals = (ListPreference) findPreference("hospital_list");
+        ListPreference hospitals = (ListPreference) findPreference(getString(R.string.pref_key_hospital));
         hospitals.setEntries(HospitalEntries);
         hospitals.setEntryValues(HospitalEntriesValues);
     }

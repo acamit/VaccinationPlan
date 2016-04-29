@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
     public static final long SYNC_INTERVAL_IN_MINUTES = 60L;
     public static final long SYNC_INTERVAL_IN_HOURS = 24L;
     public static final long SYNC_INTERVAL_IN_WEEK = 1L;
-    public static final long SYNC_INTERVAL =
-            SYNC_INTERVAL_IN_MINUTES *
+    public static final long SYNC_INTERVAL =1L;
+            /*SYNC_INTERVAL_IN_MINUTES *
                     SECONDS_PER_MINUTE * SYNC_INTERVAL_IN_HOURS * SYNC_INTERVAL_IN_WEEK;
-
+*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
