@@ -1,5 +1,6 @@
 package com.example.android.vaccinationplan;
 
+import android.accounts.Account;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -33,20 +34,21 @@ public class MainActivityFragment extends Fragment {
 
     // ListAdapter  mVaccineAdapter;
     CustomAdapterMain adapterMain;
-    HashMap<String , Object> temp;
+    HashMap<String, Object> temp;
     ArrayList vaccines;
     // ViewHolder viewHolder;
     LayoutInflater inflater;
     boolean[] checkBoxState;
     AlertDialog.Builder alertDialog;
 
-    TextView topVaccineSF,topVaccineFF,topVaccinetym,topVaccineRec;
+    TextView topVaccineSF, topVaccineFF, topVaccinetym, topVaccineRec;
     Button topVaccineButton;
     String[] vaccinationList;
     String[] vaccineFullName;
-    String[] vaccineRecommendation ;
-    String[] vaccineTime ;
-    String[] vaccineId ;
+    String[] vaccineRecommendation;
+    String[] vaccineTime;
+    String[] vaccineId;
+
 
     public MainActivityFragment() {
     }
@@ -54,7 +56,7 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView =  inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
       /*  String[] vaccinationList = {"BCG1","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG","BCG"};
         String[] vaccineFullName = {"Bacillus Calmette Guerin 1","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin","Bacillus Calmette Guerin"};
@@ -64,18 +66,18 @@ public class MainActivityFragment extends Fragment {
         SimpleDateFormat currSimpleDate = new SimpleDateFormat("yyyy-MM-dd");
         Date currDate = new Date();
         String childDob = null;
-        Date dob  =null ;
-        long diff,diffDays=0;
+        Date dob = null;
+        long diff, diffDays = 0;
         int diffWeeks = 0;
 
         Log.v("curr", String.valueOf(currDate));
 
 
         dob = DatabaseOperations.getChildDob(getActivity().getApplicationContext());
-        if(dob != null) {
+        if (dob != null) {
             diff = currDate.getTime() - dob.getTime();
-            diffDays = diff / (24*60*60*1000);
-            diffWeeks = (int) diffDays /(7);
+            diffDays = diff / (24 * 60 * 60 * 1000);
+            diffWeeks = (int) diffDays / (7);
         }
 
         Cursor result = DatabaseOperations.vaccineList(getActivity().getApplicationContext());
@@ -87,30 +89,30 @@ public class MainActivityFragment extends Fragment {
         vaccineId = new String[result.getCount()];
 
         result.moveToFirst();
-        int j=0;
-        do{
+        int j = 0;
+        do {
             vaccinationList[j] = result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_SHORT_FORM));
             vaccineFullName[j] = result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_NAME));
             vaccineRecommendation[j] = result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_RECOMMEND));
             vaccineTime[j] = result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_SCHEDULE));
             vaccineId[j] = result.getString(result.getColumnIndex(DatabaseContract.VaccineDetails.COLUMN_ID));
             j++;
-        }while(result.moveToNext());
+        } while (result.moveToNext());
 
 
-        for(j=0;j<vaccineTime.length;j++){
+        for (j = 0; j < vaccineTime.length; j++) {
             long timeLeft = Integer.parseInt(vaccineTime[j]) - diffWeeks;
 
-            if(timeLeft < 0){
+            if (timeLeft < 0) {
                 vaccineTime[j] = "Time Passed Away";
-            }else if(timeLeft == 0){
+            } else if (timeLeft == 0) {
                 vaccineTime[j] = "Last Week Left";
-            }else if(timeLeft > 1 && timeLeft <= 4){
+            } else if (timeLeft > 1 && timeLeft <= 4) {
                 vaccineTime[j] = timeLeft + " weeks to go";
-            }else if(timeLeft*7/(30) == 1){
+            } else if (timeLeft * 7 / (30) == 1) {
                 vaccineTime[j] = "1 month to go";
-            }else{
-                int months = (int) (timeLeft*7/(30));
+            } else {
+                int months = (int) (timeLeft * 7 / (30));
                 vaccineTime[j] = months + " months to go";
             }
 
@@ -124,7 +126,7 @@ public class MainActivityFragment extends Fragment {
 
 
         //total number of rows in the ListView
-        int noOfVaccines=vaccinationList.length;
+        int noOfVaccines = vaccinationList.length;
 
         //now populate the ArrayList players
 
@@ -140,7 +142,7 @@ public class MainActivityFragment extends Fragment {
 
                 vaccines.add(temp);
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
@@ -188,7 +190,7 @@ public class MainActivityFragment extends Fragment {
         int totalHeight = 0;
         View view = null;
         for (int i = 0; i < adapterMain.getCount(); i++) {
-            view =  adapterMain.getView(i, view, listView);
+            view = adapterMain.getView(i, view, listView);
             if (i == 0)
                 view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ListView.LayoutParams.WRAP_CONTENT));
 
@@ -202,8 +204,6 @@ public class MainActivityFragment extends Fragment {
 
 
         listView.setAdapter(adapterMain);
-
-
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -238,12 +238,14 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
+
+
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_main , menu);
+        inflater.inflate(R.menu.menu_main, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -251,48 +253,45 @@ public class MainActivityFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            Intent settings = new Intent(getActivity() , SettingsActivity.class);
+            Intent settings = new Intent(getActivity(), SettingsActivity.class);
             startActivity(settings);
             return true;
         } else if (id == R.id.hospital_details) {
             Intent hospitals = new Intent(getActivity(), HospitalDetailActivity.class);
             startActivity(hospitals);
-        }else if (id== R.id.vaccine_record){
-            Intent vaccine_record = new Intent(getActivity() ,VaccinesCompletedActivity.class);
+        } else if (id == R.id.vaccine_record) {
+            Intent vaccine_record = new Intent(getActivity(), VaccinesCompletedActivity.class);
             startActivity(vaccine_record);
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-
-
-
-
-    public class CustomAdapterMain extends ArrayAdapter<HashMap<String,Object>> {
+    public class CustomAdapterMain extends ArrayAdapter<HashMap<String, Object>> {
 
         boolean[] checkBoxState;
         Context context;
         ViewHolder viewHolder;
         AlertDialog.Builder alertDialog;
         ArrayList<HashMap<String, Object>> vaccines;
+
         public CustomAdapterMain(Context context, int textViewResourceId, ArrayList<HashMap<String, Object>> vaccines) {
             //let android do the initializing :)
             super(context, textViewResourceId, vaccines);
             this.context = context;
-            this.vaccines =vaccines;
+            this.vaccines = vaccines;
             checkBoxState = new boolean[vaccines.size()];
         }
 
         @Override
-        public View getView(final int position,View convertView, ViewGroup parent){
+        public View getView(final int position, View convertView, ViewGroup parent) {
             // TODO Auto-generated method stub
             inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            if(convertView==null){
+            if (convertView == null) {
 
                 convertView = inflater.inflate(R.layout.main_list_view, parent, false);
-                viewHolder=new ViewHolder();
+                viewHolder = new ViewHolder();
 
                 try {
                     viewHolder.checkBox1 = (CheckBox) convertView.findViewById(R.id.checkBox1);
@@ -300,14 +299,14 @@ public class MainActivityFragment extends Fragment {
                     viewHolder.fullNameText = (TextView) convertView.findViewById(R.id.fullNameText);
                     viewHolder.recommendationText = (TextView) convertView.findViewById(R.id.recommendationText);
                     viewHolder.timeText = (TextView) convertView.findViewById(R.id.timeText);
-                }catch (Exception ex){
+                } catch (Exception ex) {
                     ex.printStackTrace();
                 }
                 //link the cached views to the convertview
-                convertView.setTag( viewHolder);
+                convertView.setTag(viewHolder);
 
-            } else{
-                viewHolder=(ViewHolder) convertView.getTag();
+            } else {
+                viewHolder = (ViewHolder) convertView.getTag();
             }
 
             try {
@@ -315,7 +314,7 @@ public class MainActivityFragment extends Fragment {
                 viewHolder.recommendationText.setText(vaccines.get(position).get("recommendation").toString());
                 viewHolder.fullNameText.setText(vaccines.get(position).get("fullName").toString());
                 viewHolder.code.setText(vaccines.get(position).get("vaccine").toString());
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
 
@@ -331,8 +330,8 @@ public class MainActivityFragment extends Fragment {
             viewHolder.checkBox1.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(final View v) {
-                    if(((CheckBox)v).isChecked()){
-                        checkBoxState[position]=true;
+                    if (((CheckBox) v).isChecked()) {
+                        checkBoxState[position] = true;
                         alertDialog = new AlertDialog.Builder(getActivity());
                         alertDialog.setTitle("Confirm");
                         alertDialog.setMessage("Vaccine Given");
@@ -356,10 +355,8 @@ public class MainActivityFragment extends Fragment {
 
 
                         alertDialog.show();
-                    }
-
-                    else
-                        checkBoxState[position]=false;
+                    } else
+                        checkBoxState[position] = false;
 
                 }
             });
@@ -369,17 +366,16 @@ public class MainActivityFragment extends Fragment {
         }
 
         //class for caching the views in a row
-        private class ViewHolder
-        {
+        private class ViewHolder {
 
-            TextView recommendationText,timeText,fullNameText,code;
+            TextView recommendationText, timeText, fullNameText, code;
             CheckBox checkBox1;
         }
 
 
-
-
     }
+
+
 
 
 }

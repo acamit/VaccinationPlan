@@ -25,6 +25,9 @@
     <!--Strings for custom values in shared Preferences-->
     <string name="pref_key_child_count">child_count</string>
     <string name="pref_key_child_id">child_id</string>
+    <string name="pref_key_location">Location</string>
+    <string name="pref_key_location_pin">Pin</string>
+    <string name="pref_key_hospital">Hospital</string>
 
     <!-- Child detail Strings-->
     <string name="child_form_description">Please Enter the Child Details</string>

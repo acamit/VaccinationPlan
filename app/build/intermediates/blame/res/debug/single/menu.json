@@ -4,28 +4,60 @@
         "source": "/home/himanshu/VaccinationPlan/app/src/main/res/menu/menu_vaccine_complete.xml"
     },
     {
-        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_vaccine_detail.xml",
-        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/menu/menu_vaccine_detail.xml"
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_hospital_details.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/menu/menu_hospital_details.xml"
+    },
+    {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_vaccines_completed.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/menu/menu_vaccines_completed.xml"
+    },
+    {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_vaccine_detail.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/menu/menu_vaccine_detail.xml"
     },
     {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_hospital_details.xml",
         "source": "/home/himanshu/VaccinationPlan/app/src/main/res/menu/menu_hospital_details.xml"
     },
     {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_vaccine_complete.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/menu/menu_vaccine_complete.xml"
+    },
+    {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_vaccine_detail.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/menu/menu_vaccine_detail.xml"
+    },
+    {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_main.xml",
         "source": "/home/himanshu/VaccinationPlan/app/src/main/res/menu/menu_main.xml"
     },
     {
-        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_child_detail.xml",
-        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/menu/menu_child_detail.xml"
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_verify_account.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/menu/menu_verify_account.xml"
+    },
+    {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_verify_account.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/menu/menu_verify_account.xml"
+    },
+    {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_child_detail.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/menu/menu_child_detail.xml"
     },
     {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_hospital_detail.xml",
         "source": "/home/himanshu/VaccinationPlan/app/src/main/res/menu/menu_hospital_detail.xml"
     },
     {
-        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_verify_account.xml",
-        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/menu/menu_verify_account.xml"
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_main.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/menu/menu_main.xml"
+    },
+    {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_hospital_detail.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/menu/menu_hospital_detail.xml"
+    },
+    {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_child_detail.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/menu/menu_child_detail.xml"
     },
     {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/menu/menu_vaccines_completed.xml",

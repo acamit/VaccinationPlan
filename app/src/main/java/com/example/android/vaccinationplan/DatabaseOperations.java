@@ -208,7 +208,7 @@ public class DatabaseOperations {
         String[] hospitals;
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getReadableDatabase();
-        
+
         Cursor result = db.rawQuery("SELECT `" + DatabaseContract.HospitalDetails.COLUMN_NAME + "` FROM " + DatabaseContract.HospitalDetails.TABLE_NAME, null);
         int count = result.getCount();
         hospitals = new String[count];

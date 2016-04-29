@@ -49,6 +49,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
 
 
     String childId;
+
+    private String city;
+    private String address;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,19 +61,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
         // For all preferences, attach an OnPreferenceChangeListener so the UI summary can be
         // updated when the preference changes.
 
-        String location = "143001";
+        bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_key_location)));
+        bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_key_hospital)));
+        prepareHospitalList();
         mContext = SettingsActivity.this;
-        String HospitalEntries[] = DatabaseOperations.getHospitalList(location, mContext);
-        String HospitalEntriesValues[] = DatabaseOperations.getHospitalList(location, mContext);
-        ListPreference hospitals = (ListPreference) findPreference("hospital_list");
-        hospitals.setEntries(HospitalEntries);
-        hospitals.setEntryValues(HospitalEntriesValues);
-        bindPreferenceSummaryToValue(findPreference("Location"));
-        bindPreferenceSummaryToValue(findPreference("hospital_list"));
-
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
         childId = pref.getString("childId", "");
-
+        address = pref.getString(getString(R.string.pref_key_location) ,"New delhi");
+        city = address.split("," , 1)[0];
         setupActionBar();
     }
 
@@ -143,6 +142,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
             }
         } else {
             // For other preferences, set the summary to the value's simple string representation.
+
             new GetLocationTask(stringValue , preference).execute((Void) null);
             /*preference.setSummary(stringValue);*/
         }
@@ -155,9 +155,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
     Context mContext;
 
     public class GetLocationTask extends AsyncTask<Void, Void, Boolean> {
-
-        private String city;
-        private String address;
+        private String newCity;
+        private String newAddress;
         private String pincode;
         private String region;
         private boolean networkFailed;
@@ -167,9 +166,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
 
         GetLocationTask(String pincode, Preference locationPref) {
             this.pincode = pincode;
-            city = "";
-            address = "";
+            newCity=city;
             this.region = "in";
+            newAddress = address;
             this.location = (EditTextPreference) locationPref;
             preference = locationPref;
         }
@@ -205,7 +204,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
                 while ((line = reader.readLine()) != null) {
                     Output.append(line + "\n");
                 }
-
 
                 JSONStr = Output.toString();
                 //Thread.sleep(500);
@@ -252,21 +250,22 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
                 try {
                     JSONArray results = jsonObject.getJSONArray("results");
                     JSONObject res1 = results.getJSONObject(0);
-                    address = res1.getString("formatted_address");
-                    String adr[] = address.split("," ,1);
-                    city = adr[0].trim();
+                    newAddress = res1.getString("formatted_address");
+                    String adr[] = newAddress.split("," ,1);
+                    newCity = adr[0].trim();
 
                     alertDialog = new AlertDialog.Builder(mContext);
                     alertDialog.setTitle("Confirm");
-                    alertDialog.setMessage(address);
+                    alertDialog.setMessage(newAddress);
 
                     alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             DatabaseOperations.updateLocation(childId, city, pincode, mContext);
-                            /*not required*/
-                            String stringValue = address;
+                            String stringValue = newAddress;
                             preference.setSummary(stringValue);
-
+                            address = newAddress;
+                            city = newCity;
+                            prepareHospitalList();
 
                         }
                     });
@@ -276,7 +275,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
                             dialog.cancel();
                         }
                     });
-
 
                     alertDialog.show();
                 } catch (JSONException e) {
@@ -302,6 +300,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
 
         }
 
+    }
+
+    void prepareHospitalList(){
+        String HospitalEntries[] = DatabaseOperations.getHospitalList(mContext);
+        String HospitalEntriesValues[] = DatabaseOperations.getHospitalValues(mContext);
+        /*Toast.makeText(mContext , ""+HospitalEntries.length , Toast.LENGTH_LONG ).show();*/
+        ListPreference hospitals = (ListPreference) findPreference("hospital_list");
+        hospitals.setEntries(HospitalEntries);
+        hospitals.setEntryValues(HospitalEntriesValues);
     }
 
 

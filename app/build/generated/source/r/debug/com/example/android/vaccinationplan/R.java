@@ -3318,33 +3318,36 @@ containing a value of this type.
         public static final int pref_key_child_count=0x7f080065;
         public static final int pref_key_child_id=0x7f080066;
         public static final int pref_key_email=0x7f080067;
-        public static final int pref_key_password=0x7f080068;
-        public static final int pref_ringtone_silent=0x7f080069;
-        public static final int pref_title_hospital=0x7f08006a;
-        public static final int pref_title_location=0x7f08006b;
-        public static final int pref_title_new_message_notifications=0x7f08006c;
-        public static final int pref_title_ringtone=0x7f08006d;
-        public static final int pref_title_social_recommendations=0x7f08006e;
-        public static final int pref_title_sync_frequency=0x7f08006f;
-        public static final int pref_title_system_sync_settings=0x7f080070;
-        public static final int pref_title_vibrate=0x7f080071;
-        public static final int preferredHospital=0x7f080072;
-        public static final int prompt_email=0x7f080073;
-        public static final int prompt_password=0x7f080074;
+        public static final int pref_key_hospital=0x7f080068;
+        public static final int pref_key_location=0x7f080069;
+        public static final int pref_key_location_pin=0x7f08006a;
+        public static final int pref_key_password=0x7f08006b;
+        public static final int pref_ringtone_silent=0x7f08006c;
+        public static final int pref_title_hospital=0x7f08006d;
+        public static final int pref_title_location=0x7f08006e;
+        public static final int pref_title_new_message_notifications=0x7f08006f;
+        public static final int pref_title_ringtone=0x7f080070;
+        public static final int pref_title_social_recommendations=0x7f080071;
+        public static final int pref_title_sync_frequency=0x7f080072;
+        public static final int pref_title_system_sync_settings=0x7f080073;
+        public static final int pref_title_vibrate=0x7f080074;
+        public static final int preferredHospital=0x7f080075;
+        public static final int prompt_email=0x7f080076;
+        public static final int prompt_password=0x7f080077;
         public static final int status_bar_notification_info_overflow=0x7f08003d;
-        public static final int store_picture_message=0x7f080075;
-        public static final int store_picture_title=0x7f080076;
-        public static final int submit_child_details=0x7f080077;
-        public static final int title_activity_child_detail=0x7f080078;
-        public static final int title_activity_hospital_detail=0x7f080079;
-        public static final int title_activity_main=0x7f08007a;
-        public static final int title_activity_settings=0x7f08007b;
-        public static final int title_activity_vaccine_detail=0x7f08007c;
-        public static final int title_activity_vaccines_completed=0x7f08007d;
-        public static final int title_activity_verify_account=0x7f08007e;
-        public static final int vaccination_record=0x7f08007f;
-        public static final int verifyButtontext=0x7f080080;
-        public static final int verifyMsg=0x7f080081;
+        public static final int store_picture_message=0x7f080078;
+        public static final int store_picture_title=0x7f080079;
+        public static final int submit_child_details=0x7f08007a;
+        public static final int title_activity_child_detail=0x7f08007b;
+        public static final int title_activity_hospital_detail=0x7f08007c;
+        public static final int title_activity_main=0x7f08007d;
+        public static final int title_activity_settings=0x7f08007e;
+        public static final int title_activity_vaccine_detail=0x7f08007f;
+        public static final int title_activity_vaccines_completed=0x7f080080;
+        public static final int title_activity_verify_account=0x7f080081;
+        public static final int vaccination_record=0x7f080082;
+        public static final int verifyButtontext=0x7f080083;
+        public static final int verifyMsg=0x7f080084;
         public static final int wallet_buy_button_place_holder=0x7f08003e;
     }
     public static final class style {
@@ -3708,10 +3711,12 @@ containing a value of this type.
         public static final int Widget_MediaRouter_MediaRouteButton=0x7f0b0165;
     }
     public static final class xml {
-        public static final int pref_data_sync=0x7f060000;
-        public static final int pref_general=0x7f060001;
-        public static final int pref_headers=0x7f060002;
-        public static final int pref_notification=0x7f060003;
+        public static final int authenticator=0x7f060000;
+        public static final int pref_data_sync=0x7f060001;
+        public static final int pref_general=0x7f060002;
+        public static final int pref_headers=0x7f060003;
+        public static final int pref_notification=0x7f060004;
+        public static final int syncadapter=0x7f060005;
     }
     public static final class styleable {
         /** Attributes that can be used with a ActionBar.

@@ -456,6 +456,9 @@
     <string name="pref_key_child_count">child_count</string>
     <string name="pref_key_child_id">child_id</string>
     <string name="pref_key_email">EMAIL</string>
+    <string name="pref_key_hospital">Hospital</string>
+    <string name="pref_key_location">Location</string>
+    <string name="pref_key_location_pin">Pin</string>
     <string name="pref_key_password">PASSWORD</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_hospital">Choose a hospital</string>

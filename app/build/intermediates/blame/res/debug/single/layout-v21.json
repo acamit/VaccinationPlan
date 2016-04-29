@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/layout-v21/place_autocomplete_fragment.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/8.4.0/res/layout-v21/place_autocomplete_fragment.xml"
+    },
+    {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/layout-v21/place_autocomplete_fragment.xml",
         "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/8.4.0/res/layout-v21/place_autocomplete_fragment.xml"
     }

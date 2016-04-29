@@ -1,18 +1,42 @@
 [
     {
-        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/xml/pref_general.xml",
-        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/xml/pref_general.xml"
-    },
-    {
-        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/xml/pref_headers.xml",
-        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/xml/pref_headers.xml"
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/xml/pref_general.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/xml/pref_general.xml"
     },
     {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/xml/pref_data_sync.xml",
         "source": "/home/himanshu/VaccinationPlan/app/src/main/res/xml/pref_data_sync.xml"
     },
     {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/xml/pref_headers.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/xml/pref_headers.xml"
+    },
+    {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/xml/pref_data_sync.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/xml/pref_data_sync.xml"
+    },
+    {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/xml/pref_notification.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/xml/pref_notification.xml"
+    },
+    {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/xml/syncadapter.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/xml/syncadapter.xml"
+    },
+    {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/xml/pref_general.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/src/main/res/xml/pref_general.xml"
+    },
+    {
         "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/xml/pref_notification.xml",
         "source": "/home/himanshu/VaccinationPlan/app/src/main/res/xml/pref_notification.xml"
+    },
+    {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/xml/pref_headers.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/xml/pref_headers.xml"
+    },
+    {
+        "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/xml/authenticator.xml",
+        "source": "/media/Data/docs/VaccinationPlan/app/src/main/res/xml/authenticator.xml"
     }
 ]
