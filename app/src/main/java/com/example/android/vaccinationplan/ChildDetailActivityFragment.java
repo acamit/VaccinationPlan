@@ -369,12 +369,13 @@ public class ChildDetailActivityFragment extends Fragment {
 
         @Override
         protected String doInBackground(Void... params) {
+            HttpURLConnection urlConnection ;
+
             Uri.Builder loginUrlBuilder = new Uri.Builder();
             loginUrlBuilder.scheme("http")
                     .authority("vaccinationplan.esy.es")
                     .appendPath("getChildId.php")
                     .appendQueryParameter("email" , "mEmail");
-            HttpURLConnection urlConnection ;
 
 
             String address = child.curr_location;
