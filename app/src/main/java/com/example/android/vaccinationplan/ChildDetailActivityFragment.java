@@ -377,7 +377,6 @@ public class ChildDetailActivityFragment extends Fragment {
                     .appendPath("getChildId.php")
                     .appendQueryParameter("email" , "mEmail");
 
-
             String address = child.curr_location;
             String city = address.split("," , 1)[0];
 
