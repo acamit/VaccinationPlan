@@ -4,12 +4,20 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -439,6 +447,138 @@ public class DatabaseOperations {
 
     }
 
+    public static int getPrefferedHospital(Context mContext){
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor data = db.rawQuery("SELECT * FROM " + DatabaseContract.ChildDetails.TABLE_NAME, null);
+        data.moveToFirst();
+
+        String hospital =  data.getString(data.getColumnIndex(DatabaseContract.ChildDetails.COLUMN_HOSPITAL));
+
+        if(hospital == null){
+            return -1;
+        }else {
+            return Integer.parseInt(hospital);
+        }
+
+    }
+
+    public static boolean inflateHospital(JSONArray hospitalsArr,Context mContext) throws JSONException {
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+
+
+
+        JSONObject jsonObject = hospitalsArr.getJSONObject(0);
+
+        ContentValues values = new ContentValues();
+
+        values.put(DatabaseContract.HospitalDetails.COLUMN_CATEGORY, jsonObject.getString("hospital_category"));
+        values.put(DatabaseContract.HospitalDetails.COLUMN_CITY, jsonObject.getString("city"));
+        values.put(DatabaseContract.HospitalDetails.COLUMN_ADDRESS, jsonObject.getString("address"));
+        values.put(DatabaseContract.HospitalDetails.COLUMN_PINCODE, jsonObject.getString("pincode"));
+        values.put(DatabaseContract.HospitalDetails.COLUMN_STATE, jsonObject.getString("state"));
+        values.put(DatabaseContract.HospitalDetails.COLUMN_WEBSITE, jsonObject.getString("website"));
+        values.put(DatabaseContract.HospitalDetails.COLUMN_PHONE, jsonObject.getString("phone"));
+
+        int row =  db.update(DatabaseContract.HospitalDetails.TABLE_NAME, values, DatabaseContract.HospitalDetails._ID + "=" + jsonObject.getInt("_id"), null);
+
+        db.close();
+        if(row != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static Cursor fetchHospitalDetails(Context mContext,int hospital_id){
+
+            VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+            SQLiteDatabase db = helper.getReadableDatabase();
+
+            Cursor data = db.rawQuery("SELECT * FROM "+ DatabaseContract.HospitalDetails.TABLE_NAME + " WHERE `" + DatabaseContract.HospitalDetails._ID + "` = " + hospital_id,null);
+            data.moveToFirst();
+
+            return data;
+        }
+
+
+
+
+    public static Cursor vaccineListDone(Context mContext){
+
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        Cursor vaccineList = db.rawQuery("SELECT * FROM "+ DatabaseContract.ChildVaccinationStatus.TABLE_NAME,null);
+        vaccineList.moveToFirst();
+        String vaccineDone = "";
+        for(int i=1,k=0;i <=37 ;i++){
+            int x = vaccineList.getInt(vaccineList.getColumnIndex("Vaccine_"+i));
+            if( x != 0){
+                if(k==0){
+                    vaccineDone = vaccineDone +"'Vaccine_"+i+"'";
+                }else{
+                    vaccineDone = vaccineDone +",'Vaccine_"+i+"'";
+                }
+                k++;
+            }
+        }
+        Cursor result = db.rawQuery("SELECT  `" +
+                DatabaseContract.VaccineDetails.COLUMN_NAME + "`,`" +
+                DatabaseContract.VaccineDetails.COLUMN_RECOMMEND + "`,`" +
+                DatabaseContract.VaccineDetails.COLUMN_SHORT_FORM + "`,`" +
+                DatabaseContract.VaccineDetails._ID + "`,`" +
+                DatabaseContract.VaccineDetails.COLUMN_ID + "`,`" +
+                DatabaseContract.VaccineDetails.COLUMN_SCHEDULE +
+                "` FROM " +
+                DatabaseContract.VaccineDetails.TABLE_NAME +
+                " WHERE " + DatabaseContract.VaccineDetails.COLUMN_ID +
+                " IN (" + vaccineDone + ") ORDER BY " + DatabaseContract.VaccineDetails.COLUMN_SCHEDULE, null);
+        return result;
+    }
+
+    public static int[] skipOrGiven(Context mContext){
+
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        int[] skiporgiven = new int[37];
+
+        Cursor vaccineList = db.rawQuery("SELECT * FROM " + DatabaseContract.ChildVaccinationStatus.TABLE_NAME, null);
+        vaccineList.moveToFirst();
+        for(int i=1,k=0;i <=37 ;i++){
+            int x = vaccineList.getInt(vaccineList.getColumnIndex("Vaccine_"+i));
+            if( x != 0){
+                skiporgiven[k] = x;
+                k++;
+            }
+        }
+
+        return skiporgiven;
+    }
+
+    public static boolean vaccineUndo(Context mContext,String vacId){
+
+        VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(vacId, 0);
+
+        int row = db.update(DatabaseContract.ChildVaccinationStatus.TABLE_NAME, values, null, null);
+        db.close();
+        if(row != 0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+
     public static boolean getSynchronizationStatus(Context mContext) {
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getReadableDatabase();
@@ -466,5 +606,6 @@ public class DatabaseOperations {
         //db.close();
         return data;
     }
+
 
 }
