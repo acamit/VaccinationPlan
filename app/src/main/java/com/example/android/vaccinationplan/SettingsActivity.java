@@ -67,7 +67,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
         childId = pref.getString("childId", "");
         address = pref.getString(getString(R.string.pref_key_location) ,"New delhi");
-        city = address.split("," , 1)[0];
+        city = address.split(",")[0];
         prepareHospitalList();
         setupActionBar();
     }
@@ -95,9 +95,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
         // Trigger the listener immediately with the preference's
         // current value.
         onPreferenceChange(preference,
-                PreferenceManager
+                        PreferenceManager
                         .getDefaultSharedPreferences(preference.getContext())
-                        .getString(preference.getKey(), ""));
+                        .getString(preference.getKey(), "")
+
+        );
     }
 
     /**
@@ -251,7 +253,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
                     JSONArray results = jsonObject.getJSONArray("results");
                     JSONObject res1 = results.getJSONObject(0);
                     newAddress = res1.getString("formatted_address");
-                    String adr[] = newAddress.split("," ,1);
+                    String adr[] = newAddress.split(",");
                     newCity = adr[0].trim();
 
                     alertDialog = new AlertDialog.Builder(mContext);

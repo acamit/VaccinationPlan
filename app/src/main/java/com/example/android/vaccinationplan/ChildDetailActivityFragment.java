@@ -8,11 +8,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +21,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,6 +38,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -51,7 +51,7 @@ public class ChildDetailActivityFragment extends Fragment {
     Context mContext;
     int num_of_children;
     DialogFragment dateFragment;
-
+    String city;
     protected Child child;
 
 
@@ -170,21 +170,22 @@ public class ChildDetailActivityFragment extends Fragment {
         isInfoReceived = getChildInfo();
         if (isInfoReceived) {
             Boolean isChildDetailInserted = DatabaseOperations.insertIntoChildDetails(child, mContext);
-            if(isChildDetailInserted){
-                num_of_children =1;
+            if (isChildDetailInserted) {
+                num_of_children = 1;
                 pref = PreferenceManager.getDefaultSharedPreferences(mContext);
                 SharedPreferences.Editor edit = pref.edit();
                 edit.putString(getString(R.string.pref_key_child_count), num_of_children + "");
-                edit.putString(getString(R.string.pref_key_child_id) , child.child_id);
+                edit.putString(getString(R.string.pref_key_child_id), child.child_id);
+                edit.putString(getString(R.string.pref_key_location), child.curr_location);
+                edit.putString(getString(R.string.pref_key_location_pin), child.curr_locationPin);
                 edit.commit();
-                Intent intent = new Intent(mContext , MainActivity.class);
+                Toast.makeText(mContext, child.curr_location + "pin" + child.curr_locationPin + "city " + city, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(mContext, MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
             }
         }
     }
-
-
 
 
     private boolean getChildInfo() {
@@ -222,7 +223,7 @@ public class ChildDetailActivityFragment extends Fragment {
                 updateDateButtonText();
             }
         } catch (ParseException e) {
-            dateInput=today;
+            dateInput = today;
             changeDate.setError("Please set a valid Date");
             errorCount++;
             e.printStackTrace();
@@ -231,10 +232,10 @@ public class ChildDetailActivityFragment extends Fragment {
         /*
         * Blood group validation
         * */
-        TextView bloodGroup = (TextView)rootView.findViewById(R.id.bloodGroup);
+        TextView bloodGroup = (TextView) rootView.findViewById(R.id.bloodGroup);
         String bloodGroupValue = bloodGroup.getText().toString().trim().toUpperCase();
         String patternForBloodGroup = "^(A|B|AB|O)[+-]$";
-        if(!bloodGroupValue.matches(patternForBloodGroup)){
+        if (!bloodGroupValue.matches(patternForBloodGroup)) {
             bloodGroup.setError("Please Enter a valid Blood Group");
             errorCount++;
             bloodGroup.setText("");
@@ -245,7 +246,7 @@ public class ChildDetailActivityFragment extends Fragment {
         *
         * */
 
-        TextView MotherName = (TextView)rootView.findViewById(R.id.MotherName);
+        TextView MotherName = (TextView) rootView.findViewById(R.id.MotherName);
         String MotherNameValue = MotherName.getText().toString().trim();
         if (!(MotherNameValue.matches(pattern))) {
             MotherName.setError("Only Characters and spaces allowed");
@@ -258,34 +259,28 @@ public class ChildDetailActivityFragment extends Fragment {
         * Mobile number verification
         **/
 
-        TextView MobileNumber = (TextView)rootView.findViewById(R.id.MobileNumber);
+        TextView MobileNumber = (TextView) rootView.findViewById(R.id.MobileNumber);
         String MobileNumberValue = MobileNumber.getText().toString().trim();
 
-        TelephonyManager tm = (TelephonyManager)mContext.getSystemService(mContext.TELEPHONY_SERVICE);
+        TelephonyManager tm = (TelephonyManager) mContext.getSystemService(mContext.TELEPHONY_SERVICE);
         String countryCode = tm.getNetworkCountryIso();
 
 
-        if(validatePhoneNumber(MobileNumberValue)){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                MobileNumberValue=PhoneNumberUtils.formatNumber(MobileNumberValue , countryCode);
-            }/*else{
-                MobileNumberValue = PhoneNumberUtils.formatNumber(MobileNumberValue , "+91" , countryCode);
-            }*/
+        if (validatePhoneNumber(MobileNumberValue)) {
             MobileNumber.setText(MobileNumberValue);
-        }
-        else{
+        } else {
             errorCount++;
             MobileNumber.setError("Please Enter a valid Mobile number");
         }
 
         /*Get Gender details*/
         String gender;
-        RadioButton FemaleButton = (RadioButton)rootView.findViewById(R.id.FemaleGender);
+        RadioButton FemaleButton = (RadioButton) rootView.findViewById(R.id.FemaleGender);
 
-        RadioButton MaleButton = (RadioButton)rootView.findViewById(R.id.MaleGender);
-        if(FemaleButton.isChecked()){
+        RadioButton MaleButton = (RadioButton) rootView.findViewById(R.id.MaleGender);
+        if (FemaleButton.isChecked()) {
             gender = "female";
-        }else {
+        } else {
             gender = "male";
         }
 
@@ -293,24 +288,24 @@ public class ChildDetailActivityFragment extends Fragment {
        * Get Location Details
        *
        * */
-        String PlaceOfBirthPin="0";
-        String placeOfBirth= new String("");
-        String currentLocationPin="0";
-        String currentLocationName= placeOfBirth;
+        String PlaceOfBirthPin = "0";
+        String placeOfBirth = new String("");
+        String currentLocationPin = "0";
+        String currentLocationName = placeOfBirth;
 
-        TextView currentLocation = (TextView)rootView.findViewById(R.id.autocomplete);
+        TextView currentLocation = (TextView) rootView.findViewById(R.id.autocomplete);
         String currentLocationValue = currentLocation.getText().toString();
-        if(currentLocationValue.matches("\\d{10}")){
-           currentLocationPin = currentLocationValue;
-        }else{
-            currentLocationName= currentLocationValue;
+        if (currentLocationValue.matches("\\d{6}")) {
+            currentLocationPin = currentLocationValue;
+        } else {
+            currentLocationName = currentLocationValue;
         }
 
-        TextView placeOfBirthView= (TextView)rootView.findViewById(R.id.place_of_birth);
+        TextView placeOfBirthView = (TextView) rootView.findViewById(R.id.place_of_birth);
         String PlaceOfBirthValue = placeOfBirthView.getText().toString();
-        if(PlaceOfBirthValue.matches("\\d{10}")){
+        if (PlaceOfBirthValue.matches("\\d{6}")) {
             PlaceOfBirthPin = PlaceOfBirthValue;
-        }else{
+        } else {
             placeOfBirth = PlaceOfBirthValue;
         }
 
@@ -322,24 +317,24 @@ public class ChildDetailActivityFragment extends Fragment {
         /*TextView HospitalDetails = (TextView)rootView.findViewById(R.id.hospital_details);
         String HospitalDetailsValue = HospitalDetails.getText().toString();
         */
-        if(errorCount>0){
-            child=null;
-            errorCount=0;
+        if (errorCount > 0) {
+            child = null;
+            errorCount = 0;
             return false;
-        }else{
+        } else {
             child = new Child();
-            child.name=nameValue;
-            child.child_id="";
-            child.date_of_birth= dateInput.toString();
-            child.mother=MotherNameValue;
-            child.place_of_birth=placeOfBirth;
+            child.name = nameValue;
+            child.child_id = "";
+            child.date_of_birth = dateInput.toString();
+            child.mother = MotherNameValue;
+            child.place_of_birth = placeOfBirth;
             child.place_of_birthPin = PlaceOfBirthPin;
-            child.gender=gender;
+            child.gender = gender;
             child.curr_location = currentLocationName;
             child.blood_group = bloodGroupValue;
             child.update_status = "0";
             child.curr_locationPin = currentLocationPin;
-            new getChildId().execute((Void)null);
+            new getChildId().execute((Void) null);
             //child.preferred_hospital = HospitalDetailsValue;
         }
 
@@ -350,7 +345,7 @@ public class ChildDetailActivityFragment extends Fragment {
         //validate phone numbers of format "1234567890"
         if (phoneNo.matches("\\d{10}")) return true;
             //validating phone number with -, . or spaces
-        else if(phoneNo.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) return true;
+        else if (phoneNo.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) return true;
             //validating phone number with extension length from 3 to 5
         /*else if(phoneNo.matches("\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}")) return true;
             //validating phone number where area code is in braces ()
@@ -360,7 +355,7 @@ public class ChildDetailActivityFragment extends Fragment {
 
     }
 
-    class getChildId extends AsyncTask<Void , Void , String>{
+    class getChildId extends AsyncTask<Void, Void, String> {
         private boolean networkFailed;
         private String JSONStr;
         private boolean hospitalDataLoaded;
@@ -369,32 +364,37 @@ public class ChildDetailActivityFragment extends Fragment {
 
         @Override
         protected String doInBackground(Void... params) {
-            HttpURLConnection urlConnection ;
+            HttpURLConnection urlConnection;
 
             Uri.Builder loginUrlBuilder = new Uri.Builder();
             loginUrlBuilder.scheme("http")
                     .authority("vaccinationplan.esy.es")
                     .appendPath("getChildId.php")
-                    .appendQueryParameter("email" , "mEmail");
+                    .appendQueryParameter("name", child.name)
+                    .appendQueryParameter("dob", child.date_of_birth)
+                    .appendQueryParameter("bloodGroup", child.blood_group)
+                    .appendQueryParameter("currentLocationPin", child.curr_locationPin)
+                    .appendQueryParameter("currentLocation", child.curr_location)
+                    .appendQueryParameter("gender", child.gender)
+                    .appendQueryParameter("placeOfBirthPin", child.place_of_birthPin)
+                    .appendQueryParameter("mother", child.mother)
+                    .appendQueryParameter("placeOfBirth", child.place_of_birth);
 
             String address = child.curr_location;
-            String city = address.split("," , 1)[0];
-
+            city = address.split(",")[0];
 
             Uri.Builder hospitalDatalink = new Uri.Builder();
             hospitalDatalink.scheme("http")
                     .authority("vaccinationplan.esy.es")
                     .appendPath("hospitals.php")
-                    .appendQueryParameter("city",city);
+                    .appendQueryParameter("city", city);
 
             HttpURLConnection hospitalConnection;
-
-
 
             try {
                 // Simulate network access.
                 URL url = new URL(loginUrlBuilder.build().toString());
-                urlConnection = (HttpURLConnection)url.openConnection();
+                urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
                 InputStream inputStream = urlConnection.getInputStream();
@@ -404,9 +404,9 @@ public class ChildDetailActivityFragment extends Fragment {
                 }
                 InputStreamReader stream = new InputStreamReader(inputStream);
                 BufferedReader reader = new BufferedReader(stream);
-                String line ="";
+                String line = "";
                 StringBuffer Output = new StringBuffer();
-                while ((line = reader.readLine()) != null){
+                while ((line = reader.readLine()) != null) {
                     Output.append(line).append("\n");
                 }
                 JSONStr = Output.toString();
@@ -426,11 +426,11 @@ public class ChildDetailActivityFragment extends Fragment {
                 networkFailed = true;
             }*/
 
-            if(networkFailed){
+            if (networkFailed) {
                 return "";
             }
 
-            try{
+            try {
                 URL hospitalUrl = new URL(hospitalDatalink.build().toString());
 
                 hospitalConnection = (HttpURLConnection) hospitalUrl.openConnection();
@@ -443,7 +443,7 @@ public class ChildDetailActivityFragment extends Fragment {
                 }
                 InputStreamReader hospitalStream = new InputStreamReader(hospitalInputStream);
                 BufferedReader hospitalReader = new BufferedReader(hospitalStream);
-                String hospitalLine ;
+                String hospitalLine;
                 StringBuffer hospitalOutput = new StringBuffer();
                 while ((hospitalLine = hospitalReader.readLine()) != null) {
                     hospitalOutput.append(hospitalLine);
@@ -453,20 +453,20 @@ public class ChildDetailActivityFragment extends Fragment {
                 hospitalDataLoaded = true;
 
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 //hospitalDataLoaded = false;
             }
 
-            if(hospitalDataLoaded){
-                try{
+            if (hospitalDataLoaded) {
+                try {
 
                     JSONObject hospitalObject = new JSONObject(hospitalJson);
                     JSONArray hospitalArray = hospitalObject.getJSONArray("hospitals");
 
                     DatabaseOperations.inflateHospitals(hospitalArray, mContext);
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -481,9 +481,10 @@ public class ChildDetailActivityFragment extends Fragment {
 
             return "";
         }
+
         @Override
-        protected void onPostExecute(String child_id){
-         child.child_id=child_id;
+        protected void onPostExecute(String child_id) {
+            child.child_id = child_id;
         }
     }
 }

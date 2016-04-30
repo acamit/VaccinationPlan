@@ -5,22 +5,8 @@ import android.accounts.Account;
 import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.SyncResult;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 
 /**
  * Created by amit on 29/4/16.
@@ -39,7 +25,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
-        if(DatabaseOperations.getSynchronizationStatus(mContext)) {
+      /*  if(DatabaseOperations.getSynchronizationStatus(mContext)) {
             String childId ;
             SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
             String Tag = mContext.getString(R.string.pref_key_child_id);
@@ -92,6 +78,6 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
                 networkFailed = true;
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 }

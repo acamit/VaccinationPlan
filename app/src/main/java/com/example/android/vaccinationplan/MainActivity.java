@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public static final long SYNC_INTERVAL_IN_MINUTES = 60L;
     public static final long SYNC_INTERVAL_IN_HOURS = 24L;
     public static final long SYNC_INTERVAL_IN_WEEK = 1L;
-    public static final long SYNC_INTERVAL =1L;
+    public static final long SYNC_INTERVAL =120;
             /*SYNC_INTERVAL_IN_MINUTES *
                     SECONDS_PER_MINUTE * SYNC_INTERVAL_IN_HOURS * SYNC_INTERVAL_IN_WEEK;
 */
@@ -41,8 +41,9 @@ public class MainActivity extends AppCompatActivity {
         ContentResolver.addPeriodicSync(
                 mAccount,
                 AUTHORITY,
-                Bundle.EMPTY,
+                new Bundle(),
                 SYNC_INTERVAL);
+       ContentResolver.setSyncAutomatically(mAccount , AUTHORITY , true);
 
 
 
