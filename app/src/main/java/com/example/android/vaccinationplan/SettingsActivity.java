@@ -48,7 +48,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity
     private String city;
     private String address;
     GetLocationTask getLocationTask;
-
+    String Hospital;
+    ListPreference pref1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,11 +67,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 
         childId = pref.getString("childId", "");
         address = pref.getString(getString(R.string.pref_key_location) ,"New Delhi");
-        String Hospital= pref.getString(getString(R.string.pref_key_hospital) ,"");
+        Hospital= pref.getString(getString(R.string.pref_key_hospital) ,"");
         findPreference(getString(R.string.pref_key_location)).setSummary(address);
-        findPreference(getString(R.string.pref_key_hospital)).setSummary(Hospital);
-        city = address.split(",")[0];
         prepareHospitalList();
+        pref1 = (ListPreference)findPreference(getString(R.string.pref_key_hospital));
+        int prefIndex = pref1.findIndexOfValue(Hospital);
+        pref1.setSummary(pref1.getEntries()[prefIndex]);
+        city = address.split(",")[0];
     }
 
 
@@ -242,9 +245,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity
                         public void onClick(DialogInterface dialog, int id) {
 
                             if(DatabaseOperations.updateLocation(childId, city, pincode, mContext)) {
-                                Toast.makeText(mContext,
+                                /*Toast.makeText(mContext,
                                         "Location Updated", Toast.LENGTH_LONG)
-                                        .show();
+                                        .show();*/
                                 String stringValue = newAddress;
                                 preference.setSummary(stringValue);
                                 SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
@@ -259,10 +262,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity
 
                             }
                             else {
-                                Toast.makeText(SettingsActivity.this,
+                                /*Toast.makeText(SettingsActivity.this,
                                         "Update Location Failed", Toast.LENGTH_LONG)
                                         .show();
-
+*/
                             }
                         }
                     });

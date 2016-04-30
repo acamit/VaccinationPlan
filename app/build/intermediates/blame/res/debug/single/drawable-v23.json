@@ -1,10 +1,10 @@
 [
     {
-        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml",
-        "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/drawable-v23/abc_control_background_material.xml"
-    },
-    {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml",
         "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/drawable-v23/abc_control_background_material.xml"
+    },
+    {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/drawable-v23/abc_control_background_material.xml",
+        "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/drawable-v23/abc_control_background_material.xml"
     }
 ]
