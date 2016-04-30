@@ -83,7 +83,7 @@ public class DatabaseContract {
     }
     public static final class ChildVaccinationStatus implements BaseColumns{
         public static final String TABLE_NAME = "ChildVaccinationStatus";
-            public static final String CHILD_ID= "childID";
+        public static final String CHILD_ID= "childID";
         public static final String CHILD_ROW_ID = "child_row_id";
         public static final String COLUMN_VACCINE_1 = "Vaccine_1";
         public static final String COLUMN_VACCINE_2 = "Vaccine_2";
@@ -124,7 +124,5 @@ public class DatabaseContract {
         public static final String COLUMN_VACCINE_37 = "Vaccine_37";
 
     }
-
-
 
 }

@@ -442,10 +442,11 @@ public class DatabaseOperations {
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        Cursor data = db.rawQuery("SELECT " + DatabaseContract.ChildDetails.COLUMN_UPDATE_STATUS + " FROM " + DatabaseContract.ChildDetails.TABLE_NAME, null);
+        Cursor data = db.rawQuery("SELECT * FROM " + DatabaseContract.ChildDetails.TABLE_NAME, null);
         data.moveToFirst();
         int status = data.getInt(data.getColumnIndex(DatabaseContract.ChildDetails.COLUMN_UPDATE_STATUS));
-        db.close();
+        /*db.close();
+        */
         if (status==0) {
          /*Synchronization required*/
             return true;
@@ -460,8 +461,7 @@ public class DatabaseOperations {
         SQLiteDatabase db = helper.getReadableDatabase();
 
         Cursor data = db.rawQuery("SELECT * FROM " + DatabaseContract.ChildVaccinationStatus.TABLE_NAME, null);
-        /*data.moveToFirst();
-        */
+        /*data.moveTo*/
         //db.close();
         return data;
     }

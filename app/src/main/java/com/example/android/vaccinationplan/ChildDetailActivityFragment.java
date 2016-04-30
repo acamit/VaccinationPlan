@@ -80,7 +80,8 @@ public class ChildDetailActivityFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                addChildInfo();
+//                addChildInfo();
+                getChildInfo();
             }
         });
 
@@ -163,7 +164,7 @@ public class ChildDetailActivityFragment extends Fragment {
         }
     }
 
-
+/*
     public void addChildInfo() {
         boolean isInfoReceived;
         isInfoReceived = getChildInfo();
@@ -184,9 +185,9 @@ public class ChildDetailActivityFragment extends Fragment {
                 getActivity().finish();
             }
         }
-    }
+    }*/
 
-    private boolean getChildInfo() {
+    private void getChildInfo() {
 
         int errorCount = 0;
         TextView nameView = (TextView) rootView.findViewById(R.id.ChildName);
@@ -318,7 +319,7 @@ public class ChildDetailActivityFragment extends Fragment {
         if (errorCount > 0) {
             child = null;
             errorCount = 0;
-            return false;
+            return;
         } else {
             child = new Child();
             child.name = nameValue;
@@ -336,7 +337,7 @@ public class ChildDetailActivityFragment extends Fragment {
             //child.preferred_hospital = HospitalDetailsValue;
         }
 
-        return true;
+        return;
     }
 
     private static boolean validatePhoneNumber(String phoneNo) {
@@ -360,7 +361,7 @@ public class ChildDetailActivityFragment extends Fragment {
         private boolean hospitalDataInflated;
         private String hospitalJson;
         String child_id1;
-
+        JSONObject obj;
         @Override
         protected String doInBackground(Void... params) {
             HttpURLConnection urlConnection;
@@ -471,7 +472,7 @@ public class ChildDetailActivityFragment extends Fragment {
             }
 
             try {
-                JSONObject obj = new JSONObject(JSONStr);
+                obj = new JSONObject(JSONStr);
                 child_id1 = obj.getString("child_id");
                 return child_id1;
             } catch (JSONException e) {
@@ -484,6 +485,22 @@ public class ChildDetailActivityFragment extends Fragment {
         @Override
         protected void onPostExecute(String child_id) {
             child.child_id = child_id;
+            Boolean isChildDetailInserted = DatabaseOperations.insertIntoChildDetails(child, mContext);
+            if (isChildDetailInserted) {
+                num_of_children = 1;
+                pref = PreferenceManager.getDefaultSharedPreferences(mContext);
+                SharedPreferences.Editor edit = pref.edit();
+                edit.putString(getString(R.string.pref_key_child_count), num_of_children + "");
+                edit.putString(getString(R.string.pref_key_child_id), child.child_id);
+                edit.putString(getString(R.string.pref_key_location), child.curr_location);
+                edit.putString(getString(R.string.pref_key_location_pin), child.curr_locationPin);
+                edit.commit();
+
+                Intent intent = new Intent(mContext, MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+
         }
     }
 }

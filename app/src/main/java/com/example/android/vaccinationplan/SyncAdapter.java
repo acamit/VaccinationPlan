@@ -46,7 +46,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             syncUriBuilder.scheme("http")
                     .authority("vaccinationplan.esy.es")
                     .appendPath("synchronize.php");
-
+            
             Cursor vaccinationStatus = DatabaseOperations.getVaccinationStatus(mContext);
             if(vaccinationStatus.moveToFirst() && vaccinationStatus.getCount()>0){
                 Log.e("Sync Cursor" , "Cursor Found");
@@ -76,7 +76,6 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
                 while ((line = reader.readLine()) != null) {
                     Output.append(line + "\n");
                 }
-
                 JsonStr = Output.toString();
                 JSONObject obj = new JSONObject(JsonStr);
                 String issync = obj.getString("status");
@@ -93,7 +92,6 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         } else {
             Log.e("Sync", "No Sync required");
         }
