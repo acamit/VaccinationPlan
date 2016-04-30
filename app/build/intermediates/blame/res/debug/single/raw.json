@@ -1,10 +1,10 @@
 [
     {
-        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/raw/gtm_analytics",
-        "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/8.4.0/res/raw/gtm_analytics"
-    },
-    {
         "merged": "/media/Data/docs/VaccinationPlan/app/build/intermediates/res/merged/debug/raw/gtm_analytics",
         "source": "/media/Data/docs/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/8.4.0/res/raw/gtm_analytics"
+    },
+    {
+        "merged": "/home/himanshu/VaccinationPlan/app/build/intermediates/res/merged/debug/raw/gtm_analytics",
+        "source": "/home/himanshu/VaccinationPlan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/8.4.0/res/raw/gtm_analytics"
     }
 ]

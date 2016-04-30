@@ -46,7 +46,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             syncUriBuilder.scheme("http")
                     .authority("vaccinationplan.esy.es")
                     .appendPath("synchronize.php");
-            
+
             Cursor vaccinationStatus = DatabaseOperations.getVaccinationStatus(mContext);
             if(vaccinationStatus.moveToFirst() && vaccinationStatus.getCount()>0){
                 Log.e("Sync Cursor" , "Cursor Found");

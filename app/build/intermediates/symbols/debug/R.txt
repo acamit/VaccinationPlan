@@ -798,7 +798,7 @@ int id action_menu_presenter 0x7f0f0003
 int id action_mode_bar 0x7f0f007e
 int id action_mode_bar_stub 0x7f0f007d
 int id action_mode_close_button 0x7f0f0063
-int id action_settings 0x7f0f00f8
+int id action_settings 0x7f0f00f9
 int id activity_chooser_view_content 0x7f0f0064
 int id addressHospital 0x7f0f00b4
 int id adjust_height 0x7f0f0035
@@ -817,8 +817,8 @@ int id beginning 0x7f0f0033
 int id bloodGroup 0x7f0f00ac
 int id book_now 0x7f0f0050
 int id bottom 0x7f0f001e
-int id button3 0x7f0f00f7
 int id buttonPanel 0x7f0f006b
+int id buttonUndo 0x7f0f00f8
 int id buttons 0x7f0f00dc
 int id buyButton 0x7f0f004d
 int id buy_now 0x7f0f0051
@@ -872,6 +872,7 @@ int id fill_horizontal 0x7f0f0030
 int id fill_vertical 0x7f0f0023
 int id fixed 0x7f0f0045
 int id fragment 0x7f0f009a
+int id fullFormR 0x7f0f00f5
 int id fullNameText 0x7f0f00d0
 int id google_wallet_classic 0x7f0f005b
 int id google_wallet_grayscale 0x7f0f005c
@@ -881,7 +882,7 @@ int id holo_dark 0x7f0f0047
 int id holo_light 0x7f0f0048
 int id home 0x7f0f0005
 int id homeAsUp 0x7f0f0010
-int id hospital_details 0x7f0f00fa
+int id hospital_details 0x7f0f00fb
 int id hybrid 0x7f0f0037
 int id icon 0x7f0f0069
 int id icon_only 0x7f0f003f
@@ -935,6 +936,7 @@ int id production 0x7f0f0049
 int id progress_circular 0x7f0f0007
 int id progress_horizontal 0x7f0f0008
 int id radio 0x7f0f007b
+int id recommendTextR 0x7f0f00f6
 int id recommendationText 0x7f0f00cf
 int id right 0x7f0f0025
 int id route_name 0x7f0f00d3
@@ -959,6 +961,7 @@ int id search_voice_btn 0x7f0f008e
 int id select_dialog_listview 0x7f0f008f
 int id selectionDetails 0x7f0f004e
 int id settings 0x7f0f00d4
+int id shortFormR 0x7f0f00f4
 int id shortcut 0x7f0f007a
 int id showCustom 0x7f0f0012
 int id showHome 0x7f0f0013
@@ -990,15 +993,13 @@ int id textView12 0x7f0f00b1
 int id textView13 0x7f0f00b2
 int id textView14 0x7f0f00c9
 int id textView15 0x7f0f00b6
-int id textView17 0x7f0f00f4
-int id textView18 0x7f0f00f5
-int id textView19 0x7f0f00f6
 int id textView2 0x7f0f00b9
 int id textView22 0x7f0f00c5
 int id textView24 0x7f0f00bd
 int id textView6 0x7f0f00c7
 int id textView8 0x7f0f00c3
 int id time 0x7f0f00e5
+int id timeStatus 0x7f0f00f7
 int id timeText 0x7f0f00cd
 int id title 0x7f0f006a
 int id title_bar 0x7f0f00d2
@@ -1018,7 +1019,7 @@ int id vaccineShortForm 0x7f0f00bb
 int id vaccineSkip 0x7f0f00c6
 int id vaccineStatus 0x7f0f00bf
 int id vaccineTime 0x7f0f00bc
-int id vaccine_record 0x7f0f00f9
+int id vaccine_record 0x7f0f00fa
 int id verificationCode 0x7f0f00ca
 int id verifyButton 0x7f0f00cb
 int id viewHospital 0x7f0f00b5

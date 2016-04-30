@@ -51,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void onRestart() {
         super.onRestart();
-        startActivity(new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+
     }
 
     public static Account CreateSyncAccount(Context context) {
