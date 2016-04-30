@@ -21,7 +21,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -179,14 +178,13 @@ public class ChildDetailActivityFragment extends Fragment {
                 edit.putString(getString(R.string.pref_key_location), child.curr_location);
                 edit.putString(getString(R.string.pref_key_location_pin), child.curr_locationPin);
                 edit.commit();
-                Toast.makeText(mContext, child.curr_location + "pin" + child.curr_locationPin + "city " + city, Toast.LENGTH_LONG).show();
+
                 Intent intent = new Intent(mContext, MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
             }
         }
     }
-
 
     private boolean getChildInfo() {
 
@@ -361,6 +359,7 @@ public class ChildDetailActivityFragment extends Fragment {
         private boolean hospitalDataLoaded;
         private boolean hospitalDataInflated;
         private String hospitalJson;
+        String child_id1;
 
         @Override
         protected String doInBackground(Void... params) {
@@ -473,8 +472,8 @@ public class ChildDetailActivityFragment extends Fragment {
 
             try {
                 JSONObject obj = new JSONObject(JSONStr);
-                String child_id = obj.getString("child_id");
-                return child_id;
+                child_id1 = obj.getString("child_id");
+                return child_id1;
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -66,8 +66,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
         mContext = SettingsActivity.this;
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
         childId = pref.getString("childId", "");
-        address = pref.getString(getString(R.string.pref_key_location) ,"New delhi");
+        address = pref.getString(getString(R.string.pref_key_location) ,"New Delhi");
         city = address.split(",")[0];
+        Toast.makeText(mContext , address + " "+city ,Toast.LENGTH_LONG);
         prepareHospitalList();
         setupActionBar();
     }
@@ -92,10 +93,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
         // Set the listener to watch for value changes.
         preference.setOnPreferenceChangeListener(this);
 
+        /*preference.setSummary(PreferenceManager
+                .getDefaultSharedPreferences(preference.getContext())
+                .getString(preference.getKey(), ""));*/
+
         // Trigger the listener immediately with the preference's
         // current value.
         onPreferenceChange(preference,
-                        PreferenceManager
+                PreferenceManager
                         .getDefaultSharedPreferences(preference.getContext())
                         .getString(preference.getKey(), "")
 

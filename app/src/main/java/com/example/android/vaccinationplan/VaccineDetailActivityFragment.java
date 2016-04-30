@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -80,7 +79,7 @@ public class VaccineDetailActivityFragment extends Fragment {
                             holder.vaccineSkip.setVisibility(View.INVISIBLE);
                             holder.status = "Given";
                             holder.vaccineStatus.setText("Status : " + holder.status);
-                            DatabaseOperations.setUpdateStatus(getActivity().getApplicationContext());
+                            DatabaseOperations.setUpdateStatus(getActivity().getApplicationContext() , 0);
                         }
                     }
                 });
@@ -115,7 +114,7 @@ public class VaccineDetailActivityFragment extends Fragment {
                             v.setVisibility(View.INVISIBLE);
                             holder.status = "Skipped";
                             holder.vaccineStatus.setText("Status : " + holder.status);
-                            DatabaseOperations.setUpdateStatus(getActivity().getApplicationContext());
+                            DatabaseOperations.setUpdateStatus(getActivity().getApplicationContext() , 0);
                         }
 
                     }

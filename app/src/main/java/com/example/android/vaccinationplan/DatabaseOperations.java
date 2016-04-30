@@ -422,12 +422,12 @@ public class DatabaseOperations {
 
     }
 
-    public static boolean setUpdateStatus(Context mContext) {
+    public static boolean setUpdateStatus(Context mContext , int status) {
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(DatabaseContract.ChildDetails.COLUMN_UPDATE_STATUS, 0);
+        values.put(DatabaseContract.ChildDetails.COLUMN_UPDATE_STATUS, status);
         int row = db.update(DatabaseContract.ChildDetails.TABLE_NAME, values, null, null);
         db.close();
         if (row != 0) {
@@ -442,11 +442,11 @@ public class DatabaseOperations {
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        Cursor data = db.rawQuery("SELECT" + DatabaseContract.ChildDetails.COLUMN_UPDATE_STATUS + "FROM " + DatabaseContract.ChildDetails.TABLE_NAME, null);
+        Cursor data = db.rawQuery("SELECT " + DatabaseContract.ChildDetails.COLUMN_UPDATE_STATUS + " FROM " + DatabaseContract.ChildDetails.TABLE_NAME, null);
         data.moveToFirst();
-        int status = Integer.parseInt(data.getString(data.getColumnIndex(DatabaseContract.ChildDetails.COLUMN_UPDATE_STATUS)));
+        int status = data.getInt(data.getColumnIndex(DatabaseContract.ChildDetails.COLUMN_UPDATE_STATUS));
         db.close();
-        if (status == 0) {
+        if (status==0) {
          /*Synchronization required*/
             return true;
         } else {
@@ -455,12 +455,14 @@ public class DatabaseOperations {
         }
     }
 
-    public static Cursor getVaccinationStatus(Context mContext , String ChildID) {
+    public static Cursor getVaccinationStatus(Context mContext) {
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        Cursor data = db.rawQuery("SELECT * FROM " + DatabaseContract.ChildVaccinationStatus.TABLE_NAME + "where " + DatabaseContract.ChildDetails.COLUMN_CHILD_ID + "=?", new String[]{ChildID});
-        data.moveToFirst();
+        Cursor data = db.rawQuery("SELECT * FROM " + DatabaseContract.ChildVaccinationStatus.TABLE_NAME, null);
+        /*data.moveToFirst();
+        */
+        //db.close();
         return data;
     }
 

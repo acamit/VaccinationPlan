@@ -43,7 +43,7 @@ public class VaccinationDBHelper extends SQLiteOpenHelper{
                 DatabaseContract.ChildDetails.COLUMN_POB_PIN+" varchar(10) DEFAULT NULL," +
                 DatabaseContract.ChildDetails.COLUMN_BLOOD_GROUP+" varchar(3) NOT NULL," +
                 DatabaseContract.ChildDetails.COLUMN_HOSPITAL+" varchar(10) DEFAULT NULL," +
-                DatabaseContract.ChildDetails.COLUMN_UPDATE_STATUS+" INTEGER NOT NULL DEFAULT '0'" +
+                DatabaseContract.ChildDetails.COLUMN_UPDATE_STATUS+" INTEGER NOT NULL DEFAULT 1 " +
                 ");";
 
         final String SQL_CREATE_CHILD_VACCINATION_STATUS_TABLE = "CREATE TABLE `ChildVaccinationStatus` (" +
