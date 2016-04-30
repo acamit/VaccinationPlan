@@ -240,12 +240,12 @@ public class DatabaseOperations {
     public static boolean updateHospital(String childId, String HospitalId, Context mContext) {
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getWritableDatabase();
-        ContentValues values = new ContentValues();
+        ContentValues values = new ContentValues();/*
         String where = DatabaseContract.ChildDetails.COLUMN_CHILD_ID + "=?";
-        String[] whereArr = new String[]{childId};
+        String[] whereArr = new String[]{childId};*/
         values.put(DatabaseContract.ChildDetails.COLUMN_HOSPITAL, HospitalId);
-        int rowsUpdated = db.update(DatabaseContract.ChildDetails.TABLE_NAME, values, where, whereArr);
-        db.close();
+        int rowsUpdated = db.update(DatabaseContract.ChildDetails.TABLE_NAME, values, null, null);
+
         if (rowsUpdated > 0) {
             return true;
         } else {
@@ -257,12 +257,13 @@ public class DatabaseOperations {
         VaccinationDBHelper helper = new VaccinationDBHelper(mContext);
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        String where = DatabaseContract.ChildDetails.COLUMN_CHILD_ID + "=?";
+        /*String where = DatabaseContract.ChildDetails.COLUMN_CHILD_ID + "=?";
         String[] whereArr = new String[]{childId};
+        */
         values.put(DatabaseContract.ChildDetails.COLUMN_LOCATION, city);
         values.put(DatabaseContract.ChildDetails.COLUMN_LOCATION_PIN, pin);
-        int rowsUpdated = db.update(DatabaseContract.ChildDetails.TABLE_NAME, values, where, whereArr);
-        db.close();
+        int rowsUpdated = db.update(DatabaseContract.ChildDetails.TABLE_NAME, values, null, null);
+
         if (rowsUpdated > 0) {
             return true;
         } else {

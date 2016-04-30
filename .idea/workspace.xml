@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="AndroidLayouts">
     <shared>
       <config />
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="INFO" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6d34c05-b46d-4cb8-87d9-a43edb2fe9c1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/ChildDetailActivityFragment$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/ChildDetailActivityFragment$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/ChildDetailActivityFragment$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/ChildDetailActivityFragment$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/ChildDetailActivityFragment$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/ChildDetailActivityFragment$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/ChildDetailActivityFragment$DatePickerFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/ChildDetailActivityFragment$DatePickerFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/ChildDetailActivityFragment$getChildId.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/ChildDetailActivityFragment$getChildId.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/ChildDetailActivityFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/ChildDetailActivityFragment.class" />
+    <list default="true" id="c6d34c05-b46d-4cb8-87d9-a43edb2fe9c1" name="Default" comment="Sync Code added childId problem FIxed">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/DatabaseOperations.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/DatabaseOperations.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/SettingsActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/vaccinationplan/SettingsActivity.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/ChildDetailActivityFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/ChildDetailActivityFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/DatabaseContract.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/DatabaseContract.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/DatabaseOperations.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/DatabaseOperations.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SettingsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SettingsActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SyncAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SyncAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -50,29 +49,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SyncAdapter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SyncAdapter.java">
+      <file leaf-file-name="SettingsActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SettingsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6654275">
-              <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.56164384">
+              <caret line="374" column="24" selection-start-line="374" selection-start-column="24" selection-end-line="374" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChildDetailActivityFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/ChildDetailActivityFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="487" column="10" selection-start-line="487" selection-start-column="10" selection-end-line="487" selection-end-column="10" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#18428#18468#0" expanded="true" />
-                <element signature="e#18524#18561#0" expanded="true" />
-                <element signature="e#18611#18648#0" expanded="true" />
-                <element signature="e#18703#18744#0" expanded="true" />
+                <element signature="e#14722#14723#0" expanded="true" />
+                <element signature="e#14765#14766#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/DatabaseOperations.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="448" column="10" selection-start-line="447" selection-start-column="8" selection-end-line="448" selection-end-column="10" />
+              <caret line="119" column="11" selection-start-line="119" selection-start-column="11" selection-end-line="119" selection-end-column="11" />
               <folding>
                 <element signature="method#insertIntoLogin#0;class#DatabaseOperations#0" expanded="false" />
                 <element signature="method#insertIntoChildDetails#0;class#DatabaseOperations#0" expanded="false" />
@@ -90,23 +75,11 @@
                 <element signature="method#insertIntoVaccineStatus#1;class#DatabaseOperations#0" expanded="false" />
                 <element signature="method#getHospitalList#0;class#DatabaseOperations#0" expanded="false" />
                 <element signature="method#getHospitalValues#0;class#DatabaseOperations#0" expanded="false" />
-                <element signature="method#updateHospital#0;class#DatabaseOperations#0" expanded="false" />
-                <element signature="method#updateLocation#0;class#DatabaseOperations#0" expanded="false" />
                 <element signature="method#inflateHospitals#0;class#DatabaseOperations#0" expanded="false" />
                 <element signature="method#vaccineList#0;class#DatabaseOperations#0" expanded="false" />
                 <element signature="method#vaccineGiven#0;class#DatabaseOperations#0" expanded="false" />
                 <element signature="method#getChildDob#0;class#DatabaseOperations#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DatabaseContract.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/DatabaseContract.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="125" column="5" selection-start-line="125" selection-start-column="5" selection-end-line="125" selection-end-column="5" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -1993,7 +1966,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_child_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/VerifyAccountFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/xml/pref_general.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/VaccinesCompletedActivityFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/vaccine_completed_list_view.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/main_list_view.xml" />
@@ -2005,17 +1977,20 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/AuthenticatorService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/Authenticator.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/syncadapter.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/MainActivityFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SettingsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/VaccinationDBHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/VaccineDetailActivityFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/ChildDetailActivityFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/DatabaseContract.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/xml/pref_general.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SettingsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/test.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/DatabaseOperations.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SyncAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/DatabaseContract.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SettingsActivity.java" />
       </list>
     </option>
   </component>
@@ -2031,9 +2006,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="49" />
-    <option name="y" value="-4" />
+    <option name="y" value="24" />
     <option name="width" value="1317" />
-    <option name="height" value="772" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -2058,9 +2033,10 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2117,7 +2093,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2397,7 +2372,13 @@
       <option name="project" value="LOCAL" />
       <updated>1462035364960</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Sync Code added childId problem FIxed">
+      <created>1462040260122</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1462040260122</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2410,8 +2391,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="49" y="-4" width="1317" height="772" extended-state="6" />
-    <editor active="true" />
+    <frame x="49" y="24" width="1317" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29307568" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28985506" sideWeight="0.49724627" order="3" side_tool="false" content_ui="tabs" />
@@ -2421,7 +2402,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28985506" sideWeight="0.50275373" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5185185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4814815" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.49724627" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3268921" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -2469,19 +2450,32 @@
     <MESSAGE value="Seting Activity Bug Fixed" />
     <MESSAGE value="Location Bug Fixed." />
     <MESSAGE value="Sync Code added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sync Code added" />
+    <MESSAGE value="Sync Code added childId problem FIxed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sync Code added childId problem FIxed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="19" />
+      <option name="time" value="20" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/ChildDetailActivityFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/DatabaseOperations.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="220" column="9" selection-start-line="220" selection-start-column="9" selection-end-line="220" selection-end-column="9" />
+          <caret line="119" column="11" selection-start-line="119" selection-start-column="11" selection-end-line="119" selection-end-column="11" />
+          <folding>
+            <element signature="method#insertIntoLogin#0;class#DatabaseOperations#0" expanded="false" />
+            <element signature="method#insertIntoChildDetails#0;class#DatabaseOperations#0" expanded="false" />
+            <element signature="method#insertIntoVaccineStatus#0;class#DatabaseOperations#0" expanded="false" />
+            <element signature="method#insertIntoVaccineStatus#1;class#DatabaseOperations#0" expanded="false" />
+            <element signature="method#getHospitalList#0;class#DatabaseOperations#0" expanded="false" />
+            <element signature="method#getHospitalValues#0;class#DatabaseOperations#0" expanded="false" />
+            <element signature="method#inflateHospitals#0;class#DatabaseOperations#0" expanded="false" />
+            <element signature="method#vaccineList#0;class#DatabaseOperations#0" expanded="false" />
+            <element signature="method#vaccineGiven#0;class#DatabaseOperations#0" expanded="false" />
+            <element signature="method#getChildDob#0;class#DatabaseOperations#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2499,7 +2493,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2625,13 +2618,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/PlaceAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="74" column="24" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_verify_account.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -2743,42 +2729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/pref_general.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70896786">
-          <caret line="89" column="26" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SessionManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2538071">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/syncadapter.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="23" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="55" selection-start-line="44" selection-start-column="55" selection-end-line="44" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/ChildDetailActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2786,27 +2736,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39086294">
-          <caret line="95" column="9" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2217#2254#0" expanded="true" />
-            <element signature="e#2310#2347#0" expanded="true" />
-            <element signature="e#2565#2602#0" expanded="true" />
-            <element signature="e#4649#4650#0" expanded="true" />
-            <element signature="e#4692#4693#0" expanded="true" />
-            <element signature="e#11647#11684#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/MainActivityFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="299" column="29" selection-start-line="299" selection-start-column="28" selection-end-line="299" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2814,7 +2747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33834586">
           <caret line="57" column="72" selection-start-line="57" selection-start-column="56" selection-end-line="57" selection-end-column="72" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2822,7 +2754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39473686">
           <caret line="159" column="5" selection-start-line="159" selection-start-column="5" selection-end-line="159" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2830,9 +2761,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.6615906">
           <caret line="207" column="40" selection-start-line="207" selection-start-column="40" selection-end-line="207" selection-end-column="40" />
-          <folding>
-            <element signature="e#19727#19767#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2840,14 +2768,77 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7211896">
           <caret line="65" column="38" selection-start-line="65" selection-start-column="38" selection-end-line="65" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/DatabaseContract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.6951673">
+          <caret line="125" column="5" selection-start-line="125" selection-start-column="5" selection-end-line="125" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/syncadapter.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16728625">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SessionManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6133829">
+          <caret line="13" column="20" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/PlaceAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.4572492">
+          <caret line="74" column="24" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37354085">
+          <caret line="80" column="31" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="31" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SyncAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.051369864">
+          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/ChildDetailActivityFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="8.602739">
+          <caret line="483" column="0" selection-start-line="483" selection-start-column="0" selection-end-line="483" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/pref_general.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37328768">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/DatabaseOperations.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="448" column="10" selection-start-line="447" selection-start-column="8" selection-end-line="448" selection-end-column="10" />
+          <caret line="119" column="11" selection-start-line="119" selection-start-column="11" selection-end-line="119" selection-end-column="11" />
           <folding>
             <element signature="method#insertIntoLogin#0;class#DatabaseOperations#0" expanded="false" />
             <element signature="method#insertIntoChildDetails#0;class#DatabaseOperations#0" expanded="false" />
@@ -2855,8 +2846,6 @@
             <element signature="method#insertIntoVaccineStatus#1;class#DatabaseOperations#0" expanded="false" />
             <element signature="method#getHospitalList#0;class#DatabaseOperations#0" expanded="false" />
             <element signature="method#getHospitalValues#0;class#DatabaseOperations#0" expanded="false" />
-            <element signature="method#updateHospital#0;class#DatabaseOperations#0" expanded="false" />
-            <element signature="method#updateLocation#0;class#DatabaseOperations#0" expanded="false" />
             <element signature="method#inflateHospitals#0;class#DatabaseOperations#0" expanded="false" />
             <element signature="method#vaccineList#0;class#DatabaseOperations#0" expanded="false" />
             <element signature="method#vaccineGiven#0;class#DatabaseOperations#0" expanded="false" />
@@ -2865,34 +2854,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/ChildDetailActivityFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SettingsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="487" column="10" selection-start-line="487" selection-start-column="10" selection-end-line="487" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.56164384">
+          <caret line="374" column="24" selection-start-line="374" selection-start-column="24" selection-end-line="374" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#18428#18468#0" expanded="true" />
-            <element signature="e#18524#18561#0" expanded="true" />
-            <element signature="e#18611#18648#0" expanded="true" />
-            <element signature="e#18703#18744#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/DatabaseContract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="125" column="5" selection-start-line="125" selection-start-column="5" selection-end-line="125" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/vaccinationplan/SyncAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6654275">
-          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#14722#14723#0" expanded="true" />
+            <element signature="e#14765#14766#0" expanded="true" />
           </folding>
         </state>
       </provider>

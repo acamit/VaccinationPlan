@@ -29,7 +29,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
  * handset devices, settings are presented as a single list. On tablets,
@@ -41,89 +40,55 @@ import java.net.URL;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
-public class SettingsActivity extends AppCompatPreferenceActivity implements Preference.OnPreferenceChangeListener {
-    /**
-     * A preference value change listener that updates the preference's summary
-     * to reflect its new value.
-     */
+public class SettingsActivity extends AppCompatPreferenceActivity
+        implements Preference.OnPreferenceChangeListener {
 
-
+    Context mContext;
     String childId;
-
     private String city;
     private String address;
+    GetLocationTask getLocationTask;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Add 'general' preferences, defined in the XML file
         addPreferencesFromResource(R.xml.pref_general);
+
         // For all preferences, attach an OnPreferenceChangeListener so the UI summary can be
         // updated when the preference changes.
 
+        mContext = SettingsActivity.this;
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_key_location)));
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_key_hospital)));
-        mContext = SettingsActivity.this;
+        setupActionBar();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
+
         childId = pref.getString("childId", "");
         address = pref.getString(getString(R.string.pref_key_location) ,"New Delhi");
+        String Hospital= pref.getString(getString(R.string.pref_key_hospital) ,"");
+        findPreference(getString(R.string.pref_key_location)).setSummary(address);
+        findPreference(getString(R.string.pref_key_hospital)).setSummary(Hospital);
         city = address.split(",")[0];
-        Toast.makeText(mContext , address + " "+city ,Toast.LENGTH_LONG);
         prepareHospitalList();
-        setupActionBar();
     }
 
-    /**
-     * Helper method to determine if the device has an extra-large screen. For
-     * example, 10" tablets are extra-large.
-     */
-    private static boolean isXLargeTablet(Context context) {
-        return (context.getResources().getConfiguration().screenLayout
-                & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
-    }
 
     /**
-     * Binds a preference's summary to its value. More specifically, when the
-     * preference's value is changed, its summary (line of text below the
-     * preference title) is updated to reflect the value. The summary is also
-     * immediately updated upon calling this method. The exact display format is
-     * dependent on the type of preference.
+     * Attaches a listener so the summary is always updated with the preference value.
+     * Also fires the listener once, to initialize the summary (so it shows up before the value
+     * is changed.)
      */
     private void bindPreferenceSummaryToValue(Preference preference) {
         // Set the listener to watch for value changes.
         preference.setOnPreferenceChangeListener(this);
-
-        /*preference.setSummary(PreferenceManager
-                .getDefaultSharedPreferences(preference.getContext())
-                .getString(preference.getKey(), ""));*/
 
         // Trigger the listener immediately with the preference's
         // current value.
         onPreferenceChange(preference,
                 PreferenceManager
                         .getDefaultSharedPreferences(preference.getContext())
-                        .getString(preference.getKey(), "")
-
-        );
-    }
-
-    /**
-     * Set up the {@link android.app.ActionBar}, if the API is available.
-     */
-    private void setupActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            // Show the Up button in the action bar.
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean onIsMultiPane() {
-        return isXLargeTablet(this);
+                        .getString(preference.getKey(), ""));
     }
 
     @Override
@@ -133,8 +98,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
         if (preference instanceof ListPreference) {
             // For list preferences, look up the correct display value in
             // the preference's 'entries' list (since they have separate labels/values).
-
-
             ListPreference listPreference = (ListPreference) preference;
             int prefIndex = listPreference.findIndexOfValue(stringValue);
             if (prefIndex >= 0) {
@@ -143,23 +106,31 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
                 boolean isHospitalUpdated = DatabaseOperations.updateHospital(childId, hospital, getApplicationContext());
 
                 if (!isHospitalUpdated) {
+                    //Toast.makeText(this , ""+isHospitalUpdated , Toast.LENGTH_LONG).show();
                     return false;
+                }else{
+                    //Toast.makeText(this , ""+isHospitalUpdated , Toast.LENGTH_LONG).show();
                 }
-
             }
         } else {
             // For other preferences, set the summary to the value's simple string representation.
 
             new GetLocationTask(stringValue , preference).execute((Void) null);
-            /*preference.setSummary(stringValue);*/
+
         }
         return true;
     }
 
 
-    String JSONStr;
-    GetLocationTask getLocationTask;
-    Context mContext;
+    void prepareHospitalList() {
+        String HospitalEntries[] = DatabaseOperations.getHospitalList(mContext);
+        String HospitalEntriesValues[] = DatabaseOperations.getHospitalValues(mContext);
+        /*Toast.makeText(mContext , ""+HospitalEntries.length , Toast.LENGTH_LONG ).show();*/
+        ListPreference hospitals = (ListPreference) findPreference(getString(R.string.pref_key_hospital));
+        hospitals.setEntries(HospitalEntries);
+        hospitals.setEntryValues(HospitalEntriesValues);
+    }
+
 
     public class GetLocationTask extends AsyncTask<Void, Void, Boolean> {
         private String newCity;
@@ -170,12 +141,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
         EditTextPreference location;
         Preference preference;
         JSONObject jsonObject;
+        String JSONStr;
+
 
         GetLocationTask(String pincode, Preference locationPref) {
             this.pincode = pincode;
-            newCity=city;
+            newCity = "";
             this.region = "in";
-            newAddress = address;
+            newAddress = "";
             this.location = (EditTextPreference) locationPref;
             preference = locationPref;
         }
@@ -267,13 +240,30 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
 
                     alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            DatabaseOperations.updateLocation(childId, city, pincode, mContext);
-                            String stringValue = newAddress;
-                            preference.setSummary(stringValue);
-                            address = newAddress;
-                            city = newCity;
-                            prepareHospitalList();
 
+                            if(DatabaseOperations.updateLocation(childId, city, pincode, mContext)) {
+                                Toast.makeText(mContext,
+                                        "Location Updated", Toast.LENGTH_LONG)
+                                        .show();
+                                String stringValue = newAddress;
+                                preference.setSummary(stringValue);
+                                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
+                                SharedPreferences.Editor edit = pref.edit();
+                                edit.putString(getString(R.string.pref_key_location), newAddress);
+                                edit.putString(getString(R.string.pref_key_location_pin), pincode);
+                                edit.commit();
+
+                                address = newAddress;
+                                city = newCity;
+                                new HospitalTask().execute();
+
+                            }
+                            else {
+                                Toast.makeText(SettingsActivity.this,
+                                        "Update Location Failed", Toast.LENGTH_LONG)
+                                        .show();
+
+                            }
                         }
                     });
 
@@ -309,14 +299,101 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements Pre
 
     }
 
-    void prepareHospitalList(){
-        String HospitalEntries[] = DatabaseOperations.getHospitalList(mContext);
-        String HospitalEntriesValues[] = DatabaseOperations.getHospitalValues(mContext);
-        /*Toast.makeText(mContext , ""+HospitalEntries.length , Toast.LENGTH_LONG ).show();*/
-        ListPreference hospitals = (ListPreference) findPreference(getString(R.string.pref_key_hospital));
-        hospitals.setEntries(HospitalEntries);
-        hospitals.setEntryValues(HospitalEntriesValues);
+
+    public class HospitalTask extends AsyncTask<Void, Void, Boolean> {
+        private boolean hospitalDataLoaded;
+        private boolean hospitalDataInflated;
+        private String hospitalJson;
+        HttpURLConnection hospitalConnection;
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            Uri.Builder hospitalDatalink = new Uri.Builder();
+            hospitalDatalink.scheme("http")
+                    .authority("vaccinationplan.esy.es")
+                    .appendPath("hospitals.php")
+                    .appendQueryParameter("city", city);
+            try {
+                URL hospitalUrl = new URL(hospitalDatalink.build().toString());
+
+                hospitalConnection = (HttpURLConnection) hospitalUrl.openConnection();
+                hospitalConnection.setRequestMethod("GET");
+                hospitalConnection.connect();
+                InputStream hospitalInputStream = hospitalConnection.getInputStream();
+                if (hospitalInputStream == null) {
+                    //Nothing to do
+                    return false;
+                }
+                InputStreamReader hospitalStream = new InputStreamReader(hospitalInputStream);
+                BufferedReader hospitalReader = new BufferedReader(hospitalStream);
+                String hospitalLine;
+                StringBuffer hospitalOutput = new StringBuffer();
+                while ((hospitalLine = hospitalReader.readLine()) != null) {
+                    hospitalOutput.append(hospitalLine);
+                }
+
+                hospitalJson = hospitalOutput.toString();
+                hospitalDataLoaded = true;
+
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+                return false;
+                //hospitalDataLoaded = false;
+            }
+
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            if (hospitalDataLoaded) {
+                try {
+
+                    JSONObject hospitalObject = new JSONObject(hospitalJson);
+                    JSONArray hospitalArray = hospitalObject.getJSONArray("hospitals");
+
+                    DatabaseOperations.inflateHospitals(hospitalArray, mContext);
+                    prepareHospitalList();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+            getLocationTask = null;
+
+        }
+
     }
 
+
+    /**
+     * Set up the {@link android.app.ActionBar}, if the API is available.
+     */
+    private void setupActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            // Show the Up button in the action bar.
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean onIsMultiPane() {
+        return isXLargeTablet(this);
+    }
+
+    private static boolean isXLargeTablet(Context context) {
+        return (context.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
+    }
 
 }
