@@ -42,9 +42,10 @@ import java.util.Date;
  * A placeholder fragment containing a simple view.
  */
 public class ChildDetailActivityFragment extends Fragment {
-    private Calendar calendar;
+    protected static Calendar calendar;
     private View rootView;
-    private Button changeDate, submitDetails;
+    private static Button changeDate;
+    private Button submitDetails;
     private SharedPreferences pref;
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     Context mContext;
@@ -135,13 +136,13 @@ public class ChildDetailActivityFragment extends Fragment {
     }
 
 
-    public void updateDateButtonText() {
+    public static void updateDateButtonText() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         String dateForButton = dateFormat.format(calendar.getTime());
         changeDate.setText(dateForButton);
     }
 
-    class DatePickerFragment extends DialogFragment implements
+    public static class DatePickerFragment extends DialogFragment implements
             DatePickerDialog.OnDateSetListener {
 
         @Override

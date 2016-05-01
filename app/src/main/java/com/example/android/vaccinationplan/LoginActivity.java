@@ -242,7 +242,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
-        return email.contains("@");
+        String patternForBloodGroup = "^[A-Za-z0-9._%+\\\\-]+@[A-Za-z0-9.\\\\-]+\\\\.[A-Za-z]{2,4}$";
+        return email.matches(patternForBloodGroup);
+
+
     }
 
     private boolean isPasswordValid(String password) {
@@ -456,7 +459,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 //Thread.sleep(500);
 
 
-
             } catch (MalformedURLException e) {
                 e.printStackTrace();
                 networkFailed = true;
@@ -497,7 +499,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     if (C.moveToFirst() || C.getCount() > 0) {
                         C.close();
                         return true;
-                    }else {
+                    } else {
                         C.close();
                         status = jsonObject.getString("status");
                         /*String token = jsonObject.getString("token");
@@ -509,7 +511,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         if (!status.equals("new")) {
 
                         /*Create entry into local database*/
-                            DatabaseOperations.insertIntoLogin(mEmail, mPassword, loginId, "1",  Integer.parseInt(number_of_children), mContext);
+                            DatabaseOperations.insertIntoLogin(mEmail, mPassword, loginId, "1", Integer.parseInt(number_of_children), mContext);
                             SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(mContext);
                             SharedPreferences.Editor edit = pref.edit();
                             edit.putString(getString(R.string.pref_key_email), mEmail);
@@ -584,7 +586,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         Intent intent;
         if (status.equals("new")) {
 
-            intent = new Intent(mContext, VerifyAccount.class).putExtra(Intent.EXTRA_TEXT, verificationCode).putExtra("mEmail" , Email);
+            intent = new Intent(mContext, VerifyAccount.class).putExtra(Intent.EXTRA_TEXT, verificationCode).putExtra("mEmail", Email);
             startActivityForResult(intent, 1);
         } else if (new SessionManager(mContext).isChildDetailPresent()) {
 
@@ -620,12 +622,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             message, Toast.LENGTH_LONG)
                             .show();
                 }
-            }else if(resultCode == Activity.RESULT_CANCELED){
+            } else if (resultCode == Activity.RESULT_CANCELED) {
                 Toast.makeText(mContext,
                         "Please verify the account", Toast.LENGTH_LONG)
                         .show();
             }
-        }else{
+        } else {
 
         }
         super.onActivityResult(requestCode, resultCode, data);
