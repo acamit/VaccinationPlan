@@ -72,10 +72,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity
         prepareHospitalList();
         pref1 = (ListPreference)findPreference(getString(R.string.pref_key_hospital));
         int prefIndex = pref1.findIndexOfValue(Hospital);
-        pref1.setSummary(pref1.getEntries()[prefIndex]);
+        if(prefIndex>0){
+            pref1.setSummary(pref1.getEntries()[prefIndex]);
+        }
         city = address.split(",")[0];
     }
-
 
     /**
      * Attaches a listener so the summary is always updated with the preference value.
@@ -117,8 +118,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity
             }
         } else {
             // For other preferences, set the summary to the value's simple string representation.
+            if(preference.getKey().equals(getString(R.string.pref_key_location))){
+                new GetLocationTask(stringValue , preference).execute((Void) null);
 
-            new GetLocationTask(stringValue , preference).execute((Void) null);
+            }else{
+
+            }
 
         }
         return true;
@@ -128,7 +133,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity
     void prepareHospitalList() {
         String HospitalEntries[] = DatabaseOperations.getHospitalList(mContext);
         String HospitalEntriesValues[] = DatabaseOperations.getHospitalValues(mContext);
-        /*Toast.makeText(mContext , ""+HospitalEntries.length , Toast.LENGTH_LONG ).show();*/
         ListPreference hospitals = (ListPreference) findPreference(getString(R.string.pref_key_hospital));
         hospitals.setEntries(HospitalEntries);
         hospitals.setEntryValues(HospitalEntriesValues);

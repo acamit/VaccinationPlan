@@ -41,7 +41,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
         Boolean status = DatabaseOperations.getSynchronizationStatus(mContext);
-        if (status) {
+        if (true) {
             Uri.Builder syncUriBuilder = new Uri.Builder();
             syncUriBuilder.scheme("http")
                     .authority("vaccinationplan.esy.es")
